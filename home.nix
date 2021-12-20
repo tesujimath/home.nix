@@ -22,6 +22,11 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
+    ./ep-dev-backend.nix
     ./packages.nix
+  ];
+
+  nixpkgs.overlays = [
+    (import ./rider.overlay.nix)
   ];
 }

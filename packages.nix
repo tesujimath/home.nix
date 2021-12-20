@@ -4,9 +4,6 @@
   # currently a big dump of what I had in nix-env
   home.packages = [
     pkgs._1password
-    #pkgs.awless
-    pkgs.awscli2
-    #pkgs.azuredatastudio
     pkgs.bind
     #pkgs.discord
     pkgs.dragon-drop
@@ -23,7 +20,6 @@
     pkgs.hunspell
     pkgs.hunspellDicts.en-gb-large
     pkgs.ijq
-    pkgs.jetbrains.datagrip
     pkgs.jo
     pkgs.jq
     pkgs.mimeo
@@ -34,7 +30,6 @@
     #pkgs.postman
     #pkgs.powershell
     #pkgs.pstree
-    pkgs.python39Packages.mitmproxy
     #pkgs.python3.8-pip
     pkgs.ripgrep
     #pkgs.skippy-xd-git
