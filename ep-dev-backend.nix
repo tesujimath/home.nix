@@ -2,9 +2,10 @@
 
 {
   home.packages = [
+    (with pkgs.dotnetCorePackages; combinePackages [ sdk_5_0 sdk_6_0 ])
+
     #pkgs.awless
     pkgs.awscli2
-    pkgs.dotnet-sdk_5
     pkgs.jetbrains.datagrip
     pkgs.jetbrains.rider
     pkgs.python39Packages.mitmproxy
