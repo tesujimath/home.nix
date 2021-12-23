@@ -22,7 +22,7 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    ./ep-dev-backend.nix
+    ./modules/ep-dev-backend
     ./packages.nix
   ];
 
