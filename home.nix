@@ -23,6 +23,7 @@
 
   imports = [
     ./modules/ep-dev-backend
+    ./modules/xmonad-desktop
     ./packages.nix
   ];
 

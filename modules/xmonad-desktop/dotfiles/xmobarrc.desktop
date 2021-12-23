@@ -1,0 +1,27 @@
+-- -*-haskell-*-
+Config { font = "xft:Cantarell:pixelsize=16:bold"
+       , additionalFonts = []
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , alpha = 255
+       , position = TopW L 90
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Date "%a %_d %b %Y %_I:%M%P" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       -- must have StdinReader in the template, otherwise it doesn't actually run,
+       -- and xmonad will hang writing to xmobar
+       , template =  "%StdinReader%}<fc=#f1eddb>%date%</fc>{"
+       }

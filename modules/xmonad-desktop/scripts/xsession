@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+test -r $HOME/.env.sh && . $HOME/.env.sh
+env >> $HOME/.xsession-errors
+
+test -r .Xresources && xrdb -merge .Xresources
+
+xsetroot -solid gray30
+
+restart-trayer
+
+xscreensaver -no-splash &
+
+dunst -config ~/.dunstrc &
+
+# GNOME keyring daemon is started at the system level, for integration with PAM,
+# but we need to enable the components we need here, to get ssh.
+eval $(gnome-keyring-daemon -s -c ssh,secrets)
+export SSH_AUTH_SOCK
+
+nm-applet &
+
+udiskie --tray &
+
+pasystray &
+
+# for xmonad
+export NIX_GHC=`which ghc`
+exec xmonad

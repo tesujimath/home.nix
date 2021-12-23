@@ -1,0 +1,4 @@
+#!/bin/sh
+
+light "$@"
+volnoti-show -b `light -G`

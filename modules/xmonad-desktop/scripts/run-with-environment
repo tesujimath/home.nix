@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+test -r $HOME/.env.sh && . $HOME/.env.sh
+exec "$@"

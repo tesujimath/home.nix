@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# from arandr:
+exec $HOME/.screenlayout/undock.sh

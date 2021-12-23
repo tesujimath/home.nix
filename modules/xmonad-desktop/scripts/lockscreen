@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# start the xscreensaver daemon if need be, then lock the screen
+#
+# This fiddling around is a workaround to the problem, already locked and fails to lock.
+
+if ! xscreensaver-command -lock; then
+    xscreensaver-command -exit
+    sleep 1
+    xscreensaver -nosplash &
+    sleep 1
+
+    # stop dunst notifications
+    killall -SIGUSR1 dunst
+
+    xscreensaver-command -lock
+
+    # resume dunst notifications
+    killall -SIGUSR2 dunst
+fi
