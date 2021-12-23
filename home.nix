@@ -27,6 +27,6 @@
   ];
 
   nixpkgs.overlays = [
-    (import ./rider.overlay.nix)
+    (import ./overlays/rider.nix)
   ];
 }
