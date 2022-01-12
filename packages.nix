@@ -30,7 +30,7 @@
     #pkgs.postman
     #pkgs.powershell
     #pkgs.pstree
-    #pkgs.python3.8-pip
+    pkgs.python3
     pkgs.ripgrep
     #pkgs.skippy-xd-git
     #pkgs.stack
