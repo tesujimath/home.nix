@@ -25,9 +25,14 @@
     ./modules/ep-dev-backend
     ./modules/xmonad-desktop
     ./packages.nix
+    ./secrets.nix
   ];
 
   nixpkgs.overlays = [
     (import ./overlays/rider.nix)
   ];
+
+  home.sessionVariables = {
+   SIMONS_HOME_MANAGER_VARIABLE = "hello Nix Home Manager world!";
+  };
 }
