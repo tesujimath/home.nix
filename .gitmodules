@@ -1,0 +1,3 @@
+[submodule "third-party/alexey"]
+	path = third-party/alexey
+	url = https://github.com/AlexeyRaga/home.nix.git
