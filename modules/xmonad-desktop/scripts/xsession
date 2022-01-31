@@ -20,6 +20,8 @@ export SSH_AUTH_SOCK
 
 nm-applet &
 
+blueman-applet &
+
 udiskie --tray &
 
 pasystray &

@@ -7,6 +7,7 @@ in
   home.packages = [
     xmonad-with-ghc
     pkgs.arandr
+    pkgs.blueman
     pkgs.cantarell-fonts
     pkgs.dmenu
     pkgs.dunst
@@ -43,4 +44,6 @@ in
       recursive = true;
     };
   };
+
+  services.blueman-applet.enable = true;
 }
