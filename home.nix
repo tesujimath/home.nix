@@ -26,6 +26,7 @@
     ./modules/xmonad-desktop
     ./packages.nix
     ./secrets.nix
+    ./ep/aws.nix
   ];
 
   nixpkgs.overlays = [
