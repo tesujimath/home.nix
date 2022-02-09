@@ -11,6 +11,29 @@
           field = "notes";
         };
       };
+      sshKeys = {
+        # the IDs may be found from `op list items`
+        sjg-ep = {
+          vault = "Private";
+          item = "rewjf4dvulthujute5tj7pkoum";
+          field = "notes";
+        };
+        test_ec2_keypair = {
+          vault = "Dev - Shared DevOps";
+          item = "wrmpodmfm2k6rijjj5dimhrnwq";
+          field = "notes";
+        };
+        staging_pem = {
+          vault = "Dev - Shared DevOps";
+          item = "uhpvoujfk2wgu7kpqrdc2heaby";
+          field = "notes";
+        };
+        loadtest01_pem = {
+          vault = "Dev - Shared DevOps";
+          item = "nztr4zuyig4jhac47tfgbo6vn4";
+          field = "notes";
+        };
+      };
     };
   };
 }
