@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (with pkgs.dotnetCorePackages; combinePackages [ sdk_5_0 sdk_6_0 ])
+    (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_5_0 ])
 
     #pkgs.awless
     pkgs.awscli2
