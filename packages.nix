@@ -17,8 +17,10 @@
     #pkgs.go
     pkgs.gzip
     pkgs.htop
-    pkgs.hunspell
-    pkgs.hunspellDicts.en-gb-large
+    pkgs.aspell
+    pkgs.aspellDicts.en
+    pkgs.aspellDicts.en-computers
+    pkgs.aspellDicts.en-science
     pkgs.ijq
     pkgs.jo
     pkgs.jq
