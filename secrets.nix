@@ -10,6 +10,11 @@
           item = "GitHub personal token for NuGET";
           field = "notes";
         };
+        SQLSERVER_MAIN_PASSWORD = {
+          vault = "Dev - Shared";
+          item = "Local SQL Server admin";
+          field = "password";
+        };
       };
       sshKeys = {
         # the IDs may be found from `op list items`

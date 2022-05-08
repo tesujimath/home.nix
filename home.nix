@@ -35,6 +35,9 @@
   ];
 
   home.sessionVariables = {
-   SIMONS_HOME_MANAGER_VARIABLE = "hello Nix Home Manager world!";
+    # these should be the defaults in the test SQL server builder in server repo
+    SQLSERVER_MAIN_SERVER = "localhost";
+    SQLSERVER_MAIN_USERNAME = "sa";
+    # SQLSERVER_MAIN_PASSWORD from 1Password via secrets.nix
   };
 }
