@@ -37,6 +37,7 @@
     #pkgs.skippy-xd-git
     #pkgs.stack
     #pkgs.steam-run
+    pkgs.stow  # for install-dotfiles for now
     pkgs.sxiv
     pkgs.unzip
     pkgs.vscode
