@@ -15,7 +15,6 @@ in
     pkgs.gnome.seahorse
     pkgs.libnotify
     pkgs.libsecret
-    pkgs.light
     pkgs.networkmanagerapplet
     pkgs.pasystray
     pkgs.scrot
