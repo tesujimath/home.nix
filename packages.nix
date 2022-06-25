@@ -6,7 +6,6 @@
     pkgs._1password
     pkgs.bind
     #pkgs.discord
-    pkgs.dragon-drop
     pkgs.du-dust
     pkgs.emacs
     pkgs.file
@@ -43,6 +42,7 @@
     pkgs.vscode
     pkgs.wget
     pkgs.xclip
+    pkgs.xdragon
     pkgs.yarn
     pkgs.zathura
     pkgs.zoom-us
