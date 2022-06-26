@@ -1,0 +1,12 @@
+#!/bin/sh
+
+pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+case $(pactl get-sink-mute @DEFAULT_SINK@) in
+    "Mute: yes")
+        volnoti-show -m
+        ;;
+    "Mute: no")
+        audio-volume-show
+        ;;
+esac

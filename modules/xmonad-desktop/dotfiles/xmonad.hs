@@ -61,9 +61,9 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
             , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myKeysP :: [(String, X ())]
-myKeysP = [ ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
-        , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-        , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+myKeysP = [ ("<XF86AudioMute>", spawn "audio-toggle-mute")
+        , ("<XF86AudioRaiseVolume>", spawn "audio-volume +5%")
+        , ("<XF86AudioLowerVolume>", spawn "audio-volume -5%")
         , ("<XF86MonBrightnessUp>", spawn "mon-brightness -A 5")
         , ("<XF86MonBrightnessDown>", spawn "mon-brightness -U 5")
         ]

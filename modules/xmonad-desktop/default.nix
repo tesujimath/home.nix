@@ -17,6 +17,7 @@ in
     pkgs.libsecret
     pkgs.networkmanagerapplet
     pkgs.pasystray
+    pkgs.pulseaudio
     pkgs.scrot
     pkgs.skippy-xd
     pkgs.sxiv
