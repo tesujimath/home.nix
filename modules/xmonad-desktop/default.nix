@@ -23,6 +23,7 @@ in
     pkgs.termonad-with-packages
     pkgs.trayer
     pkgs.udiskie
+    pkgs.volnoti
     pkgs.xmobar
     pkgs.xorg.xmodmap
     pkgs.xscreensaver

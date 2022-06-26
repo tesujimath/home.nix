@@ -23,6 +23,7 @@
 
   nixpkgs.overlays = [
     (import ./overlays/rider.nix)
+    (import ./overlays/volnoti.nix)
   ];
 
   home.sessionVariables = {

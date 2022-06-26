@@ -24,6 +24,8 @@ blueman-applet &
 
 udiskie --tray &
 
+volnoti -t 2
+
 pasystray &
 
 # for xmonad
