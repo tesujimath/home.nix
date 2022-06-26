@@ -22,7 +22,7 @@
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
-    (import ./overlays/rider.nix)
+    #(import ./overlays/rider.nix)
     (import ./overlays/volnoti.nix)
   ];
 
