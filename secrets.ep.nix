@@ -8,7 +8,7 @@
         EP_NUGET_SOURCE_PASS = {
           vault = "Private";
           item = "GitHub personal token for NuGET";
-          field = "notes";
+          field = "notesPlain";
         };
         SQLSERVER_MAIN_PASSWORD = {
           vault = "Dev - Shared";
@@ -21,22 +21,22 @@
         sjg-ep = {
           vault = "Private";
           item = "rewjf4dvulthujute5tj7pkoum";
-          field = "notes";
+          field = "notesPlain";
         };
         test_ec2_keypair = {
           vault = "Dev - Shared DevOps";
           item = "wrmpodmfm2k6rijjj5dimhrnwq";
-          field = "notes";
+          field = "notesPlain";
         };
         staging_pem = {
           vault = "Dev - Shared DevOps";
           item = "uhpvoujfk2wgu7kpqrdc2heaby";
-          field = "notes";
+          field = "notesPlain";
         };
         loadtest01_pem = {
           vault = "Dev - Shared DevOps";
           item = "nztr4zuyig4jhac47tfgbo6vn4";
-          field = "notes";
+          field = "notesPlain";
         };
       };
     };
