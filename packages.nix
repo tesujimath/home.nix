@@ -36,6 +36,7 @@
     #pkgs.skippy-xd-git
     #pkgs.stack
     pkgs.slack
+    pkgs.speedcrunch
     #pkgs.steam-run
     pkgs.stow  # for install-dotfiles for now
     pkgs.sxiv
