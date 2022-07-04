@@ -15,6 +15,16 @@
           item = "Local SQL Server admin";
           field = "password";
         };
+        TEST_AURORA_MAIN_REMOTEADMIN_PASSWORD = {
+          vault = "Dev - Shared DevOps";
+          item = "AWS Test Aurora Main - RemoteAdmin";
+          field = "password";
+        };
+        TEST_AURORA_STATS_REMOTEADMIN_PASSWORD = {
+          vault = "Dev - Shared DevOps";
+          item = "AWS Test Aurora Stats - RemoteAdmin";
+          field = "password";
+        };
       };
       sshKeys = {
         # the IDs may be found from `op list items`
