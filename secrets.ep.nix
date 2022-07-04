@@ -15,12 +15,22 @@
           item = "Local SQL Server admin";
           field = "password";
         };
-        TEST_AURORA_MAIN_REMOTEADMIN_PASSWORD = {
+        TEST_AURORA_MAIN_PASSWORD = {
           vault = "Dev - Shared DevOps";
           item = "AWS Test Aurora Main - RemoteAdmin";
           field = "password";
         };
-        TEST_AURORA_STATS_REMOTEADMIN_PASSWORD = {
+        TEST_AURORA_MAIN_USERNAME = {
+          vault = "Dev - Shared DevOps";
+          item = "AWS Test Aurora Main - RemoteAdmin";
+          field = "username";
+        };
+        TEST_AURORA_MAIN_HOST = {
+          vault = "Dev - Shared DevOps";
+          item = "AWS Test Aurora Main - RemoteAdmin";
+          field = "server";
+        };
+        TEST_AURORA_STATS_PASSWORD = {
           vault = "Dev - Shared DevOps";
           item = "AWS Test Aurora Stats - RemoteAdmin";
           field = "password";
