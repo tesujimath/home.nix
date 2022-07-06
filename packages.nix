@@ -13,6 +13,7 @@
     pkgs.freerdp
     #pkgs.gh
     pkgs.git
+    pkgs.git-imerge
     #pkgs.go
     pkgs.gzip
     pkgs.htop
