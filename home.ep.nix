@@ -8,6 +8,7 @@
     ./packages.nix
     ./ep/apps.nix
     ./ep/aws.nix
+    ./ep/lexicon.nix
     ./secrets.ep.nix
   ];
 }
