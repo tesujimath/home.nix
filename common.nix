@@ -31,5 +31,8 @@
     SQLSERVER_MAIN_SERVER = "localhost";
     SQLSERVER_MAIN_USERNAME = "sa";
     # SQLSERVER_MAIN_PASSWORD from 1Password via secrets.nix
+
+    # make virsh use system connection as per virt-manager
+    LIBVIRT_DEFAULT_URI = "qemu:///system";
   };
 }
