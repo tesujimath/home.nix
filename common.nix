@@ -5,6 +5,9 @@
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
+    # additional docs, access via home-manager-help command
+    manual.html.enable = true;
+
     #nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = (pkg: true);
 

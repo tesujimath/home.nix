@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, flakePkgs, ... }:
 
 {
   imports = [
@@ -10,5 +10,9 @@
     ./ep/aws.nix
     ./ep/lexicon.nix
     ./secrets.ep.nix
+  ];
+
+  home.packages = [
+    flakePkgs.aws-ep
   ];
 }
