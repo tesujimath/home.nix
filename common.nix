@@ -1,38 +1,26 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  config = {
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "21.11";
+    #nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+    nixpkgs.overlays = [
+      #(import ./overlays/rider.nix)
+      (import ./overlays/volnoti.nix)
+    ];
 
-  nixpkgs.config.allowUnfree = true;
+    home.sessionVariables = {
+      # these should be the defaults in the test SQL server builder in server repo
+      SQLSERVER_MAIN_SERVER = "localhost";
+      SQLSERVER_MAIN_USERNAME = "sa";
+      # SQLSERVER_MAIN_PASSWORD from 1Password via secrets.nix
 
-  nixpkgs.overlays = [
-    #(import ./overlays/rider.nix)
-    (import ./overlays/volnoti.nix)
-  ];
-
-  home.sessionVariables = {
-    # these should be the defaults in the test SQL server builder in server repo
-    SQLSERVER_MAIN_SERVER = "localhost";
-    SQLSERVER_MAIN_USERNAME = "sa";
-    # SQLSERVER_MAIN_PASSWORD from 1Password via secrets.nix
-
-    # make virsh use system connection as per virt-manager
-    LIBVIRT_DEFAULT_URI = "qemu:///system";
+      # make virsh use system connection as per virt-manager
+      LIBVIRT_DEFAULT_URI = "qemu:///system";
+    };
   };
 }
