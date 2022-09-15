@@ -4,6 +4,7 @@
   # currently a big dump of what I had in nix-env
   home.packages = [
     pkgs._1password
+    pkgs.audacious
     pkgs.bind
     #pkgs.discord
     pkgs.du-dust
