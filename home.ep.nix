@@ -15,4 +15,10 @@
   home.packages = [
     flakePkgs.aws-ep
   ];
+
+  programs.ssh = {
+    extraOptionOverrides = {
+      StrictHostKeyChecking = "accept-new";
+    };
+  };
 }
