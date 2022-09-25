@@ -25,5 +25,31 @@
       # make virsh use system connection as per virt-manager
       LIBVIRT_DEFAULT_URI = "qemu:///system";
     };
+
+    programs.bash = {
+      enable = true;
+
+      # all shells
+      bashrcExtra = ''
+'';
+
+      # interactive shells only
+      initExtra = ''
+PS1='\h\$ '
+
+# colours for less
+export LESS="-R"
+
+# colours for ls
+dircolors_env=$HOME/.dircolors.env
+test -r $dircolors_env && . $dircolors_env
+
+# git-subrepo
+source $HOME/share/lib/git-subrepo/.rc
+
+# direnv
+eval "$(direnv hook bash)"
+'';
+    };
   };
 }
