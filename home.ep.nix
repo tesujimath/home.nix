@@ -6,6 +6,7 @@
     ./modules/ep-dev-backend
     ./modules/xmonad-desktop
     ./packages.nix
+    ./packages.ep.nix
     ./ep/apps.nix
     ./ep/aws.nix
     ./ep/lexicon.nix
@@ -14,6 +15,8 @@
 
   home.packages = [
     flakePkgs.aws-ep
+    pkgs.tcptraceroute
+    pkgs.wireshark
   ];
 
   programs.ssh = {
