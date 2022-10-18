@@ -44,9 +44,6 @@ export LESS="-R"
 dircolors_env=$HOME/.dircolors.env
 test -r $dircolors_env && . $dircolors_env
 
-# git-subrepo
-source $HOME/share/lib/git-subrepo/.rc
-
 # direnv
 eval "$(direnv hook bash)"
 '';
