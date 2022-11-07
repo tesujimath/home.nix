@@ -24,4 +24,8 @@
       StrictHostKeyChecking = "accept-new";
     };
   };
+
+  home.sessionVariables = {
+    EMAIL = "simon.guest@educationperfect.com";
+  };
 }
