@@ -18,7 +18,7 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       flakePkgs = {
-        aws-ep = aws-ep.defaultPackage.${system};
+        aws-ep = aws-ep.packages.${system}.default;
       };
 
       username = "sjg"; #builtins.getEnv "USER";
