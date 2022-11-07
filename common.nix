@@ -33,6 +33,12 @@
       bashrcExtra = ''
 '';
 
+      # login shells
+      # TODO nixify .env.sh
+      profileExtra = ''
+. $HOME/.env.sh
+'';
+
       # interactive shells only
       initExtra = ''
 PS1='\h\$ '
