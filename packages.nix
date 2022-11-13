@@ -13,6 +13,7 @@
     pkgs.firefox
     pkgs.freerdp
     #pkgs.gh
+    pkgs.gimp
     pkgs.git
     pkgs.git-imerge
     #pkgs.go
