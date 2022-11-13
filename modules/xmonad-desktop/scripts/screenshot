@@ -1,4 +1,4 @@
 #!/bin/sh
 
 screenshot_dir=$HOME/screenshots
-mkdir -p $screenshot_dir && cd $screenshot_dir && sleep 0.2 && scrot -s -e 'xclip -selection clipboard -target image/png -i $f && sxiv $f'
+mkdir -p $screenshot_dir && cd $screenshot_dir && sleep 0.2 && scrot "$@" -e 'xclip -selection clipboard -target image/png -i $f && sxiv $f'
