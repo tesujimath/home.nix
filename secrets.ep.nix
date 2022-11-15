@@ -15,26 +15,6 @@
           item = "Local SQL Server admin";
           field = "password";
         };
-        TEST_AURORA_MAIN_PASSWORD = {
-          vault = "Dev - Shared DevOps";
-          item = "AWS Test Aurora Main - RemoteAdmin";
-          field = "password";
-        };
-        TEST_AURORA_MAIN_USERNAME = {
-          vault = "Dev - Shared DevOps";
-          item = "AWS Test Aurora Main - RemoteAdmin";
-          field = "username";
-        };
-        TEST_AURORA_MAIN_HOST = {
-          vault = "Dev - Shared DevOps";
-          item = "AWS Test Aurora Main - RemoteAdmin";
-          field = "server";
-        };
-        TEST_AURORA_STATS_PASSWORD = {
-          vault = "Dev - Shared DevOps";
-          item = "AWS Test Aurora Stats - RemoteAdmin";
-          field = "password";
-        };
       };
       sshKeys = {
         # the IDs may be found from `op list items`
@@ -44,18 +24,18 @@
           field = "notesPlain";
         };
         test_ec2_keypair = {
-          vault = "Dev - Shared DevOps";
-          item = "wrmpodmfm2k6rijjj5dimhrnwq";
+          vault = "Dev - Shared Root";
+          item = "hp3fuuqmfwbf3rj7naoyffx2za";
           field = "notesPlain";
         };
         staging_pem = {
-          vault = "Dev - Shared DevOps";
-          item = "uhpvoujfk2wgu7kpqrdc2heaby";
+          vault = "Dev - Shared Root";
+          item = "izlxfcxdsfxp5xbd5t3ripnwim";
           field = "notesPlain";
         };
         loadtest01_pem = {
-          vault = "Dev - Shared DevOps";
-          item = "nztr4zuyig4jhac47tfgbo6vn4";
+          vault = "Dev - Shared Root";
+          item = "mzbwmqvuajtn3trebnc4o3ndve";
           field = "notesPlain";
         };
       };
