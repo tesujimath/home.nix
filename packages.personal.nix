@@ -2,6 +2,5 @@
 
 {
   home.packages = [
-    pkgs.ledger
   ];
 }
