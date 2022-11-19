@@ -11,4 +11,7 @@
     #./ep/aws.nix
     #./secrets.personal.nix
   ];
+  home.file = {
+    ".env.sh".source = ./dotfiles.personal/env.sh;
+  };
 }
