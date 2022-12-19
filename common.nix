@@ -41,12 +41,15 @@ PS1='\h\$ '
 export LESS="-R"
 
 # colours for ls
-dircolors_env=$HOME/.dircolors.env
-test -r $dircolors_env && . $dircolors_env
+dircolors_config=$HOME/.dircolors
+test -r $dircolors_config && eval $(dircolors -b $dircolors_config)
 
 # direnv
 eval "$(direnv hook bash)"
 '';
+    };
+    home.file = {
+      ".dircolors".source = ./dotfiles/dircolors;
     };
   };
 }
