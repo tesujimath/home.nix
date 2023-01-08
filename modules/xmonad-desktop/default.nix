@@ -21,7 +21,7 @@ in
     pkgs.scrot
     pkgs.skippy-xd
     pkgs.sxiv
-    pkgs.termonad-with-packages
+    pkgs.termonad
     pkgs.trayer
     pkgs.udiskie
     pkgs.volnoti
