@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/bash.nix
+    ./modules/zathura.nix
+    ];
+
   config = {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
@@ -26,28 +31,6 @@
       LIBVIRT_DEFAULT_URI = "qemu:///system";
     };
 
-    programs.bash = {
-      enable = true;
-
-      # all shells
-      bashrcExtra = ''
-'';
-
-      # interactive shells only
-      initExtra = ''
-PS1='\h\$ '
-
-# colours for less
-export LESS="-R"
-
-# colours for ls
-dircolors_config=$HOME/.dircolors
-test -r $dircolors_config && eval $(dircolors -b $dircolors_config)
-
-# direnv
-eval "$(direnv hook bash)"
-'';
-    };
     home.file = {
       ".dircolors".source = ./dotfiles/dircolors;
     };

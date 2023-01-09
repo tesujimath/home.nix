@@ -49,7 +49,6 @@
     pkgs.xclip
     pkgs.xdragon
     pkgs.yarn
-    pkgs.zathura
     pkgs.zoom-us
   ];
 }
