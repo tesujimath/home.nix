@@ -13,6 +13,7 @@ in
     pkgs.dunst
     pkgs.gnome3.gnome-terminal
     pkgs.gnome.seahorse
+    pkgs.handlr
     pkgs.libnotify
     pkgs.libsecret
     pkgs.networkmanagerapplet
