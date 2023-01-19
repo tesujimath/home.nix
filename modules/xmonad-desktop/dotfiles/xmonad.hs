@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.Warp
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -9,6 +10,10 @@ import qualified XMonad.StackSet as SS
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys, additionalKeysP, additionalMouseBindings)
 
+import Control.Monad
+import Control.Monad.Trans.Class
+import Control.Monad.Trans.Maybe
+import Data.Maybe
 import Data.Ratio
 import System.IO
 
@@ -28,7 +33,7 @@ myManageHook = composeAll
 
 main = do
   xmproc <- spawnPipe "xmobar"
-  xmonad $ ewmhFullscreen $ ewmh .docks $ def
+  xmonad $ ewmhFullscreen $ ewmh . docks $ def
         { manageHook = manageDocks <+> myManageHook <+> manageHook def
         , layoutHook = avoidStruts  $  smartBorders  $  layoutHook def
         , logHook = dynamicLogWithPP xmobarPP
@@ -43,6 +48,10 @@ main = do
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         } `additionalKeys` myKeys `additionalKeysP` myKeysP `additionalMouseBindings` myMouseBindings
 
+-- keys for selecting physical screens
+screenKeys :: [KeySym]
+screenKeys = [xK_1, xK_2, xK_3]
+
 myKeys :: [((KeyMask, KeySym), X ())]
 myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((0, xK_Print), spawn "screenshot -s")
@@ -52,15 +61,15 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((mod4Mask, xK_Tab), spawn "skippy-xd")
         ]
         ++
-        -- alt-mod-{2,3,1} %! Warp pointer to physical/Xinerama screens 1, 2, 3
-         [((mod4Mask .|. mod1Mask, key), warpToScreen sc (1%3) (1%2))
-         | (key, sc) <- zip [xK_2, xK_3, xK_1] [0..]]
-        ++
-        -- alt-mod-shift-{2,3,1} %! Move client to screen 1, 2, 3
-        -- adapted from xmonad/src/XMonad/Config.hs
-        -- unsure why the physical screens to logical screen isn't quite right
-         [((shiftMask .|. mod4Mask .|. mod1Mask, key), screenWorkspace sc >>= flip whenJust (windows . SS.shift))
-         | (key, sc) <- zip [xK_2, xK_3, xK_1] [0..]]
+        -- alt-mod-{screenKeys}
+         [((m .|. mod4Mask .|. mod1Mask, key), void $ runMaybeT $ (MaybeT . getScreen horizontalScreenOrderer) sc >>= lift . f)
+         | (key, sc) <- zip screenKeys [0..]
+         , (f, m) <-
+           -- Warp pointer to physical/Xinerama screens 1, 2, 3
+           [ (\sc' -> warpToScreen sc' (1%3) (1%2), 0)
+           -- Move client to screen 1, 2, 3
+           , (\sc' -> screenWorkspace sc' >>= flip whenJust (windows . SS.shift), shiftMask)
+           ]]
 
 myKeysP :: [(String, X ())]
 myKeysP = [ ("<XF86AudioMute>", spawn "audio-toggle-mute")
