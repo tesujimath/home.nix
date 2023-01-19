@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # from arandr:
-xrandr.dock.sh
-
+$HOME/.screenlayout/dock.sh
 restart-trayer
 sleep 10
 xmonad --restart

@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # from arandr:
-exec xrandr.undock.sh
+exec $HOME/.screenlayout/undock.sh
