@@ -1,12 +1,15 @@
 import XMonad
+import XMonad.Actions.Warp
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
-import qualified XMonad.StackSet as W
+import qualified XMonad.StackSet as SS
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys, additionalKeysP, additionalMouseBindings)
+
+import Data.Ratio
 import System.IO
 
 myManageHook = composeAll
@@ -53,13 +56,15 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((mod4Mask, xK_Tab), spawn "skippy-xd")
         ]
         ++
-        -- alt-mod-{2,3,1} %! Switch to physical/Xinerama screens 1, 2, 3
+        -- alt-mod-{2,3,1} %! Warp pointer to physical/Xinerama screens 1, 2, 3
+         [((mod4Mask .|. mod1Mask, key), warpToScreen sc (1%3) (1%2))
+         | (key, sc) <- zip [xK_2, xK_3, xK_1] [0..]]
+        ++
         -- alt-mod-shift-{2,3,1} %! Move client to screen 1, 2, 3
         -- adapted from xmonad/src/XMonad/Config.hs
         -- unsure why the physical screens to logical screen isn't quite right
-        [((m .|. mod4Mask .|. mod1Mask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-            | (key, sc) <- zip [xK_2, xK_3, xK_1] [0..]
-            , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+         [((shiftMask .|. mod4Mask .|. mod1Mask, key), screenWorkspace sc >>= flip whenJust (windows . SS.shift))
+         | (key, sc) <- zip [xK_2, xK_3, xK_1] [0..]]
 
 myKeysP :: [(String, X ())]
 myKeysP = [ ("<XF86AudioMute>", spawn "audio-toggle-mute")
@@ -70,4 +75,4 @@ myKeysP = [ ("<XF86AudioMute>", spawn "audio-toggle-mute")
         ]
 
 myMouseBindings :: [((ButtonMask, Button), Window -> X ())]
-myMouseBindings = [ ((mod4Mask .|. shiftMask, button1), \w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster) ]
+myMouseBindings = [ ((mod4Mask .|. shiftMask, button1), \w -> focus w >> mouseResizeWindow w >> windows SS.shiftMaster) ]
