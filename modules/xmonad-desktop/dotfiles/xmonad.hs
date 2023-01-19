@@ -52,6 +52,11 @@ main = do
 screenKeys :: [KeySym]
 screenKeys = [xK_1, xK_2, xK_3]
 
+-- orders screens by the upper-left-most corner, from left-to-right, bottom to top
+lrbtScreenOrderer :: ScreenComparator
+lrbtScreenOrderer = screenComparatorByRectangle comparator where
+  comparator (Rectangle x1 y1 _ _) (Rectangle x2 y2 _ _) = compare (x1, -y1) (x2, -y2)
+
 myKeys :: [((KeyMask, KeySym), X ())]
 myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((0, xK_Print), spawn "screenshot -s")
@@ -62,7 +67,7 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         ]
         ++
         -- alt-mod-{screenKeys}
-         [((m .|. mod4Mask .|. mod1Mask, key), void $ runMaybeT $ (MaybeT . getScreen horizontalScreenOrderer) sc >>= lift . f)
+         [((m .|. mod4Mask .|. mod1Mask, key), void $ runMaybeT $ (MaybeT . getScreen lrbtScreenOrderer) sc >>= lift . f)
          | (key, sc) <- zip screenKeys [0..]
          , (f, m) <-
            -- Warp pointer to physical/Xinerama screens 1, 2, 3
