@@ -28,13 +28,9 @@ myManageHook = composeAll
 
 main = do
   xmproc <- spawnPipe "xmobar"
-  xmonad $ ewmh def
+  xmonad $ ewmhFullscreen $ ewmh .docks $ def
         { manageHook = manageDocks <+> myManageHook <+> manageHook def
         , layoutHook = avoidStruts  $  smartBorders  $  layoutHook def
-        , handleEventHook = mconcat
-                            [ docksEventHook
-                            , fullscreenEventHook
-                            , handleEventHook def ]
         , logHook = dynamicLogWithPP xmobarPP
                     { ppOutput = hPutStrLn xmproc
                     , ppTitle = xmobarColor "#f1eddb" "" . shorten 50
