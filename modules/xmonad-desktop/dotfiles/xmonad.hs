@@ -71,7 +71,7 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
          | (key, sc) <- zip screenKeys [0..]
          , (f, m) <-
            -- Warp pointer to physical/Xinerama screens 1, 2, 3
-           [ (\sc' -> warpToScreen sc' (1%3) (1%2), 0)
+           [ (\sc' -> warpToScreen sc' (1%3) (1%3), 0)
            -- Move client to screen 1, 2, 3
            , (\sc' -> screenWorkspace sc' >>= flip whenJust (windows . SS.shift), shiftMask)
            ]]
