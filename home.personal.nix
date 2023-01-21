@@ -4,6 +4,7 @@
   imports = [
     ./common.nix
     #./modules/ep-dev-backend
+    ./modules/ledger
     ./modules/xmonad-desktop
     ./packages.nix
     ./packages.personal.nix
