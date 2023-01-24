@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.Warp
+import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
@@ -63,6 +64,7 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((shiftMask, xK_Print), spawn "screenshot")
         , ((mod4Mask, xK_o), spawn "run-with-environment dmenu_run -fn xft:cantarell:pixelsize=16")
         , ((mod4Mask .|. shiftMask, xK_o), spawn "run-with-environment gmrun")
+        , ((mod4Mask .|. controlMask, xK_c), killOthers)
         , ((mod4Mask, xK_Tab), spawn "skippy-xd")
         ]
         ++
