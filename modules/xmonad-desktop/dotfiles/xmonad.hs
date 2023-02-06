@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Actions.CycleWindows
 import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.Warp
 import XMonad.Actions.WithAll
@@ -65,6 +66,7 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((mod4Mask, xK_o), spawn "run-with-environment dmenu_run -fn xft:cantarell:pixelsize=16")
         , ((mod4Mask .|. shiftMask, xK_o), spawn "run-with-environment gmrun")
         , ((mod4Mask .|. controlMask, xK_c), killOthers)
+        , ((mod4Mask .|. controlMask, xK_j), cycleRecentWindows [xK_Super_L, xK_Control_L] xK_j xK_k)
         , ((mod4Mask, xK_Tab), spawn "skippy-xd")
         ]
         ++
