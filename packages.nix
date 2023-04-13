@@ -1,54 +1,56 @@
 { pkgs, ... }:
 
+with pkgs;
 {
   # currently a big dump of what I had in nix-env
   home.packages = [
-    pkgs._1password
-    pkgs.audacious
-    pkgs.bind
-    #pkgs.discord
-    pkgs.du-dust
-    pkgs.emacs
-    pkgs.file
-    pkgs.firefox
-    pkgs.freerdp
-    #pkgs.gh
-    pkgs.gimp
-    pkgs.git
-    pkgs.git-imerge
-    #pkgs.go
-    pkgs.gzip
-    pkgs.htop
-    pkgs.aspell
-    pkgs.aspellDicts.en
-    pkgs.aspellDicts.en-computers
-    pkgs.aspellDicts.en-science
-    pkgs.ijq
-    pkgs.jo
-    pkgs.jq
-    pkgs.mimeo
-    pkgs.nix-index
-    pkgs.nmap
-    pkgs.nodejs
-    pkgs.pavucontrol
-    #pkgs.postman
-    #pkgs.powershell
-    #pkgs.pstree
-    pkgs.python3
-    pkgs.ripgrep
-    #pkgs.skippy-xd-git
-    #pkgs.stack
-    pkgs.slack
-    pkgs.speedcrunch
-    #pkgs.steam-run
-    pkgs.stow  # for install-dotfiles for now
-    pkgs.sxiv
-    pkgs.unzip
-    pkgs.vscode
-    pkgs.wget
-    pkgs.xclip
-    pkgs.xdragon
-    pkgs.yarn
-    pkgs.zoom-us
+    _1password
+    audacious
+    bind
+    #discord
+    du-dust
+    emacs
+    file
+    firefox
+    freerdp
+    #gh
+    gimp
+    git
+    git-imerge
+    #go
+    gzip
+    htop
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+    ijq
+    jo
+    jq
+    mimeo
+    nix-index
+    nixos-option
+    nmap
+    nodejs
+    pavucontrol
+    #postman
+    #powershell
+    #pstree
+    python3
+    ripgrep
+    #skippy-xd-git
+    #stack
+    slack
+    speedcrunch
+    #steam-run
+    stow  # for install-dotfiles for now
+    sxiv
+    unzip
+    vscode
+    wget
+    xclip
+    xdragon
+    yarn
+    zoom-us
   ];
 }

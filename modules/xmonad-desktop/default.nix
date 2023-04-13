@@ -1,34 +1,35 @@
 { pkgs, ... }:
 
+with pkgs;
 let
-  xmonad-with-ghc = pkgs.haskellPackages.ghcWithPackages (pkgs: [pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib]);
+  xmonad-with-ghc = haskellPackages.ghcWithPackages (pkgs: [pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib]);
 in
 {
   home.packages = [
     xmonad-with-ghc
-    pkgs.arandr
-    pkgs.blueman
-    pkgs.cantarell-fonts
-    pkgs.dmenu
-    pkgs.dunst
-    pkgs.gnome3.gnome-terminal
-    pkgs.gnome.seahorse
-    pkgs.handlr
-    pkgs.libnotify
-    pkgs.libsecret
-    pkgs.networkmanagerapplet
-    pkgs.pasystray
-    pkgs.pulseaudio
-    pkgs.scrot
-    pkgs.skippy-xd
-    pkgs.sxiv
-    pkgs.termonad
-    pkgs.trayer
-    pkgs.udiskie
-    pkgs.volnoti
-    pkgs.xmobar
-    pkgs.xorg.xmodmap
-    pkgs.xscreensaver
+    arandr
+    blueman
+    cantarell-fonts
+    dmenu
+    dunst
+    gnome3.gnome-terminal
+    gnome.seahorse
+    handlr
+    libnotify
+    libsecret
+    networkmanagerapplet
+    pasystray
+    pulseaudio
+    scrot
+    skippy-xd
+    sxiv
+    termonad
+    trayer
+    udiskie
+    volnoti
+    xmobar
+    xorg.xmodmap
+    xscreensaver
   ];
 
   home.file = {
