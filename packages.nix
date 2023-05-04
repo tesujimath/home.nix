@@ -16,6 +16,7 @@ with pkgs;
     #gh
     gimp
     git
+    git-crypt
     git-imerge
     #go
     gzip
@@ -45,6 +46,7 @@ with pkgs;
     #steam-run
     stow  # for install-dotfiles for now
     sxiv
+    unison
     unzip
     vscode
     wget
