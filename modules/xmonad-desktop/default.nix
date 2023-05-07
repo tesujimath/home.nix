@@ -12,18 +12,18 @@ in
     cantarell-fonts
     dmenu
     dunst
-    gnome3.gnome-terminal
     gnome.seahorse
     handlr
     libnotify
     libsecret
     networkmanagerapplet
+    nushell
     pasystray
     pulseaudio
     scrot
     skippy-xd
     sxiv
-    termonad
+    tmux
     trayer
     udiskie
     volnoti
@@ -49,4 +49,16 @@ in
   };
 
   services.blueman-applet.enable = true;
+
+  programs.alacritty = {
+    enable = true;
+    # see https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+    settings = {
+      font = {
+        normal = {
+          family = "Source Code Pro";
+        };
+      };
+    };
+  };
 }

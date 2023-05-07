@@ -36,7 +36,7 @@ with pkgs;
     pavucontrol
     #postman
     #powershell
-    #pstree
+    pstree
     python3
     ripgrep
     #skippy-xd-git

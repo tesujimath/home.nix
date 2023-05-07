@@ -44,7 +44,7 @@ main = do
                     }
         , focusFollowsMouse  = True
         , borderWidth        = 4
-        , terminal           = "run-with-environment gnome-terminal"
+        , terminal           = "run-with-environment alacritty"
         , normalBorderColor  = "#cccccc"
         , focusedBorderColor = "#ff8c00"
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
