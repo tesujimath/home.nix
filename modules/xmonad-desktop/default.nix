@@ -17,7 +17,6 @@ in
     libnotify
     libsecret
     networkmanagerapplet
-    nushell
     pasystray
     pulseaudio
     scrot
