@@ -22,13 +22,13 @@ in
     scrot
     skippy-xd
     sxiv
-    tmux
     trayer
     udiskie
     volnoti
     xmobar
     xorg.xmodmap
     xscreensaver
+    zellij
   ];
 
   home.file = {
