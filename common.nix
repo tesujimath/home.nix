@@ -3,6 +3,7 @@
 {
   imports = [
     ./modules/bash.nix
+    ./modules/helix.nix
     ./modules/nushell.nix
     ./modules/zathura.nix
     ];
