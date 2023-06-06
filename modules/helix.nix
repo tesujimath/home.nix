@@ -14,6 +14,9 @@ with pkgs;
               display-inlay-hints = true;
               display-messages = true;
             };
+            search = {
+              wrap-around = false;
+            };
             soft-wrap = {
               enable = true;
             };
