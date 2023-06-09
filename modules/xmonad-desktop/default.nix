@@ -28,7 +28,6 @@ in
     xmobar
     xorg.xmodmap
     xscreensaver
-    zellij
   ];
 
   home.file = {

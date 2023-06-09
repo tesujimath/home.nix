@@ -6,6 +6,7 @@
     ./modules/helix.nix
     ./modules/nushell.nix
     ./modules/zathura.nix
+    ./modules/zellij.nix
     ];
 
   config = {
