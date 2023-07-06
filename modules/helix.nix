@@ -45,6 +45,11 @@ with pkgs;
               "`" = "`";
               "<" = ">";
             };
+            config = {
+              check = {
+                command = "clippy";
+              };
+            };
           }
         ];
       };
