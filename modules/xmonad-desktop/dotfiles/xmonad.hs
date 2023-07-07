@@ -9,6 +9,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import qualified XMonad.StackSet as SS
+import XMonad.Prompt
+import XMonad.Prompt.ConfirmPrompt
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys, additionalKeysP, additionalMouseBindings)
 
@@ -17,6 +19,7 @@ import Control.Monad.Trans.Class
 import Control.Monad.Trans.Maybe
 import Data.Maybe
 import Data.Ratio
+import System.Exit
 import System.IO
 
 myManageHook = composeAll
@@ -65,6 +68,7 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_l), spawn "lockscreen")
         , ((shiftMask, xK_Print), spawn "screenshot")
         , ((mod4Mask, xK_o), spawn "run-with-environment dmenu_run -fn xft:cantarell:pixelsize=16")
         , ((mod4Mask .|. shiftMask, xK_o), spawn "run-with-environment gmrun")
+        , ((mod4Mask .|. shiftMask, xK_q), confirmPrompt def "exit" $ io exitSuccess)
         , ((mod4Mask .|. controlMask, xK_c), killOthers)
         , ((mod4Mask .|. controlMask, xK_j), cycleRecentWindows [xK_Super_L, xK_Control_L] xK_j xK_k)
         , ((mod4Mask, xK_Tab), spawn "skippy-xd")
