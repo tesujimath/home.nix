@@ -8,6 +8,7 @@ in
   home.packages = [
     xmonad-with-ghc
     arandr
+    autorandr
     blueman
     cantarell-fonts
     dmenu
