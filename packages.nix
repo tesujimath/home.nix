@@ -26,6 +26,7 @@ with pkgs;
     aspellDicts.en-computers
     aspellDicts.en-science
     ijq
+    jetbrains.clion
     jo
     jq
     mimeo
