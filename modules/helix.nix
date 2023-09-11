@@ -34,24 +34,26 @@ with pkgs;
             };
           };
         };
-        languages = [
-          {
-            name = "rust";
-            auto-pairs = {
-              "(" = ")";
-              "{" = "}";
-              "[" = "]";
-              "\"" = "\"";
-              "`" = "`";
-              "<" = ">";
-            };
-            config = {
-              check = {
-                command = "clippy";
+        languages = {
+          language = [
+            {
+              name = "rust";
+              auto-pairs = {
+                "(" = ")";
+                "{" = "}";
+                "[" = "]";
+                "\"" = "\"";
+                "`" = "`";
+                "<" = ">";
               };
-            };
-          }
-        ];
+              config = {
+                check = {
+                  command = "clippy";
+                };
+              };
+            }
+          ];
+        };
       };
     };
     home.packages = [
