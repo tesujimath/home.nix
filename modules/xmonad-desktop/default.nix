@@ -23,7 +23,6 @@ in
     scrot
     skippy-xd
     sxiv
-    trayer
     udiskie
     volnoti
     xmobar
@@ -32,8 +31,6 @@ in
   ];
 
   home.file = {
-    ".xsession".source = ./dotfiles/xsession;
-
     # TODO install desktop version on desktops
     ".xmobarrc".source = ./dotfiles/xmobarrc.laptop;
 
@@ -48,6 +45,50 @@ in
   };
 
   services.blueman-applet.enable = true;
+  services.trayer.enable = true;
+
+  xsession = {
+    enable = true;
+
+    windowManager = {
+      command = "${xmonad-with-ghc}/bin/xmonad";
+    };
+
+    initExtra = ''
+      PATH=$HOME/.xmonad-desktop-scripts:$PATH
+
+      test -r $HOME/.env.sh && . $HOME/.env.sh
+      env >> $HOME/.xsession-errors
+
+      test -r .Xresources && xrdb -merge .Xresources
+
+      xsetroot -solid gray30
+
+      restart-trayer
+
+      xscreensaver -no-splash &
+
+      dunst -config ~/.dunstrc &
+
+      # GNOME keyring daemon is started at the system level, for integration with PAM,
+      # but we need to enable the components we need here, to get ssh.
+      eval $(gnome-keyring-daemon -s -c ssh,secrets)
+      export SSH_AUTH_SOCK
+
+      nm-applet &
+
+      blueman-applet &
+
+      udiskie --tray &
+
+      volnoti -t 2
+
+      pasystray &
+
+      # for xmonad
+      export NIX_GHC="${xmonad-with-ghc}/bin/ghc"
+    '';
+  };
 
   programs.alacritty = {
     enable = true;
