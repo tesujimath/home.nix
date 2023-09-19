@@ -5,6 +5,7 @@
     ./common.nix
     #./modules/ep-dev-backend
     ./modules/ledger
+    ./modules/syncthing.nix
     ./modules/xmonad-desktop
     ./packages.nix
     ./packages.personal.nix
