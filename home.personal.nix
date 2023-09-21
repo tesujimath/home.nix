@@ -4,6 +4,7 @@
   imports = [
     ./common.nix
     #./modules/ep-dev-backend
+    ./modules/emacs.nix
     ./modules/ledger
     ./modules/syncthing.nix
     ./modules/xmonad-desktop

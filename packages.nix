@@ -9,7 +9,6 @@ with pkgs;
     bind
     #discord
     du-dust
-    emacs
     file
     firefox
     freerdp
