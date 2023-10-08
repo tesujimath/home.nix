@@ -22,6 +22,9 @@ with pkgs;
             };
           };
           keys = {
+            normal = {
+              "X" = ["extend_line_up" "extend_to_line_bounds"];
+            };
             insert = {
               up = "no_op";
               down = "no_op";
