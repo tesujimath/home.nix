@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   config = {
@@ -24,5 +24,11 @@ test -r $dircolors_config && eval $(dircolors -b $dircolors_config)
 eval "$(direnv hook bash)"
 '';
     };
+
+    home.packages =
+      with pkgs;
+      [
+        nodePackages.bash-language-server
+      ];
   };
 }
