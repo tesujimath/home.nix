@@ -49,6 +49,10 @@ with pkgs;
                 "`" = "`";
               };
             }
+            {
+              name = "python";
+              language-servers = ["pyright"];
+            }
           ];
 
           language-server = {
