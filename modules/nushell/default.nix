@@ -13,8 +13,8 @@ with specialArgs; # for flakePkgs
       direnv.enableNushellIntegration = true;
     };
 
-    home.packages = [
-      flakePkgs.nu_plugin_bash_env
-    ];
+    home.file = {
+      ".config/nushell/plugins/nu_plugin_bash_env".source = "${flakePkgs.nu_plugin_bash_env}/bin/nu_plugin_bash_env";
+    };
   };
 }

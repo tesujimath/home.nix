@@ -95,7 +95,7 @@ $env.NU_LIB_DIRS = [
 $env.NU_PLUGIN_DIRS = [
     # FIXME: This default is not implemented in rust code as of 2023-09-06.
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
-] ++ ($env.PATH | split row (char esep))
+]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
