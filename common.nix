@@ -4,7 +4,7 @@
   imports = [
     ./modules/bash.nix
     ./modules/helix.nix
-    ./modules/nushell.nix
+    ./modules/nushell
     ./modules/zathura.nix
     ./modules/zellij.nix
     ];

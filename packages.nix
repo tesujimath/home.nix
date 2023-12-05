@@ -1,7 +1,6 @@
-{ pkgs, specialArgs, ... }:
+{ pkgs, ... }:
 
 with pkgs;
-with specialArgs;
 {
   # currently a big dump of what I had in nix-env
   home.packages = [
@@ -55,7 +54,5 @@ with specialArgs;
     xdragon
     yarn
     zoom-us
-
-    flakePkgs.nu_plugin_bash_env
   ];
 }
