@@ -8,13 +8,20 @@
       url = github:nix-community/home-manager/master;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nu_plugin_bash_env = {
+      url = github:tesujimath/nu_plugin_bash_env/main;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, nu_plugin_bash_env, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      flakePkgs = {};
+      flakePkgs = {
+        nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
+      };
 
       username = "sjg"; #builtins.getEnv "USER";
       homeDirectory = /home/sjg; # /. + builtins.getEnv "HOME";
@@ -44,6 +51,9 @@
               };
             }
           ];
+          extraSpecialArgs = {
+            inherit flakePkgs;
+          };
         };
       };
     };
