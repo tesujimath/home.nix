@@ -1,0 +1,49 @@
+Host captain captain.agresearch.co.nz
+     HostName captain.agresearch.co.nz
+     User root
+
+Host invincible invincible.agresearch.co.nz
+     HostName invincible.agresearch.co.nz
+     User root
+     HostKeyAlgorithms ssh-rsa
+     PubkeyAcceptedKeyTypes ssh-rsa
+
+Host k-devops-pv01.agresearch.co.nz
+     HostKeyAlgorithms ssh-rsa
+     PubkeyAcceptedKeyTypes ssh-rsa
+
+Host gateway
+     HostName gateway.eri.agresearch.co.nz
+     User eri_migration
+
+Host login-0 login-0.eri.agresearch.co.nz
+     HostName login-0.eri.agresearch.co.nz
+     User guestsi@agresearch.co.nz
+     GSSAPIAuthentication yes
+     GSSAPIDelegateCredentials yes
+
+Host login-1 login-1.eri.agresearch.co.nz
+     HostName login-1.eri.agresearch.co.nz
+     User guestsi@agresearch.co.nz
+     GSSAPIAuthentication yes
+     GSSAPIDelegateCredentials yes
+
+Host gitlab-runner
+     HostName 163.7.177.123
+     User cloud-user
+
+Host conflict
+     GSSAPIAuthentication yes
+     GSSAPIDelegateCredentials yes
+
+Host guestsi-playpen guestsi-playpen.dev.eri.agresearch.co.nz
+     HostName guestsi-playpen.dev.eri.agresearch.co.nz
+     StrictHostKeyChecking no
+     UserKnownHostsFile /dev/null
+     User core
+
+Host gquery-agrbrdf gquery-agrbrdf.dev.eri.agresearch.co.nz
+     HostName gquery-agrbrdf.dev.eri.agresearch.co.nz
+     StrictHostKeyChecking no
+     UserKnownHostsFile /dev/null
+     User core

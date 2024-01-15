@@ -23,22 +23,25 @@
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
       };
 
-      username = "sjg"; #builtins.getEnv "USER";
-      homeDirectory = /home/sjg; # /. + builtins.getEnv "HOME";
       stateVersion = "21.11";
 
     in {
       homeConfigurations = {
-        ep = home-manager.lib.homeManagerConfiguration {
+        agr = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home.ep.nix
+            ./home.agr.nix
             {
               home = {
-                inherit username homeDirectory stateVersion;
+                inherit stateVersion;
+                username = "guestsi"; #builtins.getEnv "USER";
+                homeDirectory = /home/guestsi; # /. + builtins.getEnv "HOME";
               };
             }
           ];
+          extraSpecialArgs = {
+            inherit flakePkgs;
+          };
         };
 
         personal = home-manager.lib.homeManagerConfiguration {
@@ -47,7 +50,9 @@
             ./home.personal.nix
             {
               home = {
-                inherit username homeDirectory stateVersion;
+                inherit stateVersion;
+                username = "sjg"; #builtins.getEnv "USER";
+                homeDirectory = /home/sjg; # /. + builtins.getEnv "HOME";
               };
             }
           ];
