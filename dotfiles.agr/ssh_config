@@ -51,3 +51,9 @@ Host gquery-agrbrdf gquery-agrbrdf.dev.eri.agresearch.co.nz
      StrictHostKeyChecking no
      UserKnownHostsFile /dev/null
      User core
+
+Host gquery-molten gquery-molten.dev.eri.agresearch.co.nz
+     HostName gquery-molten.dev.eri.agresearch.co.nz
+     StrictHostKeyChecking no
+     UserKnownHostsFile /dev/null
+     User core
