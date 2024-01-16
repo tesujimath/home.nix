@@ -57,6 +57,11 @@
       enable = true;
       userName = "Simon Guest";
       userEmail = "simon.guest@agresearch.co.nz";
+      extraConfig = {
+        fetch = {
+          prune = true;
+        };
+      };
     };
   };
 
