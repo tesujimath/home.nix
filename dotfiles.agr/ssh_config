@@ -1,3 +1,7 @@
+# wretched AgR firewall is over-eager to drop idle connections
+Host *
+    ServerAliveInterval 120
+
 Host captain captain.agresearch.co.nz
      HostName captain.agresearch.co.nz
      User root
