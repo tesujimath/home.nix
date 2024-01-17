@@ -7,6 +7,7 @@ with pkgs;
       zellij = {
         enable = true;
         settings = {
+          default_shell = "nu";
           scrollback_editor = "${pkgs.helix}/bin/hx";
         };
       };

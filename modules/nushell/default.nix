@@ -1,4 +1,4 @@
-{ config, specialArgs, ... }:
+{ config, specialArgs, pkgs, ... }:
 
 with specialArgs; # for flakePkgs
 {
@@ -6,6 +6,7 @@ with specialArgs; # for flakePkgs
     programs = {
       nushell = {
         enable = true;
+        package = pkgs.nushellFull;
         configFile.source = ./config.nu;
         envFile.source = ./env.nu;
       };
