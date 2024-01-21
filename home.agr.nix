@@ -81,4 +81,10 @@
     ./modules/nushell
     ./modules/zellij.nix
   ];
+
+  my.lsp = {
+    rust.enable = true;
+    python.enable = true;
+    json.enable = true;
+  };
 }

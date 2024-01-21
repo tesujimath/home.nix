@@ -1,8 +1,23 @@
-{ config, pkgs, ... }:
+{ options, config, pkgs, lib, ... }:
 
 with pkgs;
 {
+  options.my.lsp = {
+    rust.enable = lib.mkEnableOption "Enable Rust LSP server";
+    python.enable = lib.mkEnableOption "Enable Python LSP server";
+    json.enable = lib.mkEnableOption "Enable JSON LSP server";
+  };
+
   config = {
+    home.packages =
+      with pkgs;
+      (if config.my.lsp.rust.enable then [rust-analyzer] else [])
+      ++
+      (if config.my.lsp.python.enable then [pyright pylint] else [])
+      ++
+      (if config.my.lsp.json.enable then [vscode-langservers-extracted] else [])
+    ;
+
     programs = {
       helix = {
         enable = true;
@@ -67,8 +82,8 @@ with pkgs;
         };
       };
     };
-    home.packages = [
-      vscode-extensions.llvm-org.lldb-vscode
-    ];
+    #home.packages = [
+    #  vscode-extensions.llvm-org.lldb-vscode
+    #];
   };
 }

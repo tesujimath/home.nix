@@ -44,5 +44,11 @@
     home.file = {
       ".dircolors".source = ./dotfiles/dircolors;
     };
+
+    my.lsp = {
+      rust.enable = true;
+      python.enable = true;
+      json.enable = true;
+    };
   };
 }
