@@ -5,6 +5,7 @@ with pkgs;
   # currently a big dump of what I had in nix-env
   home.packages = [
     beekeeper-studio
+    dig
     du-dust
     emacs
     file
