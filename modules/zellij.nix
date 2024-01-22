@@ -9,6 +9,7 @@ with pkgs;
         settings = {
           default_shell = "nu";
           scrollback_editor = "${pkgs.helix}/bin/hx";
+          mouse_mode = false;
         };
       };
     };
