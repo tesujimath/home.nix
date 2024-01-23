@@ -17,4 +17,20 @@
   home.file = {
     ".env.sh".source = ./dotfiles.personal/env.sh;
   };
+
+  programs = {
+    git = {
+      enable = true;
+      userName = "Simon Guest";
+      userEmail = "simon.guest@tesujimath.org";
+      extraConfig = {
+        fetch = {
+          prune = true;
+        };
+        init = {
+          defaultBranch = "main";
+        };
+      };
+    };
+  };
 }
