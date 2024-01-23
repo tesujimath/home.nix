@@ -3,9 +3,11 @@
 with pkgs;
 {
   options.my.lsp = {
-    rust.enable = lib.mkEnableOption "Enable Rust LSP server";
-    python.enable = lib.mkEnableOption "Enable Python LSP server";
-    json.enable = lib.mkEnableOption "Enable JSON LSP server";
+    rust.enable = lib.mkEnableOption "Rust LSP server";
+    go.enable = lib.mkEnableOption "Go LSP server";
+    python.enable = lib.mkEnableOption "Python LSP server";
+    markdown.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Markdown LSP server"; };
+    json.enable = lib.mkEnableOption "JSON LSP server";
   };
 
   config = {
@@ -13,7 +15,11 @@ with pkgs;
       with pkgs;
       (if config.my.lsp.rust.enable then [rust-analyzer] else [])
       ++
+      (if config.my.lsp.go.enable then [gopls] else [])
+      ++
       (if config.my.lsp.python.enable then [pyright pylint] else [])
+      ++
+      (if config.my.lsp.markdown.enable then [marksman] else [])
       ++
       (if config.my.lsp.json.enable then [vscode-langservers-extracted] else [])
     ;
@@ -23,6 +29,7 @@ with pkgs;
         enable = true;
         settings = {
           editor = {
+            true-color = true;
             bufferline = "multiple";
             line-number = "relative";
             lsp = {

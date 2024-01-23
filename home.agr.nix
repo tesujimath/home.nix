@@ -87,6 +87,7 @@
 
   my.lsp = {
     rust.enable = true;
+    go.enable = true;
     python.enable = true;
     json.enable = true;
   };
