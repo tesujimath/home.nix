@@ -13,7 +13,7 @@ with pkgs;
   config = {
     home.packages =
       with pkgs;
-      (if config.my.lsp.rust.enable then [rust-analyzer] else [])
+      (if config.my.lsp.rust.enable then [rust-analyzer rustfmt] else [])
       ++
       (if config.my.lsp.go.enable then [gopls] else [])
       ++

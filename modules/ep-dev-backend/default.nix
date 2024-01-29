@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.overlays = [
+    (import ./overlays/rider.nix)
+  ];
+
   home.packages = [
     (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_5_0 ])
 

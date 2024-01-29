@@ -27,7 +27,6 @@
     nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
     nixpkgs.overlays = [
-      (import ./overlays/rider.nix)
       (import ./overlays/volnoti.nix)
     ];
 
