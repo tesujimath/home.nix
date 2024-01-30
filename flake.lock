@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1706569303,
-        "narHash": "sha256-sCI60fBrth+m1GPj7gdZymI3/S+gnJdlWMDVVerf5yY=",
+        "lastModified": 1706586754,
+        "narHash": "sha256-HTjjGppLOV3q9rbyxLFUp08MbsOkwkyC8iaAcz6N89k=",
         "owner": "tesujimath",
         "repo": "nu_plugin_bash_env",
-        "rev": "9b86b6b2f82deb89ca613fd7c041936c78b86e26",
+        "rev": "ac87fcd884fcb4ee6fb0a1e2b1e5ff995b4e7edd",
         "type": "github"
       },
       "original": {
