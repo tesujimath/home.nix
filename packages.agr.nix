@@ -26,6 +26,7 @@ with pkgs;
     #openssh_gssapi, not actually required
     pstree
     python3
+    python3Packages.mitmproxy
     rclone
     ripgrep
     # for modern Emacs
