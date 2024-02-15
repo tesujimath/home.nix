@@ -44,6 +44,23 @@
           };
         };
 
+        agr-hpc = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.agr-hpc.nix
+            {
+              home = {
+                inherit stateVersion;
+                username = "guestsi"; #builtins.getEnv "USER";
+                homeDirectory = /home/guestsi; # /. + builtins.getEnv "HOME";
+              };
+            }
+          ];
+          extraSpecialArgs = {
+            inherit flakePkgs;
+          };
+        };
+
         personal = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
