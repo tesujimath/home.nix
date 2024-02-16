@@ -49,6 +49,7 @@
       go.enable = true;
       python.enable = true;
       json.enable = true;
+      dockerfile.enable = true;
     };
   };
 }

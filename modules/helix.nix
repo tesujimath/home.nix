@@ -8,6 +8,9 @@ with pkgs;
     python.enable = lib.mkEnableOption "Python LSP server";
     markdown.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Markdown LSP server"; };
     json.enable = lib.mkEnableOption "JSON LSP server";
+    toml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TOML LSP server"; };
+    yaml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable YAML LSP server"; };
+    dockerfile.enable = lib.mkEnableOption "Dockerfile LSP server";
   };
 
   config = {
@@ -22,6 +25,12 @@ with pkgs;
       (if config.my.lsp.markdown.enable then [marksman] else [])
       ++
       (if config.my.lsp.json.enable then [vscode-langservers-extracted] else [])
+      ++
+      (if config.my.lsp.toml.enable then [taplo-lsp] else [])
+      ++
+      (if config.my.lsp.yaml.enable then [yaml-language-server] else [])
+      ++
+      (if config.my.lsp.dockerfile.enable then [dockerfile-language-server-nodejs] else [])
     ;
 
     programs = {
