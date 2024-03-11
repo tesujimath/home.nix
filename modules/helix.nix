@@ -11,6 +11,7 @@ with pkgs;
     nix.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Nix LSP server"; };
     python.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Python LSP server"; };
     rust.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Rust LSP server"; };
+    terraform.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Terraform LSP server"; };
     toml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TOML LSP server"; };
     typescript.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TypeScript LSP server"; };
     yaml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable YAML LSP server"; };
@@ -34,6 +35,8 @@ with pkgs;
       (if config.my.lsp.python.enable then [pyright pylint] else [])
       ++
       (if config.my.lsp.rust.enable then [rust-analyzer rustfmt] else [])
+      ++
+      (if config.my.lsp.terraform.enable then [terraform-ls] else [])
       ++
       (if config.my.lsp.toml.enable then [taplo-lsp] else [])
       ++

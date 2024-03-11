@@ -86,10 +86,7 @@
   ];
 
   my.lsp = {
-    rust.enable = true;
-    go.enable = true;
-    python.enable = true;
-    json.enable = true;
-    dockerfile.enable = true;
+    # mostly they're enabled by default, except:
+    terraform.enable = true;
   };
 }
