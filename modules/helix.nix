@@ -3,34 +3,43 @@
 with pkgs;
 {
   options.my.lsp = {
-    rust.enable = lib.mkEnableOption "Rust LSP server";
-    go.enable = lib.mkEnableOption "Go LSP server";
-    python.enable = lib.mkEnableOption "Python LSP server";
+    bash.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Bash LSP server"; };
+    dockerfile.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Dockerfile LSP server"; };
+    go.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Go LSP server"; };
+    json.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable JSON LSP server"; };
     markdown.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Markdown LSP server"; };
-    json.enable = lib.mkEnableOption "JSON LSP server";
+    nix.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Nix LSP server"; };
+    python.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Python LSP server"; };
+    rust.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Rust LSP server"; };
     toml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TOML LSP server"; };
+    typescript.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TypeScript LSP server"; };
     yaml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable YAML LSP server"; };
-    dockerfile.enable = lib.mkEnableOption "Dockerfile LSP server";
   };
 
   config = {
     home.packages =
       with pkgs;
-      (if config.my.lsp.rust.enable then [rust-analyzer rustfmt] else [])
+      (if config.my.lsp.bash.enable then [nodePackages.bash-language-server] else [])
+      ++
+      (if config.my.lsp.dockerfile.enable then [dockerfile-language-server-nodejs] else [])
       ++
       (if config.my.lsp.go.enable then [gopls] else [])
       ++
-      (if config.my.lsp.python.enable then [pyright pylint] else [])
+      (if config.my.lsp.json.enable then [vscode-langservers-extracted] else [])
       ++
       (if config.my.lsp.markdown.enable then [marksman] else [])
       ++
-      (if config.my.lsp.json.enable then [vscode-langservers-extracted] else [])
+      (if config.my.lsp.nix.enable then [nixd] else [])
+      ++
+      (if config.my.lsp.python.enable then [pyright pylint] else [])
+      ++
+      (if config.my.lsp.rust.enable then [rust-analyzer rustfmt] else [])
       ++
       (if config.my.lsp.toml.enable then [taplo-lsp] else [])
       ++
-      (if config.my.lsp.yaml.enable then [yaml-language-server] else [])
+      (if config.my.lsp.typescript.enable then [nodePackages.typescript-language-server] else [])
       ++
-      (if config.my.lsp.dockerfile.enable then [dockerfile-language-server-nodejs] else [])
+      (if config.my.lsp.yaml.enable then [yaml-language-server] else [])
     ;
 
     programs = {
@@ -71,6 +80,14 @@ with pkgs;
         languages = {
           language = [
             {
+              name = "nix";
+              language-servers = ["nixd"];
+            }
+            {
+              name = "python";
+              language-servers = ["pyright"];
+            }
+            {
               name = "rust";
               auto-pairs = {
                 "(" = ")";
@@ -80,13 +97,12 @@ with pkgs;
                 "`" = "`";
               };
             }
-            {
-              name = "python";
-              language-servers = ["pyright"];
-            }
           ];
 
           language-server = {
+            nixd = {
+              command = "nixd";
+            };
             rust-analyzer = {
               config = {
                 check = {
