@@ -5,6 +5,7 @@
     ./modules/bash.nix
     ./modules/helix.nix
     ./modules/nushell
+    ./modules/tmux.nix
     ./modules/yazi
     ./modules/zathura.nix
     ./modules/zellij.nix

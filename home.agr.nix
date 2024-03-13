@@ -82,6 +82,7 @@
     ./packages.agr.nix
     ./modules/helix.nix
     ./modules/nushell
+    ./modules/tmux.nix
     ./modules/yazi
     ./modules/zellij.nix
   ];
