@@ -74,7 +74,7 @@
     };
 
     sessionVariables = {
-      EDITOR = "emacsclient";
+      EDITOR = "hx";
     };
   };
 
@@ -82,6 +82,7 @@
     ./packages.agr.nix
     ./modules/helix.nix
     ./modules/nushell
+    ./modules/yazi
     ./modules/zellij.nix
   ];
 

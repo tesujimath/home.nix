@@ -53,7 +53,7 @@ test -e $HOME/.nix-profile/etc/profile.d/nix.sh && . $HOME/.nix-profile/etc/prof
 
 export PATH
 
-EDITOR=emacsclient
+EDITOR=hx
 export EDITOR
 
 # to avoid grey windows in Geogebra
