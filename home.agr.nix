@@ -72,10 +72,6 @@
     file = {
       ".ssh/config".source = ./dotfiles.agr/ssh_config;
     };
-
-    sessionVariables = {
-      EDITOR = "hx";
-    };
   };
 
   imports = [

@@ -53,9 +53,6 @@ test -e $HOME/.nix-profile/etc/profile.d/nix.sh && . $HOME/.nix-profile/etc/prof
 
 export PATH
 
-EDITOR=hx
-export EDITOR
-
 # to avoid grey windows in Geogebra
 # both are necessary
 _JAVA_AWT_WM_NONREPARENTING=1 export _JAVA_AWT_WM_NONREPARENTING
