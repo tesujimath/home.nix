@@ -47,6 +47,7 @@ with pkgs;
     sxiv
     unison
     unzip
+    virtualenv # better than python -m venv because supports Nu
     vscode
     wget
     xclip
