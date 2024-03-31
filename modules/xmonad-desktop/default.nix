@@ -101,4 +101,10 @@ in
       };
     };
   };
+
+  xdg.mimeApps = {
+    defaultApplications = {
+      "image/*" = ["sxiv.desktop"];
+    };
+  };
 }

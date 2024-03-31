@@ -53,5 +53,9 @@
       json.enable = true;
       dockerfile.enable = true;
     };
+
+    xdg.mimeApps = {
+      enable = true;
+    };
   };
 }

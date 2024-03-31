@@ -10,7 +10,6 @@ with pkgs;
     #discord
     du-dust
     file
-    firefox
     freerdp
     #gh
     gimp
@@ -27,7 +26,6 @@ with pkgs;
     ijq
     jo
     jq
-    mimeo
     nix-index
     nixos-option
     nmap
@@ -44,7 +42,6 @@ with pkgs;
     speedcrunch
     #steam-run
     stow  # for install-dotfiles for now
-    sxiv
     unison
     unzip
     virtualenv # better than python -m venv because supports Nu

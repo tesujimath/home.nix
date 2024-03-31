@@ -8,6 +8,7 @@
     ./modules/ledger
     ./modules/syncthing.nix
     ./modules/xmonad-desktop
+    ./modules/web-browser.nix
     ./packages.nix
     ./packages.personal.nix
     #./ep/apps.nix

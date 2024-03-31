@@ -80,11 +80,16 @@
     ./modules/nushell
     ./modules/tmux.nix
     ./modules/yazi
+    ./modules/web-browser.nix
     ./modules/zellij.nix
   ];
 
   my.lsp = {
     # mostly they're enabled by default, except:
     terraform.enable = true;
+  };
+
+  xdg.mimeApps = {
+    enable = true;
   };
 }
