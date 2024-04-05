@@ -10,6 +10,7 @@ with pkgs;
     dig
     du-dust
     emacs
+    fd
     file
     git
     gzip

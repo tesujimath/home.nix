@@ -9,6 +9,7 @@ with pkgs;
     bind
     #discord
     du-dust
+    fd
     file
     freerdp
     #gh
