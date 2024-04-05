@@ -769,3 +769,8 @@ register nu_plugin_bash_env
 def "ansi title" [title: string] {
   ansi -o $"0;($title)"
 }
+
+# run nix develop with nu shell
+def "nd" [] {
+    nix develop --command nu
+}
