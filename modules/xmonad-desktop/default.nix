@@ -92,13 +92,14 @@ in
 
   programs.alacritty = {
     enable = true;
-    # see https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+    # see https://alacritty.org/config-alacritty.html
     settings = {
       font = {
         normal = {
           family = "Source Code Pro";
         };
       };
+      shell = "nu";
     };
   };
 
