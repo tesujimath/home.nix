@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+
   home.sessionPath = [
     "$HOME/scripts"
   ];

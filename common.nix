@@ -25,7 +25,7 @@
     # additional docs, access via home-manager-help command
     manual.html.enable = true;
 
-    #nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
     nixpkgs.overlays = [
