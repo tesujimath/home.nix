@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./common-packages.nix
     ./modules/bash.nix
     ./modules/helix.nix
     ./modules/nushell

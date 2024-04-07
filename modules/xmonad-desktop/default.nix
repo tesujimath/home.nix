@@ -19,12 +19,15 @@ in
     libsecret
     networkmanagerapplet
     pasystray
+    pavucontrol
     pulseaudio
     scrot
     skippy-xd
     sxiv
     udiskie
     volnoti
+    xclip
+    xdragon
     xmobar
     xorg.xmodmap
     xscreensaver

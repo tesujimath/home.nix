@@ -24,5 +24,13 @@ with pkgs;
         mimeType = ["x-scheme-handler/org-protocol"];
       };
     };
+
+    home.packages = [
+      aspell
+      aspellDicts.en
+      aspellDicts.en-computers
+      aspellDicts.en-science
+      sqlite # for org-roam
+    ];
   };
 }
