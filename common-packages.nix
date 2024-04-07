@@ -14,6 +14,7 @@ with pkgs;
       gzip
       htop
       jq
+      mosh
       nix-index
       nixos-option
       nmap
