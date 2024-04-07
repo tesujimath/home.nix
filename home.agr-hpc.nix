@@ -10,4 +10,6 @@
   imports = [
     ./common.nix
   ];
+
+  my.bash.profile.reuse-ssh-agent.enable = true;
 }
