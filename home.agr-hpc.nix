@@ -16,6 +16,10 @@
       };
     };
 
-    my.bash.profile.reuse-ssh-agent.enable = true;
+    my = {
+      bash.profile.reuse-ssh-agent.enable = true;
 
+      nushell.left_prompt_cmd = "cat /etc/agr-hostname";
+    };
+  };
 }

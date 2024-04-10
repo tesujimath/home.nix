@@ -1,12 +1,3 @@
-# Nushell Environment Config File
-#
-# version = "0.88.1"
-
-def create_left_prompt [] {
-    let hostname_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-    $"($hostname_color)(hostname -s)(ansi reset)"
-}
-
 def create_right_prompt [] {
     # create a right prompt in magenta with green separators and am/pm underlined
     let time_segment = ([
