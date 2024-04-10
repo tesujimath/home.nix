@@ -1,15 +1,21 @@
 { config, pkgs, lib, ... }:
 
 {
-  home = {
-    sessionPath = [
-      "$HOME/scripts"
-    ];
-  };
-
   imports = [
     ./common.nix
   ];
 
-  my.bash.profile.reuse-ssh-agent.enable = true;
+  config = {
+    home = {
+      sessionPath = [
+        "$HOME/scripts"
+      ];
+
+      sessionVariables = {
+        LC_ALL = "en_US.UTF-8";
+      };
+    };
+
+    my.bash.profile.reuse-ssh-agent.enable = true;
+
 }
