@@ -771,6 +771,11 @@ def "ansi title" [title: string] {
 }
 
 # run nix develop with nu shell
-def "nd" [] {
+def "nix-develop-nu" [] {
     nix develop --command nu
+}
+
+# mosh with nu as remote shell
+def "mosh-nu" [host] {
+    mosh -- ($host) bash --login -c nu
 }
