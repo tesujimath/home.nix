@@ -32,6 +32,9 @@
           init = {
             defaultBranch = "main";
           };
+          alias = {
+            glog = "log --graph --all --pretty='format:%C(auto)%h %D %<|(100)%s %<|(120)%an %ar'";
+          };
         };
       };
     };

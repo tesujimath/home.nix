@@ -10,7 +10,6 @@ with pkgs;
       du-dust
       fd
       file
-      git
       gzip
       htop
       jq
