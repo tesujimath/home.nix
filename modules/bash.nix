@@ -2,7 +2,7 @@
 
 {
   options.my.bash.profile = {
-    reuse-ssh-agent.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Reuse or start ssh agent in Bash profile"; };
+    reuse-ssh-agent = lib.mkOption { default = false; type = lib.types.bool; description = "Reuse or start ssh agent in Bash profile"; };
   };
 
   config = {
@@ -13,7 +13,7 @@
       bashrcExtra = ''
 '';
 
-      profileExtra = (if config.my.bash.profile.reuse-ssh-agent.enable then ''
+      profileExtra = (if config.my.bash.profile.reuse-ssh-agent then ''
         # reuse an ssh-agent if we can
         unset SSH_AUTH_SOCK
         for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.*`; do

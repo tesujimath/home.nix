@@ -54,7 +54,7 @@
         terraform.enable = true;
       };
 
-      bash.profile.reuse-ssh-agent.enable = true;
+      bash.profile.reuse-ssh-agent = true;
     };
   };
 }
