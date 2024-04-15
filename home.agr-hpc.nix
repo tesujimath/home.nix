@@ -15,7 +15,7 @@
     my = {
       bash.profile = {
         reuse-ssh-agent = true;
-        use-system-locales = true;
+        explicit-locale-archive = true;
       };
 
       nushell.left_prompt_cmd = "cat /etc/agr-hostname";

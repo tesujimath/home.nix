@@ -3,7 +3,7 @@
 {
   options.my.bash.profile = {
     reuse-ssh-agent = lib.mkOption { default = false; type = lib.types.bool; description = "Reuse or start ssh agent in Bash profile"; };
-    use-system-locales = lib.mkOption { default = false; type = lib.types.bool; description = "Use system locales, useful on non-NixOS systems"; };
+    explicit-locale-archive = lib.mkOption { default = false; type = lib.types.bool; description = "Use explicit locale archive, useful on non-NixOS systems"; };
   };
 
   config = {
@@ -11,8 +11,8 @@
       enable = true;
 
       # all shells
-      bashrcExtra = (if config.my.bash.profile.use-system-locales then ''
-        export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+      bashrcExtra = (if config.my.bash.profile.explicit-locale-archive then ''
+        export LOCALE_ARCHIVE=${pkgs.glibcLocales}/lib/locale/locale-archive
       '' else ''
       ''
       );
