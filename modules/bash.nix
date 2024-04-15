@@ -3,6 +3,7 @@
 {
   options.my.bash.profile = {
     reuse-ssh-agent = lib.mkOption { default = false; type = lib.types.bool; description = "Reuse or start ssh agent in Bash profile"; };
+    use-system-locales = lib.mkOption { default = false; type = lib.types.bool; description = "Use system locales, useful on non-NixOS systems"; };
   };
 
   config = {
@@ -10,8 +11,11 @@
       enable = true;
 
       # all shells
-      bashrcExtra = ''
-'';
+      bashrcExtra = (if config.my.bash.profile.use-system-locales then ''
+        export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+      '' else ''
+      ''
+      );
 
       profileExtra = (if config.my.bash.profile.reuse-ssh-agent then ''
         # reuse an ssh-agent if we can

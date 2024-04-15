@@ -10,15 +10,13 @@
       sessionPath = [
         "$HOME/scripts"
       ];
-
-      sessionVariables = {
-        # https://nixos.wiki/wiki/Locales
-        LOCALE_ARCHIVE = "/usr/lib/locale/locale-archive";
-      };
     };
 
     my = {
-      bash.profile.reuse-ssh-agent = true;
+      bash.profile = {
+        reuse-ssh-agent = true;
+        use-system-locales = true;
+      };
 
       nushell.left_prompt_cmd = "cat /etc/agr-hostname";
 
