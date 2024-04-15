@@ -37,6 +37,15 @@
           };
         };
       };
+
+      # in other profiles this is done in xmonad-desktop
+      wezterm = {
+        enable = true;
+        enableBashIntegration = true;
+
+        extraConfig = builtins.readFile ./dotfiles.agr/wezterm.lua;
+      };
+
     };
 
     my = {
