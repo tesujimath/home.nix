@@ -12,7 +12,8 @@
       ];
 
       sessionVariables = {
-        LC_ALL = "en_US.UTF-8";
+        # https://nixos.wiki/wiki/Locales
+        LOCALE_ARCHIVE = "/usr/lib/locale/locale-archive";
       };
     };
 
