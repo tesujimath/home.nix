@@ -39,6 +39,8 @@
       };
 
       # in other profiles this is done in xmonad-desktop
+      # we need it even though we run wezterm from native Windows, because having this
+      # provides the TERMINFO to programs running inside wezterm
       wezterm = {
         enable = true;
         enableBashIntegration = true;
