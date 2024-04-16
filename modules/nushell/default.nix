@@ -4,6 +4,7 @@ with specialArgs; # for flakePkgs
 {
   options.my.nushell = {
     left_prompt_cmd = lib.mkOption { default = "hostname -s"; type = lib.types.str; description = "Command to use to generate left prompt text"; };
+    history_file_format = lib.mkOption { default = "sqlite"; type = lib.types.str; description = "History file format, either sqlite or plaintext"; };
   };
 
   config = {
@@ -11,7 +12,7 @@ with specialArgs; # for flakePkgs
       nushell = {
         enable = true;
         package = pkgs.nushellFull;
-        configFile.source = ./config.nu;
+        configFile.text = (builtins.replaceStrings ["HISTORY_FILE_FORMAT"] [config.my.nushell.history_file_format] (builtins.readFile ./config.nu));
         envFile.text = ''
           # Nushell Environment Config File
 

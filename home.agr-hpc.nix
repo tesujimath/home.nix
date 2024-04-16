@@ -25,7 +25,13 @@
         reuse-ssh-agent = true;
       };
 
-      nushell.left_prompt_cmd = "cat /etc/agr-hostname";
+      nushell = {
+        left_prompt_cmd = "cat /etc/agr-hostname";
+
+        # sqlite implies WAL which doesn't work across network
+        # https://www.sqlite.org/wal.html
+        history_file_format = "plaintext";
+      };
 
       # use system git on legacy HPC to avoid ssh cert problem:
       # inscrutable$ git fetch --all
