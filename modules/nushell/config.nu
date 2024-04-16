@@ -775,6 +775,11 @@ def "nix-develop-nu" [] {
     nix develop --command nu
 }
 
+# ssh with nu as remote shell
+def "ssh-nu" [host] {
+    ssh -t ($host) bash --login -c nu
+}
+
 # mosh with nu as remote shell
 def "mosh-nu" [host] {
     mosh -- ($host) bash --login -c nu
