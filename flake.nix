@@ -14,14 +14,20 @@
       url = github:tesujimath/nu_plugin_bash_env/0.6.2;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    bcl-convert = {
+      url = github:AgResearch/bcl-convert.nix/4.2.7;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nu_plugin_bash_env, ... }:
+  outputs = { nixpkgs, home-manager, nu_plugin_bash_env, bcl-convert, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       flakePkgs = {
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
+        bcl-convert = bcl-convert.packages.${system}.default;
       };
 
       stateVersion = "21.11";
