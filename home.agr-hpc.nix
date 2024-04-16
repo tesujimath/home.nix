@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    ./packages.agr-hpc.nix
   ];
 
   config = {

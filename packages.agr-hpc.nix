@@ -2,4 +2,8 @@
 
 with pkgs;
 {
+  config = {
+    home.packages = [
+    ];
+  };
 }
