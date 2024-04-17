@@ -16,7 +16,7 @@
     };
 
     bcl-convert = {
-      url = github:AgResearch/bcl-convert.nix/4.2.7;
+      url = github:AgResearch/bcl-convert.nix/main;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -27,7 +27,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       flakePkgs = {
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
-        bcl-convert = bcl-convert.packages.${system}.default;
+        bcl-convert = bcl-convert.packages.${system};
       };
 
       stateVersion = "21.11";
