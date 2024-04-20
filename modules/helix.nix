@@ -4,6 +4,7 @@ with pkgs;
 {
   options.my.lsp = {
     bash.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Bash LSP server"; };
+    dart.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Dart LSP server"; };
     dockerfile.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Dockerfile LSP server"; };
     go.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Go LSP server"; };
     json.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable JSON LSP server"; };
@@ -21,6 +22,8 @@ with pkgs;
     home.packages =
       with pkgs;
       (if config.my.lsp.bash.enable then [nodePackages.bash-language-server] else [])
+      ++
+      (if config.my.lsp.dart.enable then [dart] else [])
       ++
       (if config.my.lsp.dockerfile.enable then [dockerfile-language-server-nodejs] else [])
       ++
