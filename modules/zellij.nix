@@ -9,7 +9,7 @@ with pkgs;
         settings = {
           default_shell = "nu";
           scrollback_editor = "${pkgs.helix}/bin/hx";
-          mouse_mode = false;
+          mouse_mode = true;
 
           # See https://git.lyte.dev/lytedev-divvy/nix/src/branch/main/modules/home-manager/zellij.nix
           keybinds = with builtins; let
