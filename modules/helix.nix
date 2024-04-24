@@ -104,6 +104,8 @@ with pkgs;
             }
             {
               name = "rust";
+              formatter = { command = "rustfmt"; args = ["--edition=2021"]; };
+              auto-format = true;
               auto-pairs = {
                 "(" = ")";
                 "{" = "}";
