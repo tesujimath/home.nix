@@ -87,7 +87,10 @@ with pkgs;
             };
           };
         };
-        languages = {
+        languages = let remove-trailing-whitespace-formatter = {
+          command = "sed";
+          args = ["s/[[:space:]]*$//"];
+        }; in {
           language = [
             {
               name = "nix";
@@ -96,6 +99,8 @@ with pkgs;
             {
               name = "python";
               language-servers = ["pyright"];
+              formatter = remove-trailing-whitespace-formatter;
+              auto-format = true;
             }
             {
               name = "rust";
