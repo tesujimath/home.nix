@@ -36,7 +36,7 @@ with pkgs;
       ++
       (if config.my.lsp.nix.enable then [nixd] else [])
       ++
-      (if config.my.lsp.python.enable then [pyright pylint] else [])
+      (if config.my.lsp.python.enable then [pyright pylint black] else [])
       ++
       (if config.my.lsp.rust.enable then [rust-analyzer rustfmt] else [])
       ++
@@ -99,7 +99,7 @@ with pkgs;
             {
               name = "python";
               language-servers = ["pyright"];
-              formatter = remove-trailing-whitespace-formatter;
+              formatter = { command = "black"; args = ["-" "--quiet"]; };
               auto-format = true;
             }
             {
