@@ -15,6 +15,7 @@ with pkgs;
     terraform.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Terraform LSP server"; };
     toml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TOML LSP server"; };
     typescript.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TypeScript LSP server"; };
+    typst.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Typst LSP server"; };
     yaml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable YAML LSP server"; };
   };
 
@@ -44,6 +45,8 @@ with pkgs;
       (if config.my.lsp.toml.enable then [taplo-lsp] else [])
       ++
       (if config.my.lsp.typescript.enable then [nodePackages.typescript-language-server] else [])
+      ++
+      (if config.my.lsp.typst.enable then [typst-lsp typst-fmt] else [])
       ++
       (if config.my.lsp.yaml.enable then [yaml-language-server] else [])
     ;
@@ -103,6 +106,14 @@ with pkgs;
                 "\"" = "\"";
                 "`" = "`";
               };
+            }
+            {
+              name = "typst";
+              formatter = {
+                command = "typstfmt";
+                args = ["--output" "-"];
+              };
+              auto-format = true;
             }
           ];
 
