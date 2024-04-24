@@ -23,6 +23,9 @@ with pkgs;
             };
             layer = binds: (listToAttrs (map binder binds));
           in {
+            # disable sudden death from Ctrl q
+            unbind = "Ctrl q";
+
             # Allow for navigating tabs when Zellij is locked;  great solution to Helix/Zellij conflicts.
             # See https://github.com/helix-editor/helix/discussions/8537#discussioncomment-8370297
             shared  = layer [
