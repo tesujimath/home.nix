@@ -784,3 +784,8 @@ def "ssh-nu" [host] {
 def "mosh-nu" [host] {
     mosh -- ($host) bash --login -c nu
 }
+
+# search in nixpkgs
+def "nix-search" [search_term: string] {
+    nix search --json nixpkgs $search_term | from json | transpose package spec | each {|it| { package: $it.package ...$it.spec } }
+}
