@@ -14,14 +14,20 @@
       url = github:tesujimath/nu_plugin_bash_env/0.7.1;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    eza = {
+      url = github:eza-community/eza/main;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nu_plugin_bash_env, ... }:
+  outputs = { nixpkgs, home-manager, nu_plugin_bash_env, eza, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       flakePkgs = {
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
+        eza = eza.packages.${system}.default;
       };
 
       stateVersion = "21.11";

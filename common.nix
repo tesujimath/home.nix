@@ -1,5 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, specialArgs, ... }:
 
+with specialArgs; # for flakePkgs
 {
   imports = [
     ./common-packages.nix
@@ -38,6 +39,10 @@
       file = {
         ".dircolors".source = ./dotfiles/dircolors;
       };
+
+      packages = [
+        flakePkgs.eza
+      ];
     };
 
     programs = {
