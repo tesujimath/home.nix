@@ -765,6 +765,9 @@ $env.config = {
 # since Nu stores in plugins.nu the recursively expanded symlinks into the Nix store
 register nu_plugin_bash_env
 register nu_plugin_dbus
+# for Nu 0.93 will need instead:
+#plugin add ~/.config/nushell/plugins/nu_plugin_bash_env ; plugin use bash_env
+#plugin add ~/.config/nushell/plugins/nu_plugin_dbus ; plugin use dbus
 
 # set tab title in terminal
 def "ansi title" [title: string] {
