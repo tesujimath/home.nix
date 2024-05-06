@@ -68,6 +68,23 @@
           };
         };
 
+        agr-eri = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.agr-eri.nix
+            {
+              home = {
+                inherit stateVersion;
+                username = "guestsi@agresearch.co.nz"; #builtins.getEnv "USER";
+                homeDirectory = /home/agresearch.co.nz/guestsi; # /. + builtins.getEnv "HOME";
+              };
+            }
+          ];
+          extraSpecialArgs = {
+            inherit flakePkgs;
+          };
+        };
+
         personal = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
