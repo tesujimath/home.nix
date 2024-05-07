@@ -3,6 +3,7 @@
 {
   options.my.bash.profile = {
     reuse-ssh-agent = lib.mkOption { default = false; type = lib.types.bool; description = "Reuse or start ssh agent in Bash profile"; };
+    ensure-krb5ccname = lib.mkOption { default = false; type = lib.types.bool; description = "Ensure KRB5CCNAME has a sensible value"; };
   };
 
   config = {
@@ -13,7 +14,8 @@
       bashrcExtra = ''
       '';
 
-      profileExtra = (if config.my.bash.profile.reuse-ssh-agent then ''
+      profileExtra = ''
+      ${if config.my.bash.profile.reuse-ssh-agent then ''
         # reuse an ssh-agent if we can
         unset SSH_AUTH_SOCK
         for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.*`; do
@@ -32,10 +34,15 @@
         test -n "''$SSH_AUTH_SOCK" || {
           eval `ssh-agent`
         }
-      '' else ''
-        # nope
-      ''
-      );
+
+      '' else ""
+      }
+      ${if config.my.bash.profile.ensure-krb5ccname then ''
+        # ensure KRB5CCNAME has a good value
+        export KRB5CCNAME=''${KRB5CCNAME-''$HOME/.krb5.cache}
+      '' else ""
+      }
+      '';
 
       # interactive shells only
       initExtra = ''

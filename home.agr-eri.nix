@@ -10,6 +10,7 @@
     my = {
       bash.profile = {
         reuse-ssh-agent = true;
+        ensure-krb5ccname = true;
       };
 
       nushell = {
