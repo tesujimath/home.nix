@@ -46,14 +46,20 @@ Host guestsi-playpen guestsi-playpen.dev.eri.agresearch.co.nz
      UserKnownHostsFile /dev/null
      User core
 
-Host gquery-agrbrdf gquery-agrbrdf.dev.eri.agresearch.co.nz
-     HostName gquery-agrbrdf.dev.eri.agresearch.co.nz
+Host gquery-agrbrdf n-db-agrbrdf-d1.dev.eri.agresearch.co.nz
+     HostName n-db-agrbrdf-d1.dev.eri.agresearch.co.nz
      StrictHostKeyChecking no
      UserKnownHostsFile /dev/null
      User core
 
-Host gquery-molten gquery-molten.dev.eri.agresearch.co.nz
-     HostName gquery-molten.dev.eri.agresearch.co.nz
+Host gquery-molten n-db-molten-d1.dev.eri.agresearch.co.nz
+     HostName n-db-molten-d1.dev.eri.agresearch.co.nz
+     StrictHostKeyChecking no
+     UserKnownHostsFile /dev/null
+     User core
+
+Host gquery-daemon n-svc-gquery-d1.dev.eri.agresearch.co.nz
+     HostName n-svc-gquery-d1.dev.eri.agresearch.co.nz
      StrictHostKeyChecking no
      UserKnownHostsFile /dev/null
      User core
