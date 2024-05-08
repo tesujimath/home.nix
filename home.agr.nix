@@ -58,6 +58,8 @@
       };
 
       bash.profile.reuse-ssh-agent = true;
+
+      web-browser.wsl.use-native-windows = true;
     };
   };
 }

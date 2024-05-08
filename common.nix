@@ -9,6 +9,7 @@ with specialArgs; # for flakePkgs
     ./modules/mitmproxy
     ./modules/nushell
     ./modules/tmux.nix
+    ./modules/xdg.nix
     ./modules/yazi
     ./modules/zathura.nix
     ./modules/zellij.nix
@@ -65,10 +66,6 @@ with specialArgs; # for flakePkgs
       python.enable = true;
       json.enable = true;
       dockerfile.enable = true;
-    };
-
-    xdg.mimeApps = {
-      enable = true;
     };
   };
 }
