@@ -6,7 +6,6 @@ with pkgs;
   home.packages = [
     amber
     beekeeper-studio
-    python3Packages.mitmproxy
     rclone
   ];
 }

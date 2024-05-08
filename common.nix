@@ -6,6 +6,7 @@ with specialArgs; # for flakePkgs
     ./common-packages.nix
     ./modules/bash.nix
     ./modules/helix.nix
+    ./modules/mitmproxy
     ./modules/nushell
     ./modules/tmux.nix
     ./modules/yazi

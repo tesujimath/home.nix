@@ -1,0 +1,2 @@
+# disable the mouse so we can copy/paste flows
+console_mouse: false
