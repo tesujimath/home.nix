@@ -53,6 +53,7 @@
     my = {
       lsp = {
         # mostly they're enabled by default, except:
+        packer.enable = true;
         terraform.enable = true;
       };
 

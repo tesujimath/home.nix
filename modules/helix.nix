@@ -10,6 +10,7 @@ with pkgs;
     json.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable JSON LSP server"; };
     markdown.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Markdown LSP server"; };
     nix.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Nix LSP server"; };
+    packer.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Packer formatting"; };
     python.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Python LSP server"; };
     rust.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Rust LSP server"; };
     terraform.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Terraform LSP server"; };
@@ -35,6 +36,8 @@ with pkgs;
       (if config.my.lsp.markdown.enable then [marksman] else [])
       ++
       (if config.my.lsp.nix.enable then [nixd] else [])
+      ++
+      (if config.my.lsp.packer.enable then [packer] else [])
       ++
       (if config.my.lsp.python.enable then [pyright pylint black] else [])
       ++
@@ -70,6 +73,7 @@ with pkgs;
             soft-wrap = {
               enable = true;
             };
+            auto-format = true;
           };
           keys = {
             normal = {
@@ -122,7 +126,21 @@ with pkgs;
               };
               auto-format = true;
             }
-          ];
+          ]
+          ++
+          (if config.my.lsp.packer.enable then [
+            {
+              name = "packer";
+              scope = "source.packer";
+              file-types = ["pkr.hcl"];
+              formatter = {
+                command = "packer";
+                args = ["fmt"];
+              };
+              auto-format = true;
+            }
+
+          ] else []);
 
           language-server = {
             nixd = {
