@@ -793,3 +793,8 @@ def "mosh-nu" [host] {
 def "nix-search" [search_term: string] {
     nix search --json nixpkgs $search_term | from json | transpose package spec | each {|it| { package: $it.package ...$it.spec } }
 }
+
+# don't understand why this is not working - is there something funny about the environment of Nu commands?
+#def "reload-hm-session-vars" [] {
+#    EDITOR=nothing __HM_SESS_VARS_SOURCED="" bash-env ~/.nix-profile/etc/profile.d/hm-session-vars.sh #| load-env
+#}

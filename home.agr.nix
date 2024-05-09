@@ -12,6 +12,7 @@
   config = {
     home = {
       sessionPath = [
+        "$HOME/bin"
         "$HOME/scripts"
       ];
 
