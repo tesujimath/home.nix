@@ -9,21 +9,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "nu-plugin-dbus";
-  version = "0.5.0";
+  version = "0.6.1";
 
   src = fetchFromGitHub {
     owner = "devyn";
     repo = "nu_plugin_dbus";
-    rev = "d6edfe2f1a74970381b539164316a3f040d366db";
-    hash = "sha256-dvUYYEZA1IvRjYvIN9yHpBhfQRkgM7/fD1fmpEJfN3o=";
+    rev = "adf528e978d04df8d86643f7b1ee256064961f3c";
+    hash = "sha256-3rXIyEWvQ+IrWDORe6+478ahjzshjr00P4ZoW9ANfb4=";
   };
 
-  cargoHash = "sha256-7AAc/igCcXxmHbW4ZXPqHSEwfcTjvAmsAyb7x2VY8zY=";
-
-  cargoPatches = [
-    # a patch file to add Cargo.lock in the source code
-    ./dbus.Cargo.lock.patch
-  ];
+  cargoHash = "sha256-Fc9eFqKVzhImtFcaT28D+9nHdDl0FAHKuo/bPWWuXvc=";
 
   buildInputs = [
     dbus
