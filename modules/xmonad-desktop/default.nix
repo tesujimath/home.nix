@@ -25,6 +25,7 @@ in
     skippy-xd
     sxiv
     udiskie
+    ueberzugpp # for yazi image preview in alacritty
     volnoti
     xclip
     xdragon
