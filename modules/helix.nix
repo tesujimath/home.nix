@@ -119,6 +119,14 @@ with pkgs;
               };
             }
             {
+              name = "toml";
+              formatter = {
+                command = "taplo";
+                args = ["fmt" "-"];
+              };
+              auto-format = true;
+            }
+            {
               name = "typst";
               formatter = {
                 command = "typstfmt";
