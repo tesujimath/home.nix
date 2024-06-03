@@ -1,6 +1,8 @@
-# wretched AgR firewall is over-eager to drop idle connections
 Host *
+    # wretched AgR firewall is over-eager to drop idle connections
     ServerAliveInterval 60
+    # we have wezterm locally but not remotely
+    SetEnv TERM=xterm-256color
 
 Host captain captain.agresearch.co.nz
      HostName captain.agresearch.co.nz
