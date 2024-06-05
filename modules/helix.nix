@@ -23,7 +23,7 @@ with pkgs;
   config = {
     home.packages =
       with pkgs;
-      (if config.my.lsp.bash.enable then [nodePackages.bash-language-server] else [])
+      (if config.my.lsp.bash.enable then [nodePackages.bash-language-server shfmt] else [])
       ++
       (if config.my.lsp.dart.enable then [dart] else [])
       ++
@@ -119,6 +119,13 @@ with pkgs;
               };
             }
             {
+              name = "bash";
+              formatter = {
+                command = "shfmt";
+              };
+              auto-format = true;
+            }
+            {
               name = "toml";
               formatter = {
                 command = "taplo";
@@ -132,6 +139,11 @@ with pkgs;
                 command = "typstfmt";
                 args = ["--output" "-"];
               };
+              auto-format = true;
+            }
+            {
+              name = "yaml";
+              formatter = remove-trailing-whitespace-formatter;
               auto-format = true;
             }
           ]
