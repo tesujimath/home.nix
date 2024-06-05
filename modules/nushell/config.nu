@@ -783,12 +783,17 @@ def "nix-develop-nu" [] {
 
 # ssh with nu as remote shell
 def "ssh-nu" [host] {
-    ssh -t ($host) bash --login -c nu
+    ssh -t $host bash --login -c nu
 }
 
 # mosh with nu as remote shell
 def "mosh-nu" [host] {
-    mosh -- ($host) bash --login -c nu
+    mosh -- $host bash --login -c nu
+}
+
+# ssh via OpenStack CoreOS
+def "ssh-os-core" [host] {
+    openstack server ssh --private $host -- -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core
 }
 
 # search in nixpkgs
