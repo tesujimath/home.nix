@@ -29,7 +29,7 @@ with pkgs;
       ++
       (if config.my.lsp.dockerfile.enable then [dockerfile-language-server-nodejs] else [])
       ++
-      (if config.my.lsp.go.enable then [gopls] else [])
+      (if config.my.lsp.go.enable then [go gopls] else [])
       ++
       (if config.my.lsp.json.enable then [vscode-langservers-extracted] else [])
       ++
