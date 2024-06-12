@@ -6,6 +6,7 @@ with pkgs;
     home.packages = [
       amber # CLI search/replace
       bottom
+      diskonaut
       dig
       du-dust
       fd
