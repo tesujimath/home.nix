@@ -35,5 +35,9 @@ with specialArgs; # for flakePkgs
         in
           "${nu_plugin_dbus}/bin/nu_plugin_dbus";
     };
+
+    home.packages = with pkgs; [
+      job-security
+    ];
   };
 }
