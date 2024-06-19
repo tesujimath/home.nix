@@ -801,6 +801,15 @@ def "nix-search" [search_term: string] {
     nix search --json nixpkgs $search_term | from json | transpose package spec | each {|it| { package: $it.package ...$it.spec } }
 }
 
+def "virsh-ip-addr" [host: string] {
+    virsh net-dhcp-leases default | from ssv | find $host | get 0."IP address" | parse "{addr}/{class}" | get addr.0
+}
+
+def "ssh-win10" [] {
+    let addr = (virsh-ip-addr aya-win10)
+    ssh $"simon@($addr)"
+}
+
 # don't understand why this is not working - is there something funny about the environment of Nu commands?
 #def "reload-hm-session-vars" [] {
 #    EDITOR=nothing __HM_SESS_VARS_SOURCED="" bash-env ~/.nix-profile/etc/profile.d/hm-session-vars.sh #| load-env
