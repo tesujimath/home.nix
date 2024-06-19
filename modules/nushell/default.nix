@@ -37,6 +37,7 @@ with specialArgs; # for flakePkgs
     };
 
     home.packages = with pkgs; [
+      jc
       job-security
     ];
   };
