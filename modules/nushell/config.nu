@@ -805,9 +805,21 @@ def "virsh-ip-addr" [host: string] {
     virsh net-dhcp-leases default | from ssv | find $host | get 0."IP address" | parse "{addr}/{class}" | get addr.0
 }
 
-def "ssh-win10" [] {
-    let addr = (virsh-ip-addr aya-win10)
+def "win ssh" [] {
+    let addr = (virsh-ip-addr win10)
     ssh $"simon@($addr)"
+}
+
+def "win start" [] {
+    virsh start win10
+}
+
+def "win shutdown" [] {
+    virsh shutdown win10
+}
+
+def "win reboot" [] {
+    virsh reboot win10
 }
 
 # don't understand why this is not working - is there something funny about the environment of Nu commands?
