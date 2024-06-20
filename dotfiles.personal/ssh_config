@@ -1,0 +1,3 @@
+Host *
+    # we have fancy terminals locally but not remotely
+    SetEnv TERM=xterm-256color

@@ -15,8 +15,14 @@
     #./ep/aws.nix
     #./secrets.personal.nix
   ];
-  home.file = {
-    ".env.sh".source = ./dotfiles.personal/env.sh;
+  home = {
+    file = {
+      ".env.sh".source = ./dotfiles.personal/env.sh;
+    };
+
+    file = {
+      ".ssh/config".source = ./dotfiles.personal/ssh_config;
+    };
   };
 
   programs = {
