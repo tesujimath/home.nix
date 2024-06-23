@@ -25,6 +25,14 @@ with pkgs;
       };
     };
 
+    # need to override the existing emacs.desktop registration for org-protocol
+    # because that omits to pass the URL
+    xdg.mimeApps = {
+      defaultApplications = {
+        "x-scheme-handler/org-protocol" = ["org-protocol.desktop"];
+      };
+    };
+
     home.packages = [
       aspell
       aspellDicts.en
