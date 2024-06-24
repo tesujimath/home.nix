@@ -9,16 +9,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "nu-plugin-dbus";
-  version = "0.6.1";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
     owner = "devyn";
     repo = "nu_plugin_dbus";
-    rev = "adf528e978d04df8d86643f7b1ee256064961f3c";
-    hash = "sha256-3rXIyEWvQ+IrWDORe6+478ahjzshjr00P4ZoW9ANfb4=";
+    rev = "0.7.0";
+    hash = "sha256-Z9/6BFvaHkKRpNE38YKq30c522ngsROEjQ2BUHm0aOw=";
   };
 
-  cargoHash = "sha256-Fc9eFqKVzhImtFcaT28D+9nHdDl0FAHKuo/bPWWuXvc=";
+  cargoHash = "sha256-6Fs57KKEinrjEOhBqMiNP5ORFOlwEmgnTv1fInl8888=";
 
   buildInputs = [
     dbus

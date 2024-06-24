@@ -6,7 +6,7 @@ with pkgs;
     programs = {
       tmux = {
         enable = true;
-        shell = "${pkgs.nushellFull}/bin/nu";
+        shell = "${pkgs.nushell}/bin/nu";
         };
       };
   };

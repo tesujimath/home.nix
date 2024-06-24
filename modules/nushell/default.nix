@@ -11,7 +11,6 @@ with specialArgs; # for flakePkgs
     programs = {
       nushell = {
         enable = true;
-        package = pkgs.nushellFull;
         configFile.text = (builtins.replaceStrings ["HISTORY_FILE_FORMAT"] [config.my.nushell.history_file_format] (builtins.readFile ./config.nu));
         envFile.text = ''
           # Nushell Environment Config File
