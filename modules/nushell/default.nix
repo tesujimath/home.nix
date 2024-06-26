@@ -28,6 +28,21 @@ with specialArgs; # for flakePkgs
           }
 
         '' + (builtins.readFile ./env.nu);
+
+        package = pkgs.nushell.overrideAttrs (drv: rec {
+          version = "0.94.3-real-parent";
+          src = pkgs.fetchFromGitHub {
+            owner = "tesujimath";
+            repo = "nushell";
+            rev = "real_parent.version";
+            hash = "sha256-aW2B9f/KU5Aj2QrS5ZnzFabN+GrgajK1ttsRb0EJI+I=";
+          };
+          cargoDeps = drv.cargoDeps.overrideAttrs (attrs: {
+            name = "${lib.strings.getName attrs.name}-0.94.3-real-parent.tar.gz";
+            inherit src;
+            outputHash = "sha256-RuEaIpNBFzRivphbAemQ+WHL1I86uCtfaf1Cik+GpIw=";
+          });
+        });
       };
 
       direnv.enableNushellIntegration = true;
