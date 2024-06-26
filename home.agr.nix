@@ -61,6 +61,10 @@
       bash.profile.reuse-ssh-agent = true;
 
       web-browser.wsl.use-native-windows = true;
+
+      nushell = {
+        home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr";
+      };
     };
   };
 }

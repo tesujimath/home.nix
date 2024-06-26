@@ -23,6 +23,10 @@
     file = {
       ".ssh/config".source = ./dotfiles.personal/ssh_config;
     };
+
+    sessionVariables = {
+      EMAIL = "simon.guest@tesujimath.org";
+    };
   };
 
   programs = {
@@ -41,6 +45,12 @@
           glog = "log --graph --all --pretty='format:%C(auto)%h %D %<|(100)%s %<|(120)%an %ar'";
         };
       };
+    };
+  };
+
+  my = {
+    nushell = {
+      home_manager_flake_uri = "path:/home/sjg/vc/env/home.nix#personal";
     };
   };
 }

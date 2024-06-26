@@ -989,8 +989,11 @@ def "hx-mac" [...params: string] {
     hx-for-target x86_64-apple-darwin ...$params
 }
 
-# don't understand why this is not working - is there something funny about the environment of Nu commands?
-# TODO: try with --env
-#def "reload-hm-session-vars" [] {
-#    EDITOR=nothing __HM_SESS_VARS_SOURCED="" bash-env ~/.nix-profile/etc/profile.d/hm-session-vars.sh #| load-env
-#}
+def --env "reload-hm-session-vars" [] {
+    __HM_SESS_VARS_SOURCED="" bash-env ~/.nix-profile/etc/profile.d/hm-session-vars.sh | load-env
+}
+
+def --env "home-manager-switch" [] {
+    home-manager switch -v --flake "HOME_MANAGER_FLAKE_URI"
+    reload-hm-session-vars
+}
