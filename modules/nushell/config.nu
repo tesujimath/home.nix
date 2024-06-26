@@ -955,7 +955,42 @@ def "win reboot" [] {
     virsh reboot win10
 }
 
+def "create-language-config" [target_triple: string] {
+    if not (".helix" | path exists) {
+        mkdir .helix
+    }
+    let language_config = { language-server: { rust-analyzer: { config: {
+      cargo: { target: $target_triple }
+    } } } }
+    $language_config | to toml out> .helix/languages.toml
+}
+
+def "remove-language-config" [] {
+    rm .helix/languages.toml
+}
+
+# start Helix with given target
+def "hx-for-target" [
+    target_triple: string
+    ...params: string
+] {
+    create-language-config $target_triple
+    ^hx ...$params
+    remove-language-config
+}
+
+# start Helix with Windows rust-analyzer
+def "hx-win" [...params: string] {
+    hx-for-target x86_64-pc-windows-gnu ...$params
+}
+
+# start Helix with MacOS rust-analyzer
+def "hx-mac" [...params: string] {
+    hx-for-target x86_64-apple-darwin ...$params
+}
+
 # don't understand why this is not working - is there something funny about the environment of Nu commands?
+# TODO: try with --env
 #def "reload-hm-session-vars" [] {
 #    EDITOR=nothing __HM_SESS_VARS_SOURCED="" bash-env ~/.nix-profile/etc/profile.d/hm-session-vars.sh #| load-env
 #}
