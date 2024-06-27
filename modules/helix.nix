@@ -122,6 +122,7 @@ with pkgs;
               name = "bash";
               formatter = {
                 command = "shfmt";
+                args = ["-i" "4"];
               };
               auto-format = true;
             }
