@@ -55,6 +55,11 @@ with specialArgs; # for flakePkgs
         let nu_plugin_dbus = pkgs.callPackage ./plugins/dbus.nix { };
         in
           "${nu_plugin_dbus}/bin/nu_plugin_dbus";
+
+      ".config/nushell/plugins/nu_plugin_hcl".source =
+        let nu_plugin_hcl = pkgs.callPackage ./plugins/hcl.nix { };
+        in
+          "${nu_plugin_hcl}/bin/nu_plugin_hcl";
     };
 
     home.packages = with pkgs; [

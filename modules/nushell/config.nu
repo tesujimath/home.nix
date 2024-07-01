@@ -894,15 +894,10 @@ $env.config = {
     ]
 }
 
-# each time plugin registration is required for any plugin installed from Nix
-# since Nu stores in plugins.nu the recursively expanded symlinks into the Nix store
-#register nu_plugin_bash_env
-#register nu_plugin_dbus
-# for Nu 0.93 will need instead:
-plugin add ~/.config/nushell/plugins/nu_plugin_bash_env
+# TODO integrate plugin add into home manager
 plugin use bash_env
-plugin add ~/.config/nushell/plugins/nu_plugin_dbus
 plugin use dbus
+plugin use hcl
 
 # set tab title in terminal
 def "ansi title" [title: string] {
