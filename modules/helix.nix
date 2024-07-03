@@ -127,6 +127,11 @@ with pkgs;
               auto-format = true;
             }
             {
+              name = "dockerfile";
+              formatter = remove-trailing-whitespace-formatter;
+              auto-format = true;
+            }
+            {
               name = "nu";
               formatter = remove-trailing-whitespace-formatter;
               auto-format = true;
