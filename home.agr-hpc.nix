@@ -25,6 +25,8 @@
         reuse-ssh-agent = true;
       };
 
+      elvish.home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr-hpc";
+
       nushell = {
         left_prompt_cmd = "cat /etc/agr-hostname";
 

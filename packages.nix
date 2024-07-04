@@ -9,6 +9,7 @@ with pkgs;
     bind
     #discord
     freerdp
+    fx
     #gh
     gimp
     git-crypt

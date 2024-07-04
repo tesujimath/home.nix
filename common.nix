@@ -5,6 +5,7 @@ with specialArgs; # for flakePkgs
   imports = [
     ./common-packages.nix
     ./modules/bash.nix
+    ./modules/elvish
     ./modules/helix.nix
     ./modules/mitmproxy
     ./modules/nushell

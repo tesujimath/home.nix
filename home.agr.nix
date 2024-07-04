@@ -19,6 +19,11 @@
       file = {
         ".ssh/config".source = ./dotfiles.agr/ssh_config;
       };
+
+      sessionVariables = {
+        # in this profile I run a Windows terminal, so copy/paste must use terminal
+        FX_NO_MOUSE = "true";
+      };
     };
 
     programs = {
@@ -61,6 +66,8 @@
       bash.profile.reuse-ssh-agent = true;
 
       web-browser.wsl.use-native-windows = true;
+
+      elvish.home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr";
 
       nushell = {
         home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr";
