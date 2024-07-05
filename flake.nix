@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bash_env_elvish = {
+      url = github:tesujimath/bash-env-elvish/main;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nu_plugin_bash_env = {
       # we have to manually keep version of Nu bash-env plugin in step with Nushell version
       url = github:tesujimath/nu_plugin_bash_env/0.11.0;
@@ -21,11 +26,12 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nu_plugin_bash_env, eza, ... }:
+  outputs = { nixpkgs, home-manager, bash_env_elvish, nu_plugin_bash_env, eza, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       flakePkgs = {
+        bash_env_elvish = bash_env_elvish.packages.${system}.default;
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
         eza = eza.packages.${system}.default;
       };

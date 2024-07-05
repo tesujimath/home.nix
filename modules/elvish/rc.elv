@@ -27,6 +27,11 @@ use github.com/crinklywrappr/rivendell/rune r
 use github.com/crinklywrappr/rivendell/algo a
 use github.com/crinklywrappr/rivendell/vis v
 
+# bash-env
+epm:install &silent-if-installed=$true github.com/tesujimath/bash-env-elvish
+use github.com/tesujimath/bash-env-elvish/bash-env
+fn bash-env { |@args| bash-env:bash-env $@args }
+
 # aliases
 alias:new reload eval (cat ~/.config/elvish/rc.elv | slurp)
 
