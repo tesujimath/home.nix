@@ -9,15 +9,16 @@ set edit:prompt = {
 set edit:rprompt = (constantly "")
 
 # Packages
-use epm
+# TODO: it's a bad idea to install packages in rc.elv, work out how to do this in Home Manager
+#use epm
 
 # Elvish modules
-epm:install &silent-if-installed=$true github.com/zzamboni/elvish-modules
+#epm:install &silent-if-installed=$true github.com/zzamboni/elvish-modules
 use github.com/zzamboni/elvish-modules/alias
 
 # Rivendell
-epm:install &silent-if-installed=$true github.com/crinklywrappr/rivendell
-epm:upgrade github.com/crinklywrappr/rivendell
+#epm:install &silent-if-installed=$true github.com/crinklywrappr/rivendell
+#epm:upgrade github.com/crinklywrappr/rivendell
 
 use github.com/crinklywrappr/rivendell/test t
 use github.com/crinklywrappr/rivendell/base b
@@ -28,7 +29,7 @@ use github.com/crinklywrappr/rivendell/algo a
 use github.com/crinklywrappr/rivendell/vis v
 
 # bash-env
-epm:install &silent-if-installed=$true github.com/tesujimath/bash-env-elvish
+#epm:install &silent-if-installed=$true github.com/tesujimath/bash-env-elvish
 use github.com/tesujimath/bash-env-elvish/bash-env
 fn bash-env { |@args| bash-env:bash-env $@args }
 
