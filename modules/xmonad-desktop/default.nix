@@ -103,7 +103,7 @@ in
           family = "Source Code Pro";
         };
       };
-      shell = "nu";
+      shell = "elvish";
     };
   };
 
