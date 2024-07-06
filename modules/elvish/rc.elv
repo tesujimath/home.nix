@@ -40,6 +40,16 @@ fn jtv { nu --no-config-file --no-history --no-std-lib --plugin-config /dev/null
 fn tv { to-json | jtv }
 fn fxv { to-json | fx }
 
+# ssh with elvish as remote shell
+fn ssh-elvish { |host|
+  ssh -t $host bash --login -c elvish
+}
+
+# mosh with nu as remote shell
+fn mosh-elvish { |host|
+  mosh -- $host bash --login -c elvish
+}
+
 # AgR eRI
 # ssh via OpenStack CoreOS
 fn ssh-os-core { |host|
