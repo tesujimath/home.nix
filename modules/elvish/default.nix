@@ -12,15 +12,25 @@ with specialArgs; # for flakePkgs
         elvish
         flakePkgs.bash_env_elvish
       ];
+    };
 
-      file = {
-        ".config/elvish/rc.elv".text = (builtins.replaceStrings [
+    xdg = {
+      configFile = {
+        "elvish/rc.elv".text = (builtins.replaceStrings [
           "HOME_MANAGER_FLAKE_URI"
         ] [
           config.my.elvish.home_manager_flake_uri
         ] (builtins.readFile ./rc.elv));
 
-        ".local/share/elvish/lib/direnv.elv".source = ./direnv.elv;
+        "elvish/lib/rc.elv".text = (builtins.replaceStrings [
+          "HOME_MANAGER_FLAKE_URI"
+        ] [
+          config.my.elvish.home_manager_flake_uri
+        ] (builtins.readFile ./rc.elv));
+      };
+
+      dataFile = {
+        "elvish/lib/direnv.elv".source = ./direnv.elv;
       };
     };
   };
