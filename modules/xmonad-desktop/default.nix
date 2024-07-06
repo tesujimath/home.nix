@@ -13,7 +13,7 @@ in
     cantarell-fonts
     dmenu
     dunst
-    gnome.seahorse
+    seahorse
     handlr
     libnotify
     libsecret
