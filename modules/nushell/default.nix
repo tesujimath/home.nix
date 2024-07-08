@@ -30,13 +30,21 @@ with specialArgs; # for flakePkgs
       direnv.enableNushellIntegration = true;
     };
 
-    home.file = {
-      ".config/nushell/plugins/nu_plugin_bash_env".source = "${flakePkgs.nu_plugin_bash_env}/bin/nu_plugin_bash_env";
-    };
+    home = {
+      packages = with pkgs; [
+        flakePkgs.nu_plugin_bash_env
+        jc
+        job-security
+      ];
 
-    home.packages = with pkgs; [
-      jc
-      job-security
-    ];
+      activation = let
+        nu-plugin = path: lib.hm.dag.entryAfter ["writeBoundary"] ''
+          run ${pkgs.nushell}/bin/nu --no-config-file --no-history --no-std-lib -c 'plugin add --plugin-config ~/.config/nushell/plugin.msgpackz ${path}'
+        '';
+      in
+        {
+          nu-plugin-bash-env = nu-plugin "${flakePkgs.nu_plugin_bash_env}/bin/nu_plugin_bash_env";
+        };
+    };
   };
 }

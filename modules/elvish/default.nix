@@ -20,7 +20,7 @@ with specialArgs; # for flakePkgs
 
           rivendell = elvish-package "github.com/crinklywrappr/rivendell";
 
-          bash-env = elvish-package "github.com/tesujimath/bash-env-elvish";
+          bash-env-elvish = elvish-package "github.com/tesujimath/bash-env-elvish";
         };
     };
 

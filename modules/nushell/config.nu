@@ -894,7 +894,7 @@ $env.config = {
     ]
 }
 
-# TODO integrate plugin add into home manager
+# plugin is added during Home Manager activation
 plugin use bash_env
 
 # set tab title in terminal
