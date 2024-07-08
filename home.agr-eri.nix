@@ -10,7 +10,6 @@
     my = {
       bash.profile = {
         reuse-ssh-agent = true;
-        ensure-krb5ccname = true;
       };
 
       elvish.home_manager_flake_uri = "path:/home/agresearch.co.nz/guestsi/vc/env/home.nix#agr-eri";
