@@ -2,7 +2,7 @@ use direnv
 
 # get hostname into prompt
 set edit:prompt = {
-     styled (hostname)'❱ ' bright-yellow
+     styled (hostname)'> ' bright-yellow
 }
 
 # kill right prompt
