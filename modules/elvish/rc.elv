@@ -52,6 +52,10 @@ fn ssh-os-core { |host|
 
 # Home Manager
 fn home-manager-switch {
-  home-manager switch -v --flake "HOME_MANAGER_FLAKE_URI"
+  home-manager switch -v --flake $E:HOME_MANAGER_FLAKE_REF_ATTR
+
+  unset-env __HM_SESS_VARS_SOURCED
+  bash-env $E:HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+
   echo "may need to exec elvish to reload rc.elv"
 }

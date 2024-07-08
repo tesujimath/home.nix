@@ -47,12 +47,4 @@
       };
     };
   };
-
-  my = {
-    elvish.home_manager_flake_uri = "path:/home/sjg/vc/env/home.nix#personal";
-
-    nushell = {
-      home_manager_flake_uri = "path:/home/sjg/vc/env/home.nix#personal";
-    };
-  };
 }

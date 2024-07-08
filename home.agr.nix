@@ -65,12 +65,6 @@
       bash.profile.reuse-ssh-agent = true;
 
       web-browser.wsl.use-native-windows = true;
-
-      elvish.home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr";
-
-      nushell = {
-        home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr";
-      };
     };
   };
 }

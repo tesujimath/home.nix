@@ -25,16 +25,12 @@
         reuse-ssh-agent = true;
       };
 
-      elvish.home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr-hpc";
-
       nushell = {
         left_prompt_cmd = "cat /etc/agr-hostname";
 
         # sqlite implies WAL which doesn't work across network
         # https://www.sqlite.org/wal.html
         history_file_format = "plaintext";
-
-        home_manager_flake_uri = "path:/home/guestsi/vc/env/home.nix#agr-hpc";
       };
 
       # use system git on legacy HPC to avoid ssh cert problem:

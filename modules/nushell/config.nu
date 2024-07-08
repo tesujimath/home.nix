@@ -987,7 +987,7 @@ def --env "reload-hm-session-vars" [] {
 }
 
 def --env "home-manager-switch" [] {
-    home-manager switch -v --flake "HOME_MANAGER_FLAKE_URI"
+    home-manager switch -v --flake $env.HOME_MANAGER_FLAKE_REF_ATTR
     # aarggghh!!! source $nu.config-path
     source $nu.env-path
     reload-hm-session-vars

@@ -49,6 +49,7 @@
                 inherit stateVersion;
                 username = "guestsi"; #builtins.getEnv "USER";
                 homeDirectory = /home/guestsi; # /. + builtins.getEnv "HOME";
+                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/guestsi/vc/env/home.nix#agr";
               };
             }
           ];
@@ -66,6 +67,7 @@
                 inherit stateVersion;
                 username = "guestsi"; #builtins.getEnv "USER";
                 homeDirectory = /home/guestsi; # /. + builtins.getEnv "HOME";
+                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/guestsi/vc/env/home.nix#agr-hpc";
               };
             }
           ];
@@ -83,6 +85,7 @@
                 inherit stateVersion;
                 username = "guestsi@agresearch.co.nz"; #builtins.getEnv "USER";
                 homeDirectory = /home/agresearch.co.nz/guestsi; # /. + builtins.getEnv "HOME";
+                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/agresearch.co.nz/guestsi/vc/env/home.nix#agr-eri";
               };
             }
           ];
@@ -100,6 +103,7 @@
                 inherit stateVersion;
                 username = "sjg"; #builtins.getEnv "USER";
                 homeDirectory = /home/sjg; # /. + builtins.getEnv "HOME";
+                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/sjg/vc/env/home.nix#personal";
               };
             }
           ];
