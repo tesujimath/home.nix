@@ -896,8 +896,6 @@ $env.config = {
 
 # TODO integrate plugin add into home manager
 plugin use bash_env
-plugin use dbus
-plugin use hcl
 
 # set tab title in terminal
 def "ansi title" [title: string] {
