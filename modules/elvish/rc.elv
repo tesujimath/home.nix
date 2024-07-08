@@ -26,6 +26,12 @@ use github.com/crinklywrappr/rivendell/vis v
 use github.com/tesujimath/bash-env-elvish/bash-env
 fn bash-env { |@args| bash-env:bash-env $@args }
 
+# virtualenv
+#use github.com/tesujimath/bash-env-elvish/virtualenv
+#fn virtualenv-activate {|env-path|
+#  var deactivate~ = (virtualenv:activate $env-path)
+#}
+
 # aliases
 alias:new reload eval (cat ~/.config/elvish/rc.elv | slurp)
 
