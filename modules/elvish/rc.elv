@@ -24,7 +24,7 @@ use github.com/crinklywrappr/rivendell/vis v
 
 # bash-env
 use github.com/tesujimath/bash-env-elvish/bash-env
-fn bash-env { |@args| bash-env:bash-env $@args }
+fn bash-env { |&shellvars=[] @args| bash-env:bash-env &shellvars=$shellvars $@args }
 
 # virtualenv
 use github.com/tesujimath/bash-env-elvish/virtualenv
