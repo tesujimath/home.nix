@@ -40,6 +40,7 @@ with specialArgs; # for flakePkgs
 
       packages = [
         flakePkgs.eza
+        flakePkgs.nix_search
       ];
     };
 
