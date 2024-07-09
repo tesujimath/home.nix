@@ -1,4 +1,5 @@
 use direnv
+use readline-binding
 
 # get hostname into prompt
 set edit:prompt = {
