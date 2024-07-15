@@ -7,7 +7,7 @@ with pkgs;
       tmux = {
         enable = true;
         shell = "nu";
-        };
       };
+    };
   };
 }

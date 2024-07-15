@@ -8,9 +8,9 @@
         #mappings = {
         #  "+" = "zoom in";
         #  "-" = "zoom out";
-          #"<C-q>" = "quit";
-          #"<PageUp>" = "scroll full-up";
-          #"<PageDown>" = "scroll full-down";
+        #"<C-q>" = "quit";
+        #"<PageUp>" = "scroll full-up";
+        #"<PageDown>" = "scroll full-down";
         #};
         options = {
           window-height = "1080";
@@ -26,7 +26,7 @@
 
     xdg.mimeApps = {
       defaultApplications = {
-        "application/pdf" = ["org.pwmt.zathura.desktop"];
+        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
       };
     };
   };

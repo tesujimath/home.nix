@@ -10,11 +10,12 @@ with specialArgs; # for flakePkgs
       ];
 
       # epm package installation
-      activation = let
-        elvish-package = url: lib.hm.dag.entryAfter ["writeBoundary"] ''
-          run ${pkgs.elvish}/bin/elvish -c "use epm; epm:install &silent-if-installed=\$true ${url}; epm:upgrade ${url}"
-        '';
-      in
+      activation =
+        let
+          elvish-package = url: lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            run ${pkgs.elvish}/bin/elvish -c "use epm; epm:install &silent-if-installed=\$true ${url}; epm:upgrade ${url}"
+          '';
+        in
         {
           elvish-modules = elvish-package "github.com/zzamboni/elvish-modules";
 

@@ -21,35 +21,36 @@
 
   config = {
     home.packages =
-      if config.my.web-browser.wsl.use-native-windows then [] else
+      if config.my.web-browser.wsl.use-native-windows then [ ] else
         with pkgs;
         [
           firefox
           google-chrome
         ];
 
-    xdg.desktopEntries = if config.my.web-browser.wsl.use-native-windows then {
-      firefox = {
-        name = "Firefox";
-        genericName = "Web Browser";
-        exec = config.my.web-browser.wsl.firefox.exec;
-        terminal = false;
-        categories = [ "Application" "Network" "WebBrowser" ];
-        mimeType = [ "text/html" "text/xml" ];
-      };
-      google-chrome = {
-        name = "Google Chrome";
-        genericName = "Web Browser";
-        exec = config.my.web-browser.wsl.google-chrome.exec;
-        terminal = false;
-        categories = [ "Application" "Network" "WebBrowser" ];
-        mimeType = [ "text/html" "text/xml" ];
-      };
-    } else {};
+    xdg.desktopEntries =
+      if config.my.web-browser.wsl.use-native-windows then {
+        firefox = {
+          name = "Firefox";
+          genericName = "Web Browser";
+          exec = config.my.web-browser.wsl.firefox.exec;
+          terminal = false;
+          categories = [ "Application" "Network" "WebBrowser" ];
+          mimeType = [ "text/html" "text/xml" ];
+        };
+        google-chrome = {
+          name = "Google Chrome";
+          genericName = "Web Browser";
+          exec = config.my.web-browser.wsl.google-chrome.exec;
+          terminal = false;
+          categories = [ "Application" "Network" "WebBrowser" ];
+          mimeType = [ "text/html" "text/xml" ];
+        };
+      } else { };
 
     xdg.mimeApps = {
       defaultApplications = {
-        "text/html" = ["firefox.desktop" "google-chrome.desktop"];
+        "text/html" = [ "firefox.desktop" "google-chrome.desktop" ];
       };
     };
   };

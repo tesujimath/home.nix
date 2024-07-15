@@ -2,7 +2,7 @@
 
 with pkgs;
 let
-  xmonad-with-ghc = haskellPackages.ghcWithPackages (pkgs: [pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib]);
+  xmonad-with-ghc = haskellPackages.ghcWithPackages (pkgs: [ pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib ]);
 in
 {
   home.packages = [
@@ -109,7 +109,7 @@ in
 
   xdg.mimeApps = {
     defaultApplications = {
-      "image/*" = ["sxiv.desktop"];
+      "image/*" = [ "sxiv.desktop" ];
     };
   };
 }

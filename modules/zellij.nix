@@ -13,16 +13,19 @@ with pkgs;
 
           # See https://git.lyte.dev/lytedev-divvy/nix/src/branch/main/modules/home-manager/zellij.nix
           keybinds = with builtins; let
-            binder = bind: let
-              keys = elemAt bind 0;
-              action = elemAt bind 1;
-              argKeys = map (k: "\"${k}\"") (lib.lists.flatten [keys]);
-            in {
-              name = "bind ${concatStringsSep " " argKeys}";
-              value = action;
-            };
+            binder = bind:
+              let
+                keys = elemAt bind 0;
+                action = elemAt bind 1;
+                argKeys = map (k: "\"${k}\"") (lib.lists.flatten [ keys ]);
+              in
+              {
+                name = "bind ${concatStringsSep " " argKeys}";
+                value = action;
+              };
             layer = binds: (listToAttrs (map binder binds));
-          in {
+          in
+          {
             # disable sudden death from Ctrl q
             unbind = "Ctrl q";
 
@@ -38,12 +41,12 @@ with pkgs;
 
             # Allow for navigating tabs when Zellij is locked;  great solution to Helix/Zellij conflicts.
             # See https://github.com/helix-editor/helix/discussions/8537#discussioncomment-8370297
-            shared  = layer [
-              [["Alt Left"] { MoveFocusOrTab = "Left"; }]
-              [["Alt Right"] { MoveFocusOrTab = "Right"; }]
-              [["Alt Down"] { MoveFocus = "Down"; }]
-              [["Alt Up"] { MoveFocus = "Up"; }]
-              [["Alt m"] { ToggleFloatingPanes = []; }]
+            shared = layer [
+              [ [ "Alt Left" ] { MoveFocusOrTab = "Left"; } ]
+              [ [ "Alt Right" ] { MoveFocusOrTab = "Right"; } ]
+              [ [ "Alt Down" ] { MoveFocus = "Down"; } ]
+              [ [ "Alt Up" ] { MoveFocus = "Up"; } ]
+              [ [ "Alt m" ] { ToggleFloatingPanes = [ ]; } ]
             ];
           };
         };

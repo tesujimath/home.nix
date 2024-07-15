@@ -4,8 +4,7 @@
   config = {
     secureEnv.onePassword = {
       enable = true;
-      sessionVariables = {
-      };
+      sessionVariables = { };
       sshKeys = {
         # the IDs may be found from `op list items`
       };

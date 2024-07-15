@@ -18,10 +18,10 @@ with pkgs;
         # https://github.com/nix-community/home-manager/blob/master/modules/misc/xdg-desktop-entries.nix
         name = "org-protocol";
         comment = "Intercept calls from emacsclient to trigger custom actions";
-        icon="emacs";
+        icon = "emacs";
         type = "Application";
         exec = "emacsclient -- %u";
-        mimeType = ["x-scheme-handler/org-protocol"];
+        mimeType = [ "x-scheme-handler/org-protocol" ];
       };
     };
 
@@ -29,7 +29,7 @@ with pkgs;
     # because that omits to pass the URL
     xdg.mimeApps = {
       defaultApplications = {
-        "x-scheme-handler/org-protocol" = ["org-protocol.desktop"];
+        "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
       };
     };
 

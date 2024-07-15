@@ -15,7 +15,8 @@ with specialArgs; # for flakePkgs
           "HISTORY_FILE_FORMAT"
         ] [
           config.my.nushell.history_file_format
-        ] (builtins.readFile ./config.nu));
+        ]
+          (builtins.readFile ./config.nu));
         envFile.text = ''
           # Nushell Environment Config File
 
@@ -37,11 +38,12 @@ with specialArgs; # for flakePkgs
         job-security
       ];
 
-      activation = let
-        nu-plugin = path: lib.hm.dag.entryAfter ["writeBoundary"] ''
-          run ${pkgs.nushell}/bin/nu --no-config-file --no-history --no-std-lib -c 'plugin add --plugin-config ~/.config/nushell/plugin.msgpackz ${path}'
-        '';
-      in
+      activation =
+        let
+          nu-plugin = path: lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            run ${pkgs.nushell}/bin/nu --no-config-file --no-history --no-std-lib -c 'plugin add --plugin-config ~/.config/nushell/plugin.msgpackz ${path}'
+          '';
+        in
         {
           nu-plugin-bash-env = nu-plugin "${flakePkgs.nu_plugin_bash_env}/bin/nu_plugin_bash_env";
         };

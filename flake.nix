@@ -44,7 +44,8 @@
 
       stateVersion = "21.11";
 
-    in {
+    in
+    {
       homeConfigurations = {
         agr = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;

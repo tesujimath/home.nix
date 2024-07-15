@@ -25,7 +25,7 @@ with pkgs;
     #stack
     slack
     #steam-run
-    stow  # for install-dotfiles for now
+    stow # for install-dotfiles for now
     unison
     vscode
     yarn

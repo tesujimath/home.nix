@@ -15,33 +15,33 @@
       '';
 
       profileExtra = ''
-      ${if config.my.bash.profile.reuse-ssh-agent then ''
-        # reuse an ssh-agent if we can
-        unset SSH_AUTH_SOCK
-        for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.*`; do
-          SSH_AUTH_SOCK=''$ssh_auth_sock ssh-add -l >/dev/null 2>&1
-          # 0 means connected and found ssh identities
-          # 1 means connected but no ssh identities found
-          # 2 means failed to connect
-          test $? -ne 2 && {
-            export SSH_AUTH_SOCK=$ssh_auth_sock
-            break
+        ${if config.my.bash.profile.reuse-ssh-agent then ''
+          # reuse an ssh-agent if we can
+          unset SSH_AUTH_SOCK
+          for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.*`; do
+            SSH_AUTH_SOCK=''$ssh_auth_sock ssh-add -l >/dev/null 2>&1
+            # 0 means connected and found ssh identities
+            # 1 means connected but no ssh identities found
+            # 2 means failed to connect
+            test $? -ne 2 && {
+              export SSH_AUTH_SOCK=$ssh_auth_sock
+              break
+            }
+          done
+          unset ssh_auth_sock
+
+          # otherwise start a new one
+          test -n "''$SSH_AUTH_SOCK" || {
+            eval `ssh-agent`
           }
-        done
-        unset ssh_auth_sock
 
-        # otherwise start a new one
-        test -n "''$SSH_AUTH_SOCK" || {
-          eval `ssh-agent`
+        '' else ""
         }
-
-      '' else ""
-      }
-      ${if config.my.bash.profile.ensure-krb5ccname then ''
-        # ensure KRB5CCNAME has a good value
-        export KRB5CCNAME=''${KRB5CCNAME-''$HOME/.krb5.cache}
-      '' else ""
-      }
+        ${if config.my.bash.profile.ensure-krb5ccname then ''
+          # ensure KRB5CCNAME has a good value
+          export KRB5CCNAME=''${KRB5CCNAME-''$HOME/.krb5.cache}
+        '' else ""
+        }
       '';
 
       # interactive shells only
