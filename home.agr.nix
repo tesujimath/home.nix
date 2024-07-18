@@ -56,7 +56,7 @@
 
     };
 
-    my = {
+    local = {
       lsp = {
         # mostly they're enabled by default, except:
         terraform.enable = true;

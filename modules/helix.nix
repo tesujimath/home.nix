@@ -2,7 +2,7 @@
 
 with pkgs;
 {
-  options.my.lsp = {
+  options.local.lsp = {
     bash.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Bash LSP server"; };
     dart.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Dart LSP server"; };
     dockerfile.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Dockerfile LSP server"; };
@@ -23,35 +23,35 @@ with pkgs;
   config = {
     home.packages =
       with pkgs;
-      (if config.my.lsp.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
+      (if config.local.lsp.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
       ++
-      (if config.my.lsp.dart.enable then [ dart ] else [ ])
+      (if config.local.lsp.dart.enable then [ dart ] else [ ])
       ++
-      (if config.my.lsp.dockerfile.enable then [ dockerfile-language-server-nodejs ] else [ ])
+      (if config.local.lsp.dockerfile.enable then [ dockerfile-language-server-nodejs ] else [ ])
       ++
-      (if config.my.lsp.go.enable then [ go gopls ] else [ ])
+      (if config.local.lsp.go.enable then [ go gopls ] else [ ])
       ++
-      (if config.my.lsp.json.enable then [ vscode-langservers-extracted ] else [ ])
+      (if config.local.lsp.json.enable then [ vscode-langservers-extracted ] else [ ])
       ++
-      (if config.my.lsp.markdown.enable then [ marksman ] else [ ])
+      (if config.local.lsp.markdown.enable then [ marksman ] else [ ])
       ++
-      (if config.my.lsp.nix.enable then [ nil nixpkgs-fmt ] else [ ])
+      (if config.local.lsp.nix.enable then [ nil nixpkgs-fmt ] else [ ])
       ++
-      (if config.my.lsp.packer.enable then [ packer ] else [ ])
+      (if config.local.lsp.packer.enable then [ packer ] else [ ])
       ++
-      (if config.my.lsp.python.enable then [ pyright pylint black ] else [ ])
+      (if config.local.lsp.python.enable then [ pyright pylint black ] else [ ])
       ++
-      (if config.my.lsp.rust.enable then [ rust-analyzer rustfmt ] else [ ])
+      (if config.local.lsp.rust.enable then [ rust-analyzer rustfmt ] else [ ])
       ++
-      (if config.my.lsp.terraform.enable then [ terraform-ls ] else [ ])
+      (if config.local.lsp.terraform.enable then [ terraform-ls ] else [ ])
       ++
-      (if config.my.lsp.toml.enable then [ taplo-lsp ] else [ ])
+      (if config.local.lsp.toml.enable then [ taplo-lsp ] else [ ])
       ++
-      (if config.my.lsp.typescript.enable then [ nodePackages.typescript-language-server ] else [ ])
+      (if config.local.lsp.typescript.enable then [ nodePackages.typescript-language-server ] else [ ])
       ++
-      (if config.my.lsp.typst.enable then [ typst-lsp typst-fmt ] else [ ])
+      (if config.local.lsp.typst.enable then [ typst-lsp typst-fmt ] else [ ])
       ++
-      (if config.my.lsp.yaml.enable then [ yaml-language-server ] else [ ])
+      (if config.local.lsp.yaml.enable then [ yaml-language-server ] else [ ])
     ;
 
     programs = {
@@ -167,7 +167,7 @@ with pkgs;
               }
             ]
             ++
-            (if config.my.lsp.packer.enable then [
+            (if config.local.lsp.packer.enable then [
               {
                 name = "packer";
                 scope = "source.packer";

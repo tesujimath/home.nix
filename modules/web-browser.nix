@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  options.my.web-browser = {
+  options.local.web-browser = {
     wsl.use-native-windows = lib.mkOption {
       type = lib.types.bool;
       description = "Use native Windows web browsers for WSL";
@@ -21,7 +21,7 @@
 
   config = {
     home.packages =
-      if config.my.web-browser.wsl.use-native-windows then [ ] else
+      if config.local.web-browser.wsl.use-native-windows then [ ] else
         with pkgs;
         [
           firefox
@@ -29,11 +29,11 @@
         ];
 
     xdg.desktopEntries =
-      if config.my.web-browser.wsl.use-native-windows then {
+      if config.local.web-browser.wsl.use-native-windows then {
         firefox = {
           name = "Firefox";
           genericName = "Web Browser";
-          exec = config.my.web-browser.wsl.firefox.exec;
+          exec = config.local.web-browser.wsl.firefox.exec;
           terminal = false;
           categories = [ "Application" "Network" "WebBrowser" ];
           mimeType = [ "text/html" "text/xml" ];
@@ -41,7 +41,7 @@
         google-chrome = {
           name = "Google Chrome";
           genericName = "Web Browser";
-          exec = config.my.web-browser.wsl.google-chrome.exec;
+          exec = config.local.web-browser.wsl.google-chrome.exec;
           terminal = false;
           categories = [ "Application" "Network" "WebBrowser" ];
           mimeType = [ "text/html" "text/xml" ];

@@ -57,7 +57,7 @@ with specialArgs; # for flakePkgs
     # additional docs, access via home-manager-help command
     manual.html.enable = true;
 
-    my.lsp = {
+    local.lsp = {
       rust.enable = true;
       go.enable = true;
       python.enable = true;

@@ -7,7 +7,7 @@
   ];
 
   config = {
-    my = {
+    local = {
       bash.profile = {
         reuse-ssh-agent = true;
       };
