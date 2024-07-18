@@ -1,5 +1,5 @@
 {
-  description = "sjg home manager flake";
+  description = "Nix flake for Nix Home Manager config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -42,82 +42,71 @@
         nix_search = nix_search.packages.${system}.default;
       };
 
-      stateVersion = "21.11";
 
     in
     {
-      homeConfigurations = {
-        agr = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home.agr.nix
-            {
-              home = {
-                inherit stateVersion;
-                username = "guestsi"; #builtins.getEnv "USER";
-                homeDirectory = /home/guestsi; # /. + builtins.getEnv "HOME";
-                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/guestsi/vc/env/home.nix#agr";
-              };
-            }
-          ];
-          extraSpecialArgs = {
-            inherit flakePkgs;
-          };
-        };
+      homeConfigurations =
+        let
+          stateVersion = "21.11";
 
-        agr-hpc = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home.agr-hpc.nix
-            {
+          configurations = {
+            agr = {
               home = {
                 inherit stateVersion;
-                username = "guestsi"; #builtins.getEnv "USER";
-                homeDirectory = /home/guestsi; # /. + builtins.getEnv "HOME";
-                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/guestsi/vc/env/home.nix#agr-hpc";
+                username = "guestsi";
+                homeDirectory = /home/guestsi;
               };
-            }
-          ];
-          extraSpecialArgs = {
-            inherit flakePkgs;
-          };
-        };
-
-        agr-eri = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home.agr-eri.nix
-            {
+              modules = [
+                ./home.agr.nix
+              ];
+            };
+            agr-hpc = {
               home = {
                 inherit stateVersion;
-                username = "guestsi@agresearch.co.nz"; #builtins.getEnv "USER";
-                homeDirectory = /home/agresearch.co.nz/guestsi; # /. + builtins.getEnv "HOME";
-                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/agresearch.co.nz/guestsi/vc/env/home.nix#agr-eri";
+                username = "guestsi";
+                homeDirectory = /home/guestsi;
               };
-            }
-          ];
-          extraSpecialArgs = {
-            inherit flakePkgs;
-          };
-        };
-
-        personal = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home.personal.nix
-            {
+              modules = [
+                ./home.agr-hpc.nix
+              ];
+            };
+            agr-eri = {
               home = {
                 inherit stateVersion;
-                username = "sjg"; #builtins.getEnv "USER";
-                homeDirectory = /home/sjg; # /. + builtins.getEnv "HOME";
-                sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:/home/sjg/vc/env/home.nix#personal";
+                username = "guestsi@agresearch.co.nz";
+                homeDirectory = /home/agresearch.co.nz/guestsi;
               };
-            }
-          ];
-          extraSpecialArgs = {
-            inherit flakePkgs;
+              modules = [
+                ./home.agr-eri.nix
+              ];
+            };
+            personal = {
+              home = {
+                inherit stateVersion;
+                username = "sjg";
+                homeDirectory = /home/sjg;
+              };
+              modules = [
+                ./home.personal.nix
+              ];
+            };
           };
-        };
-      };
+        in
+        builtins.mapAttrs
+          (name: config:
+            home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              modules = config.modules ++ [
+                {
+                  home = config.home // {
+                    sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:{config.home.homeDirectory}/home.nix#${name}";
+                  };
+                }
+              ];
+              extraSpecialArgs = {
+                inherit flakePkgs;
+              };
+            })
+          configurations;
     };
 }
