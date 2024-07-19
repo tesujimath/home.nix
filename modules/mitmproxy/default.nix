@@ -1,7 +1,15 @@
 { config, pkgs, lib, ... }:
 
+with lib;
+let
+  cfg = config.local.mitmproxy;
+in
 {
-  config = {
+  options.local.mitmproxy = {
+    enable = mkEnableOption "mitmproxy";
+  };
+
+  config = mkIf cfg.enable {
     home = {
       file = {
         ".mitmproxy/config.yaml".source = ./config.yaml;

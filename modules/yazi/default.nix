@@ -1,11 +1,19 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
+with lib;
+let
+  cfg = config.local.yazi;
+in
 {
-  config = {
+  options.local.yazi = {
+    enable = mkEnableOption "yazi";
+  };
+
+  config = mkIf cfg.enable {
     programs = {
       yazi = {
         enable = true;
-        enableBashIntegration = true;
-        enableNushellIntegration = true;
+        enableBashIntegration = config.local.bash.enable;
+        enableNushellIntegration = config.local.nushell.enable;
         settings = {
           manager = {
             ratio = [ 1 2 5 ];
@@ -29,8 +37,8 @@
               # https://yazi-rs.github.io/docs/tips#dropping-to-shell
               {
                 on = [ "<C-s>" ];
-                run = "shell nu --block --confirm";
-                desc = "Open Nushell here";
+                run = "shell ${config.local.defaultShell} --block --confirm";
+                desc = "Open default shell here";
               }
 
               # https://yazi-rs.github.io/docs/tips#smart-enter

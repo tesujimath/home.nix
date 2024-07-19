@@ -103,7 +103,7 @@ in
           family = "Source Code Pro";
         };
       };
-      shell = "elvish";
+      shell = config.local.defaultShell;
     };
   };
 

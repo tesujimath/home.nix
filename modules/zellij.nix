@@ -1,14 +1,21 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
-with pkgs;
+with lib;
+let
+  cfg = config.local.zellij;
+in
 {
-  config = {
+  options.local.zellij = {
+    enable = mkEnableOption "zellij";
+  };
+
+  config = mkIf cfg.enable {
     programs = {
       zellij = {
         enable = true;
         settings = {
-          default_shell = "elvish";
-          scrollback_editor = "${pkgs.helix}/bin/hx";
+          default_shell = config.local.defaultShell;
+          scrollback_editor = config.local.defaultEditor;
           mouse_mode = true;
 
           # See https://git.lyte.dev/lytedev-divvy/nix/src/branch/main/modules/home-manager/zellij.nix

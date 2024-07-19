@@ -1,7 +1,14 @@
-{ config, ... }:
-
+{ config, lib, ... }:
+with lib;
+let
+  cfg = config.local.zathura;
+in
 {
-  config = {
+  options.local.zathura = {
+    enable = mkEnableOption "zathura";
+  };
+
+  config = mkIf cfg.enable {
     programs = {
       zathura = {
         enable = true;

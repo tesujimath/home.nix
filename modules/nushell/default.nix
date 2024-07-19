@@ -1,8 +1,13 @@
 { config, specialArgs, pkgs, lib, ... }:
 
+with lib;
 with specialArgs; # for flakePkgs
+let
+  cfg = config.local.nushell;
+in
 {
   options.local.nushell = {
+    enable = mkEnableOption "nushell";
     left_prompt_cmd = lib.mkOption { default = "hostname -s"; type = lib.types.str; description = "Command to use to generate left prompt text"; };
     history_file_format = lib.mkOption { default = "sqlite"; type = lib.types.str; description = "History file format, either sqlite or plaintext"; };
   };

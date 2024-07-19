@@ -1,8 +1,16 @@
 { config, pkgs, lib, specialArgs, ... }:
 
+with lib;
 with specialArgs; # for flakePkgs
+let
+  cfg = config.local.elvish;
+in
 {
-  config = {
+  options.local.elvish = {
+    enable = mkEnableOption "elvish";
+  };
+
+  config = mkIf cfg.enable {
     home = {
       packages = with pkgs; [
         elvish

@@ -1,12 +1,19 @@
 { config, pkgs, lib, ... }:
 
+with lib;
+let
+  cfg = config.local.bash;
+in
 {
-  options.local.bash.profile = {
-    reuse-ssh-agent = lib.mkOption { default = false; type = lib.types.bool; description = "Reuse or start ssh agent in Bash profile"; };
-    ensure-krb5ccname = lib.mkOption { default = false; type = lib.types.bool; description = "Ensure KRB5CCNAME has a sensible value"; };
+  options.local.bash = {
+    enable = mkEnableOption "bash";
+    profile = {
+      reuse-ssh-agent = mkOption { default = false; type = types.bool; description = "Reuse or start ssh agent in Bash profile"; };
+      ensure-krb5ccname = mkOption { default = false; type = types.bool; description = "Ensure KRB5CCNAME has a sensible value"; };
+    };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     programs.bash = {
       enable = true;
 
@@ -15,7 +22,7 @@
       '';
 
       profileExtra = ''
-        ${if config.local.bash.profile.reuse-ssh-agent then ''
+        ${if cfg.profile.reuse-ssh-agent then ''
           # reuse an ssh-agent if we can
           unset SSH_AUTH_SOCK
           for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.*`; do
@@ -37,7 +44,7 @@
 
         '' else ""
         }
-        ${if config.local.bash.profile.ensure-krb5ccname then ''
+        ${if cfg.profile.ensure-krb5ccname then ''
           # ensure KRB5CCNAME has a good value
           export KRB5CCNAME=''${KRB5CCNAME-''$HOME/.krb5.cache}
         '' else ""

@@ -49,6 +49,26 @@
         let
           stateVersion = "21.11";
 
+          enable = (names: builtins.listToAttrs (map (name: { inherit name; value = { enable = true; }; }) names));
+
+          commonLanguages = [
+            "bash"
+            # "dart"
+            "dockerfile"
+            "go"
+            "json"
+            "markdown"
+            "nix"
+            #"packer"
+            "python"
+            "rust"
+            "terraform"
+            "toml"
+            "typescript"
+            "typst"
+            "yaml"
+          ];
+
           configurations = {
             agr = {
               home = {
@@ -58,6 +78,27 @@
               };
               modules = [
                 ./home.agr.nix
+                {
+                  config.local = (enable [
+                    "bash"
+                    "elvish"
+                    "helix"
+                    "mitmproxy"
+                    "nushell"
+                    "yazi"
+                    "zathura"
+                    "zellij"
+                  ]) // {
+                    defaultShell = "elvish";
+                    defaultEditor = "hx";
+
+                    lsp = enable commonLanguages;
+
+                    bash.profile.reuse-ssh-agent = true;
+
+                    web-browser.wsl.use-native-windows = true;
+                  };
+                }
               ];
             };
             agr-hpc = {
@@ -93,13 +134,13 @@
           };
         in
         builtins.mapAttrs
-          (name: config:
+          (name: attrs:
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
-              modules = config.modules ++ [
+              modules = attrs.modules ++ [
                 {
-                  home = config.home // {
-                    sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:{config.home.homeDirectory}/home.nix#${name}";
+                  home = attrs.home // {
+                    sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:{attrs.home.homeDirectory}/home.nix#${name}";
                   };
                 }
               ];

@@ -1,59 +1,15 @@
-{ options, config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
-with pkgs;
+with lib;
+let
+  cfg = config.local.helix;
+in
 {
-  options.local.lsp = {
-    bash.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Bash LSP server"; };
-    dart.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Dart LSP server"; };
-    dockerfile.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Dockerfile LSP server"; };
-    go.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Go LSP server"; };
-    json.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable JSON LSP server"; };
-    markdown.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Markdown LSP server"; };
-    nix.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Nix LSP server"; };
-    packer.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Packer formatting"; };
-    python.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Python LSP server"; };
-    rust.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Rust LSP server"; };
-    terraform.enable = lib.mkOption { default = false; type = lib.types.bool; description = "Enable Terraform LSP server"; };
-    toml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TOML LSP server"; };
-    typescript.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable TypeScript LSP server"; };
-    typst.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable Typst LSP server"; };
-    yaml.enable = lib.mkOption { default = true; type = lib.types.bool; description = "Enable YAML LSP server"; };
+  options.local.helix = {
+    enable = mkEnableOption "helix";
   };
 
-  config = {
-    home.packages =
-      with pkgs;
-      (if config.local.lsp.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
-      ++
-      (if config.local.lsp.dart.enable then [ dart ] else [ ])
-      ++
-      (if config.local.lsp.dockerfile.enable then [ dockerfile-language-server-nodejs ] else [ ])
-      ++
-      (if config.local.lsp.go.enable then [ go gopls ] else [ ])
-      ++
-      (if config.local.lsp.json.enable then [ vscode-langservers-extracted ] else [ ])
-      ++
-      (if config.local.lsp.markdown.enable then [ marksman ] else [ ])
-      ++
-      (if config.local.lsp.nix.enable then [ nil nixpkgs-fmt ] else [ ])
-      ++
-      (if config.local.lsp.packer.enable then [ packer ] else [ ])
-      ++
-      (if config.local.lsp.python.enable then [ pyright pylint black ] else [ ])
-      ++
-      (if config.local.lsp.rust.enable then [ rust-analyzer rustfmt ] else [ ])
-      ++
-      (if config.local.lsp.terraform.enable then [ terraform-ls ] else [ ])
-      ++
-      (if config.local.lsp.toml.enable then [ taplo-lsp ] else [ ])
-      ++
-      (if config.local.lsp.typescript.enable then [ nodePackages.typescript-language-server ] else [ ])
-      ++
-      (if config.local.lsp.typst.enable then [ typst-lsp typst-fmt ] else [ ])
-      ++
-      (if config.local.lsp.yaml.enable then [ yaml-language-server ] else [ ])
-    ;
-
+  config = mkIf cfg.enable {
     programs = {
       helix = {
         enable = true;
@@ -145,6 +101,16 @@ with pkgs;
                 auto-format = true;
               }
               {
+                name = "packer";
+                scope = "source.packer";
+                file-types = [ "pkr.hcl" ];
+                formatter = {
+                  command = "packer";
+                  args = [ "fmt" ];
+                };
+                auto-format = true;
+              }
+              {
                 name = "toml";
                 formatter = {
                   command = "taplo";
@@ -165,21 +131,7 @@ with pkgs;
                 formatter = remove-trailing-whitespace-formatter;
                 auto-format = true;
               }
-            ]
-            ++
-            (if config.local.lsp.packer.enable then [
-              {
-                name = "packer";
-                scope = "source.packer";
-                file-types = [ "pkr.hcl" ];
-                formatter = {
-                  command = "packer";
-                  args = [ "fmt" ];
-                };
-                auto-format = true;
-              }
-
-            ] else [ ]);
+            ];
 
             language-server = {
               nil = {
@@ -196,8 +148,5 @@ with pkgs;
           };
       };
     };
-    #home.packages = [
-    #  vscode-extensions.llvm-org.lldb-vscode
-    #];
   };
 }

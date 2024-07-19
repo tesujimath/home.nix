@@ -53,18 +53,6 @@
 
         extraConfig = builtins.readFile ./dotfiles.agr/wezterm.lua;
       };
-
-    };
-
-    local = {
-      lsp = {
-        # mostly they're enabled by default, except:
-        terraform.enable = true;
-      };
-
-      bash.profile.reuse-ssh-agent = true;
-
-      web-browser.wsl.use-native-windows = true;
     };
   };
 }

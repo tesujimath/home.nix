@@ -1,20 +1,23 @@
-{ config, pkgs, lib, specialArgs, ... }:
+{ config, lib, ... }:
 
-with specialArgs; # for flakePkgs
+with lib;
 {
   imports = [
     ./common-packages.nix
     ./modules/bash.nix
     ./modules/elvish
     ./modules/helix.nix
+    ./modules/lsp.nix
     ./modules/mitmproxy
     ./modules/nushell
-    ./modules/tmux.nix
     ./modules/xdg.nix
     ./modules/yazi
     ./modules/zathura.nix
     ./modules/zellij.nix
   ];
+
+  options.local.defaultShell = mkOption { default = "bash"; type = types.str; description = "Default shell"; };
+  options.local.defaultEditor = mkOption { default = "vi"; type = types.str; description = "Default editor"; };
 
   config = {
     nixpkgs = {
@@ -37,11 +40,6 @@ with specialArgs; # for flakePkgs
       file = {
         ".dircolors".source = ./dotfiles/dircolors;
       };
-
-      packages = [
-        flakePkgs.eza
-        flakePkgs.nix_search
-      ];
     };
 
     programs = {

@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
 
+with specialArgs; # for flakePkgs
 with pkgs;
 {
   config = {
@@ -24,6 +25,10 @@ with pkgs;
       unzip
       virtualenv # better than python -m venv because supports Nu
       wget
+
+      # packages we get from flakes
+      flakePkgs.eza
+      flakePkgs.nix_search
     ];
   };
 }
