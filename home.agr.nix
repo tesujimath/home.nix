@@ -29,8 +29,8 @@
     programs = {
       git = {
         enable = true;
-        userName = "Simon Guest";
-        userEmail = "simon.guest@agresearch.co.nz";
+        userName = config.local.user.fullName;
+        userEmail = config.local.user.email;
         extraConfig = {
           fetch = {
             prune = true;

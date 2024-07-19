@@ -24,16 +24,13 @@
       ".ssh/config".source = ./dotfiles.personal/ssh_config;
     };
 
-    sessionVariables = {
-      EMAIL = "simon.guest@tesujimath.org";
-    };
   };
 
   programs = {
     git = {
       enable = true;
-      userName = "Simon Guest";
-      userEmail = "simon.guest@tesujimath.org";
+      userName = config.local.user.fullName;
+      userEmail = config.local.user.email;
       extraConfig = {
         fetch = {
           prune = true;

@@ -18,6 +18,11 @@ with lib;
 
   options.local.defaultShell = mkOption { default = "bash"; type = types.str; description = "Default shell"; };
   options.local.defaultEditor = mkOption { default = "vi"; type = types.str; description = "Default editor"; };
+  options.local.user =
+    {
+      email = mkOption { type = types.str; description = "Email address"; };
+      fullName = mkOption { type = types.str; description = "Full name"; };
+    };
 
   config = {
     nixpkgs = {
@@ -33,6 +38,8 @@ with lib;
 
     home = {
       sessionVariables = {
+        EMAIL = config.local.user.email;
+
         # make virsh use system connection as per virt-manager
         LIBVIRT_DEFAULT_URI = "qemu:///system";
       };
@@ -54,13 +61,5 @@ with lib;
 
     # additional docs, access via home-manager-help command
     manual.html.enable = true;
-
-    local.lsp = {
-      rust.enable = true;
-      go.enable = true;
-      python.enable = true;
-      json.enable = true;
-      dockerfile.enable = true;
-    };
   };
 }

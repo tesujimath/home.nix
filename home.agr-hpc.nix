@@ -14,8 +14,8 @@
 
       sessionVariables = {
         # failed attempt to stop this when logging into legacy HPC:
-        # /nix/store/a1s263pmsci9zykm5xcdf7x9rv26w6d5-bash-5.2p26/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-        # /home/guestsi/.nix-profile/bin/manpath: can't set the locale; make sure $LC_* and $LANG are correct
+        # bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+        # manpath: can't set the locale; make sure $LC_* and $LANG are correct
         LOCALE_ARCHIVE = "${pkgs.glibcLocales}/lib/locale/locale-archive";
       };
     };

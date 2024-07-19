@@ -49,17 +49,30 @@
         let
           stateVersion = "21.11";
 
-          enable = (names: builtins.listToAttrs (map (name: { inherit name; value = { enable = true; }; }) names));
+          mapEnabled = (enable: names: builtins.listToAttrs (map (name: { inherit name; value = { inherit enable; }; }) names));
+          enable = mapEnabled true;
+          disable = mapEnabled false;
 
-          commonLanguages = [
+          allModules = enable [
             "bash"
-            # "dart"
+            "elvish"
+            "helix"
+            "mitmproxy"
+            "nushell"
+            "yazi"
+            "zathura"
+            "zellij"
+          ];
+
+          allLanguages = enable [
+            "bash"
+            "dart"
             "dockerfile"
             "go"
             "json"
             "markdown"
             "nix"
-            #"packer"
+            "packer"
             "python"
             "rust"
             "terraform"
@@ -79,20 +92,16 @@
               modules = [
                 ./home.agr.nix
                 {
-                  config.local = (enable [
-                    "bash"
-                    "elvish"
-                    "helix"
-                    "mitmproxy"
-                    "nushell"
-                    "yazi"
-                    "zathura"
-                    "zellij"
-                  ]) // {
+                  config.local = allModules // {
+                    user = {
+                      email = "simon.guest@agresearch.co.nz";
+                      fullName = "Simon Guest";
+                    };
+
                     defaultShell = "elvish";
                     defaultEditor = "hx";
 
-                    lsp = enable commonLanguages;
+                    lsp = allLanguages // disable [ "dart" "packer" ];
 
                     bash.profile.reuse-ssh-agent = true;
 
@@ -129,6 +138,19 @@
               };
               modules = [
                 ./home.personal.nix
+                {
+                  config.local = allModules // {
+                    user = {
+                      email = "simon.guest@tesujimath.org";
+                      fullName = "Simon Guest";
+                    };
+
+                    defaultShell = "elvish";
+                    defaultEditor = "hx";
+
+                    lsp = allLanguages // disable [ "dart" "packer" ];
+                  };
+                }
               ];
             };
           };
