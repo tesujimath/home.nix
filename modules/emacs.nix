@@ -1,7 +1,15 @@
 { config, pkgs, ... }:
 
 with pkgs;
+with lib;
+let
+  cfg = config.local.emacs;
+in
 {
+  options.local.emacs = {
+    enable = mkEnableOption "emacs";
+  };
+
   config = {
     programs = {
       emacs = {

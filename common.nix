@@ -6,7 +6,9 @@ with lib;
     ./common-packages.nix
     ./modules/bash.nix
     ./modules/elvish
+    ./modules/emacs.nix
     ./modules/helix.nix
+    ./modules/ledger
     ./modules/lsp.nix
     ./modules/mitmproxy
     ./modules/nushell

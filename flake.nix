@@ -53,9 +53,10 @@
           enable = mapEnabled true;
           disable = mapEnabled false;
 
-          allModules = enable [
+          commonModules = enable [
             "bash"
             "elvish"
+            "emacs"
             "helix"
             "mitmproxy"
             "nushell"
@@ -82,6 +83,8 @@
             "yaml"
           ];
 
+          commonLanguages = allLanguages // disable [ "dart" "packer" ];
+
           configurations = {
             agr = {
               home = {
@@ -92,7 +95,7 @@
               modules = [
                 ./home.agr.nix
                 {
-                  config.local = allModules // {
+                  config.local = commonModules // {
                     user = {
                       email = "simon.guest@agresearch.co.nz";
                       fullName = "Simon Guest";
@@ -101,7 +104,7 @@
                     defaultShell = "elvish";
                     defaultEditor = "hx";
 
-                    lsp = allLanguages // disable [ "dart" "packer" ];
+                    lsp = commonLanguages;
 
                     bash.profile.reuse-ssh-agent = true;
 
@@ -139,7 +142,7 @@
               modules = [
                 ./home.personal.nix
                 {
-                  config.local = allModules // {
+                  config.local = commonModules // (enable [ "ledger" ]) // {
                     user = {
                       email = "simon.guest@tesujimath.org";
                       fullName = "Simon Guest";
@@ -148,7 +151,7 @@
                     defaultShell = "elvish";
                     defaultEditor = "hx";
 
-                    lsp = allLanguages // disable [ "dart" "packer" ];
+                    lsp = commonLanguages;
                   };
                 }
               ];

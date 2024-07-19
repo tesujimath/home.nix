@@ -3,7 +3,6 @@
 {
   imports = [
     ./common.nix
-    ./modules/emacs.nix
     ./modules/web-browser.nix
     ./packages.nix
     ./packages.agr.nix
