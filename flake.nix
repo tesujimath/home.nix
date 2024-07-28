@@ -41,7 +41,7 @@
         eza = eza.packages.${system}.default;
         nix_search = nix_search.packages.${system}.default;
       };
-
+      lib = pkgs.lib;
 
     in
     {
@@ -95,7 +95,7 @@
               modules = [
                 ./home.agr.nix
                 {
-                  config.local = commonModules // {
+                  config.local = lib.attrsets.recursiveUpdate commonModules {
                     user = {
                       email = "simon.guest@agresearch.co.nz";
                       fullName = "Simon Guest";
@@ -142,7 +142,7 @@
               modules = [
                 ./home.personal.nix
                 {
-                  config.local = commonModules // (enable [ "ledger" ]) // {
+                  config.local = lib.attrsets.recursiveUpdate (commonModules // (enable [ "ledger" ])) {
                     user = {
                       email = "simon.guest@tesujimath.org";
                       fullName = "Simon Guest";
