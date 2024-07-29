@@ -1,7 +1,15 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+with lib;
+let
+  cfg = config.local.syncthing;
+in
 {
-  config = {
+  options.local.syncthing = {
+    enable = mkEnableOption "syncthing";
+  };
+
+  config = mkIf cfg.enable {
     services.syncthing = {
       enable = true;
       tray.enable = true;

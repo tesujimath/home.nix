@@ -7,12 +7,17 @@ with lib;
     ./modules/bash.nix
     ./modules/elvish
     ./modules/emacs.nix
+    ./modules/git
     ./modules/helix.nix
     ./modules/ledger
     ./modules/lsp.nix
     ./modules/mitmproxy
     ./modules/nushell
+    ./modules/syncthing.nix
+    ./modules/web-browser.nix
+    ./modules/wezterm
     ./modules/xdg.nix
+    ./modules/xmonad-desktop
     ./modules/yazi
     ./modules/zathura.nix
     ./modules/zellij.nix
@@ -39,6 +44,11 @@ with lib;
     };
 
     home = {
+      sessionPath = [
+        "$HOME/bin"
+        "$HOME/scripts"
+      ];
+
       sessionVariables = {
         EMAIL = config.local.user.email;
 
