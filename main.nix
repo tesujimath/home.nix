@@ -57,7 +57,7 @@ with lib;
       };
 
       file = {
-        ".dircolors".source = ./dotfiles/dircolors;
+        ".dircolors".source = ./config/dotfiles/dircolors;
       };
     };
 
