@@ -34,7 +34,16 @@
   outputs = { nixpkgs, home-manager, bash_env_elvish, nu_plugin_bash_env, eza, nix_search, ... }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = (pkg: true);
+        };
+        overlays = [
+          (import ./overlays/volnoti.nix)
+        ];
+      };
       flakePkgs = {
         bash_env_elvish = bash_env_elvish.packages.${system}.default;
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;

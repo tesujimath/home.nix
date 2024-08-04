@@ -32,17 +32,6 @@ with lib;
     };
 
   config = {
-    nixpkgs = {
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = (pkg: true);
-      };
-
-      overlays = [
-        (import ./overlays/volnoti.nix)
-      ];
-    };
-
     home = {
       sessionPath = [
         "$HOME/bin"
