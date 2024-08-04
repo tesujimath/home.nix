@@ -331,16 +331,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1719447811,
-        "narHash": "sha256-x0umcPEwhHnc05VnqT21RU0oY8G3S6EqbnULwZv7JsE=",
+        "lastModified": 1722741632,
+        "narHash": "sha256-ZRwpSsgQFSTY+5+jd0y3TZdt33DHRJui5KQ428d0w1s=",
         "owner": "tesujimath",
         "repo": "nu_plugin_bash_env",
-        "rev": "11ebdf65ba527d2cadd6abe2f07e4a942f187d2d",
+        "rev": "3b91c960f14203f3d529cbe7d7197ba65c3ade13",
         "type": "github"
       },
       "original": {
         "owner": "tesujimath",
-        "ref": "0.11.0",
+        "ref": "0.12.0",
         "repo": "nu_plugin_bash_env",
         "type": "github"
       }
