@@ -76,8 +76,8 @@ in
         FX_NO_MOUSE = "true";
       };
 
-      packages = [
-        #pkgs.beekeeper-studio uninstallable as of 2024-07-01
+      packages = with pkgs; [
+        beekeeper-studio
       ];
     };
   };
