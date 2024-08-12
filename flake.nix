@@ -70,6 +70,7 @@
               modules = [
                 ./main.nix
                 (lib.attrsets.recursiveUpdate attrs {
+                  # this is causing infinite recursion 🤷
                   # home.sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:${attrs.home.homeDirectory}/home.nix#${name}";
                 })
               ];

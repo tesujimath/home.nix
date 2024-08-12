@@ -63,3 +63,5 @@ fn home-manager-switch {
 
   echo "may need to exec elvish to reload rc.elv"
 }
+
+#bash-env $E:HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
