@@ -12,6 +12,7 @@ with pkgs;
       du-dust
       fd
       file
+      fx
       gzip
       htop
       jq

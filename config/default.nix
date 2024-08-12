@@ -166,7 +166,6 @@ in
           audacious
           bind
           freerdp
-          fx
           gimp
           git-crypt
           git-imerge
