@@ -29,7 +29,7 @@ with pkgs;
 
       # packages we get from flakes
       flakePkgs.eza
-      flakePkgs.nix_search
+      flakePkgs.nix_search_cli
     ];
   };
 }

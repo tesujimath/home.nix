@@ -25,13 +25,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix_search = {
-      url = "github:diamondburned/nix-search/v0.3.1";
+    nix_search_cli = {
+      url = "github:peterldowns/nix-search-cli/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, bash_env_elvish, nu_plugin_bash_env, eza, nix_search, ... }:
+  outputs = { nixpkgs, home-manager, bash_env_elvish, nu_plugin_bash_env, eza, nix_search_cli, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -48,7 +48,7 @@
         bash_env_elvish = bash_env_elvish.packages.${system}.default;
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
         eza = eza.packages.${system}.default;
-        nix_search = nix_search.packages.${system}.default;
+        nix_search_cli = nix_search_cli.packages.${system}.default;
       };
       lib = pkgs.lib;
 
