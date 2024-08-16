@@ -34,9 +34,10 @@ use github.com/tesujimath/bash-env-elvish/virtualenv
 alias:new reload eval (cat ~/.config/elvish/rc.elv | slurp)
 
 # viewers
+fn values-to-json { var in = [(all)] ; if (== 1 (count $in)) { put $in[0] } else { put $in } | to-json }
 fn jtv { nu --no-config-file --no-history --no-std-lib --plugin-config /dev/null --stdin -c 'from json' }
-fn tv { to-json | jtv }
-fn fxv { to-json | fx }
+fn tv { values-to-json | jtv }
+fn fxv { values-to-json | fx }
 
 # ssh with elvish as remote shell
 fn ssh-elvish { |host|
