@@ -19,6 +19,13 @@ in
 
       # all shells
       bashrcExtra = ''
+        home-manager-switch() {
+          home-manager switch -v --flake $HOME_MANAGER_FLAKE_REF_ATTR
+
+          unset __HM_SESS_VARS_SOURCED
+          . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+          . $HOME/.bashrc
+        }
       '';
 
       profileExtra = ''
