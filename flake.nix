@@ -69,13 +69,9 @@
               inherit pkgs;
               modules = [
                 ./main.nix
-                (let
-                  homeDirectory = attrs.home.homeDirectory;
-                in
-                  lib.attrsets.recursiveUpdate attrs {
-                    # this is causing infinite recursion 🤷
-                    #home.sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:${homeDirectory}/home.nix#${name}";
-                  })
+                (lib.attrsets.recursiveUpdate attrs {
+                  home.sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:$HOME/home.nix#${name}";
+                })
               ];
               extraSpecialArgs = {
                 inherit flakePkgs;
