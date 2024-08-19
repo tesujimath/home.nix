@@ -32,6 +32,7 @@ in
       if config.local.web-browser.wsl.use-native-windows then [ ] else
         with pkgs;
         [
+          brave
           firefox
           google-chrome
         ];
@@ -58,7 +59,7 @@ in
 
     xdg.mimeApps = {
       defaultApplications = {
-        "text/html" = [ "firefox.desktop" "google-chrome.desktop" ];
+        "text/html" = [ "brave.desktop" "firefox.desktop" "google-chrome.desktop" ];
       };
     };
   };
