@@ -21,6 +21,7 @@ let
 
   allLanguages = enable [
     "bash"
+    "c"
     "dart"
     "dockerfile"
     "go"

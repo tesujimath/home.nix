@@ -91,6 +91,10 @@ in
                 auto-format = true;
               }
               {
+                name = "c";
+                auto-format = true;
+              }
+              {
                 name = "dockerfile";
                 formatter = remove-trailing-whitespace-formatter;
                 auto-format = true;

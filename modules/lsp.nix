@@ -8,6 +8,7 @@ in
 {
   options.local.lsp = {
     bash.enable = mkEnableOption "bash";
+    c.enable = mkEnableOption "C";
     dart.enable = mkEnableOption "dart";
     dockerfile.enable = mkEnableOption "dockerfile";
     go.enable = mkEnableOption "go";
@@ -28,6 +29,8 @@ in
     home.packages =
       with pkgs;
       (if cfg.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
+      ++
+      (if cfg.c.enable then [ clang-tools ] else [ ])
       ++
       (if cfg.dart.enable then [ dart ] else [ ])
       ++
