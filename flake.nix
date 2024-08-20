@@ -16,7 +16,7 @@
 
     nu_plugin_bash_env = {
       # we have to manually keep version of Nu bash-env plugin in step with Nushell version
-      url = "github:tesujimath/nu_plugin_bash_env/0.12.0";
+      url = "github:tesujimath/nu_plugin_bash_env/0.12.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
