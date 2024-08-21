@@ -49,6 +49,11 @@ fn mosh-elvish { |host|
   mosh -- $host bash --login -c elvish
 }
 
+# add all ssh identities
+fn ssh-add-all {
+  ssh-add ~/.ssh/id_*[letter][digit]
+}
+
 # AgR eRI
 # ssh via OpenStack CoreOS
 fn ssh-os-core { |host|
