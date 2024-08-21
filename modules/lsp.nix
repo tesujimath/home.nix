@@ -56,7 +56,11 @@ in
       ++
       (if cfg.typescript.enable then [ nodePackages.typescript-language-server ] else [ ])
       ++
-      (if cfg.typst.enable then [ typst-lsp typst-fmt ] else [ ])
+      (if cfg.typst.enable then [
+        # typst-lsp is broken just now
+        # typst-lsp
+        typst-fmt
+      ] else [ ])
       ++
       (if cfg.yaml.enable then [ yaml-language-server ] else [ ])
     ;
