@@ -51,7 +51,7 @@ fn mosh-elvish { |host|
 
 # add all ssh identities
 fn ssh-add-all {
-  ssh-add ~/.ssh/id_*[letter][digit]
+  ssh-add ~/.ssh/id_*[letter][digit][set:-]
 }
 
 # AgR eRI
