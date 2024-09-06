@@ -95,16 +95,16 @@ in
                 auto-format = true;
               }
               {
-                 # treat embedded postgres like C
-                 name = "pgc";
-                 scope = "source.pgc";
-                 file-types = [ "pgc" ];
-                 language-servers = ["clangd"];
+                # treat embedded postgres like C
+                name = "pgc";
+                scope = "source.pgc";
+                file-types = [ "pgc" ];
+                language-servers = [ "clangd" ];
               }
               {
-                 name = "dockerfile";
-                 formatter = remove-trailing-whitespace-formatter;
-                 auto-format = true;
+                name = "dockerfile";
+                formatter = remove-trailing-whitespace-formatter;
+                auto-format = true;
               }
               {
                 name = "nu";
