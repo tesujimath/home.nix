@@ -59,7 +59,7 @@ in
       (if cfg.typst.enable then [
         # typst-lsp is broken just now
         # typst-lsp
-        typst-fmt
+        typstyle
       ] else [ ])
       ++
       (if cfg.yaml.enable then [ yaml-language-server ] else [ ])

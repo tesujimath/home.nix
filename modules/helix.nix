@@ -132,8 +132,7 @@ in
               {
                 name = "typst";
                 formatter = {
-                  command = "typstfmt";
-                  args = [ "--output" "-" ];
+                  command = "typstyle";
                 };
                 auto-format = true;
               }
