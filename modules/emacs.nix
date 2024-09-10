@@ -1,6 +1,5 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with pkgs;
 with lib;
 let
   cfg = config.local.emacs;
@@ -10,13 +9,14 @@ in
     enable = mkEnableOption "emacs";
   };
 
-  config = {
+  config = mkIf cfg.enable {
     programs = {
       emacs = {
         enable = true;
-        package = ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
-          epkgs.emacsql-sqlite # for org-roam
-        ]));
+        package = with pkgs;
+          ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
+            epkgs.emacsql-sqlite # for org-roam
+          ]));
       };
     };
 
@@ -41,12 +41,14 @@ in
       };
     };
 
-    home.packages = [
-      aspell
-      aspellDicts.en
-      aspellDicts.en-computers
-      aspellDicts.en-science
-      sqlite # for org-roam
-    ];
+    home.packages =
+      with pkgs;
+      [
+        aspell
+        aspellDicts.en
+        aspellDicts.en-computers
+        aspellDicts.en-science
+        sqlite # for org-roam
+      ];
   };
 }
