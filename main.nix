@@ -5,6 +5,7 @@ with lib;
   imports = [
     ./common-packages.nix
     ./modules/bash.nix
+    ./modules/carapace.nix
     ./modules/elvish
     ./modules/emacs.nix
     ./modules/git

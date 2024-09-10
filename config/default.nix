@@ -8,6 +8,7 @@ let
 
   commonModules = enable [
     "bash"
+    "carapace"
     "elvish"
     "emacs"
     "git"

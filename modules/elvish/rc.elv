@@ -9,6 +9,11 @@ set edit:prompt = {
 # kill right prompt
 set edit:rprompt = (constantly "")
 
+# carapace completion
+if ?(which carapace 2>/dev/null) {
+  eval (carapace _carapace | slurp)
+}
+
 # Packages - installed in Nix Home Manager
 
 # Elvish modules
