@@ -10,7 +10,7 @@ set edit:prompt = {
 set edit:rprompt = (constantly "")
 
 # carapace completion
-if ?(which carapace 2>/dev/null) {
+if ?(which carapace >/dev/null 2>&1) {
   eval (carapace _carapace | slurp)
 }
 
