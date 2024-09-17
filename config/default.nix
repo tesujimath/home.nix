@@ -11,6 +11,7 @@ let
     "carapace"
     "elvish"
     "emacs"
+    "fonts"
     "git"
     "helix"
     "mitmproxy"

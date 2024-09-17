@@ -20,7 +20,6 @@ in
           arandr
           autorandr
           blueman
-          cantarell-fonts
           dmenu
           dunst
           seahorse
@@ -110,7 +109,7 @@ in
           settings = {
             font = {
               normal = {
-                family = "Source Code Pro";
+                family = "monospace";
               };
             };
             shell = config.local.defaultShell;

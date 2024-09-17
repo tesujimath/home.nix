@@ -8,6 +8,7 @@ with lib;
     ./modules/carapace.nix
     ./modules/elvish
     ./modules/emacs.nix
+    ./modules/fonts.nix
     ./modules/git
     ./modules/helix.nix
     ./modules/ledger
