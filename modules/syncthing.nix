@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-with lib;
 let
   cfg = config.local.syncthing;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.syncthing = {

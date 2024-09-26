@@ -1,9 +1,9 @@
 { config, specialArgs, pkgs, lib, ... }:
 
-with lib;
-with specialArgs; # for flakePkgs
 let
   cfg = config.local.nushell;
+  inherit (lib) mkEnableOption mkIf;
+  inherit (specialArgs) flakePkgs;
 in
 {
   options.local.nushell = {
@@ -12,7 +12,7 @@ in
     history_file_format = lib.mkOption { default = "sqlite"; type = lib.types.str; description = "History file format, either sqlite or plaintext"; };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     programs = {
       nushell = {
         enable = true;

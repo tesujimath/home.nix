@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-with lib;
 let
   cfg = config.local.helix;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.helix = {

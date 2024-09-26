@@ -1,9 +1,8 @@
 { config, pkgs, lib, ... }:
 
-with pkgs;
-with lib;
 let
   cfg = config.local.xmonad-desktop;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.xmonad-desktop = {
@@ -12,10 +11,11 @@ in
 
   config = mkIf cfg.enable (
     let
-      xmonad-with-ghc = haskellPackages.ghcWithPackages (pkgs: [ pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib ]);
+      xmonad-with-ghc = pkgs.haskellPackages.ghcWithPackages (pkgs: [ pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib ]);
     in
-      {
-        home.packages = [
+    {
+      home.packages = with pkgs;
+        [
           xmonad-with-ghc
           arandr
           autorandr
@@ -43,83 +43,84 @@ in
           xscreensaver
         ];
 
-        home.file = {
-          # TODO install desktop version on desktops
-          ".xmobarrc".source = ./dotfiles/xmobarrc.laptop;
+      home.file = {
+        # TODO install desktop version on desktops
+        ".xmobarrc".source = ./dotfiles/xmobarrc.laptop;
 
-          ".xmonad/xmonad.hs".source = ./dotfiles/xmonad.hs;
+        ".xmonad/xmonad.hs".source = ./dotfiles/xmonad.hs;
 
-          ".config/skippy-xd/skippy-xd.rc".source = ./dotfiles/skippy-xd.rc;
+        ".config/skippy-xd/skippy-xd.rc".source = ./dotfiles/skippy-xd.rc;
 
-          ".xmonad-desktop-scripts" = {
-            source = ./scripts;
-            recursive = true;
-          };
+        ".xmonad-desktop-scripts" = {
+          source = ./scripts;
+          recursive = true;
+        };
+      };
+
+      services.blueman-applet.enable = true;
+      services.trayer.enable = true;
+
+      xsession = {
+        enable = true;
+
+        windowManager = {
+          command = "${xmonad-with-ghc}/bin/xmonad";
         };
 
-        services.blueman-applet.enable = true;
-        services.trayer.enable = true;
+        initExtra = ''
+          PATH=$HOME/.xmonad-desktop-scripts:$PATH
 
-        xsession = {
-          enable = true;
+          test -r $HOME/.env.sh && . $HOME/.env.sh
+          env >> $HOME/.xsession-errors
 
-          windowManager = {
-            command = "${xmonad-with-ghc}/bin/xmonad";
-          };
+          test -r .Xresources && xrdb -merge .Xresources
 
-          initExtra = ''
-      PATH=$HOME/.xmonad-desktop-scripts:$PATH
+          xsetroot -solid gray30
 
-      test -r $HOME/.env.sh && . $HOME/.env.sh
-      env >> $HOME/.xsession-errors
+          restart-trayer
 
-      test -r .Xresources && xrdb -merge .Xresources
+          xscreensaver -no-splash &
 
-      xsetroot -solid gray30
+          dunst -config ~/.dunstrc &
 
-      restart-trayer
+          # GNOME keyring daemon is started at the system level, for integration with PAM,
+          # but we need to enable the components we need here, to get ssh.
+          eval $(gnome-keyring-daemon -s -c ssh,secrets)
+          export SSH_AUTH_SOCK
 
-      xscreensaver -no-splash &
+          nm-applet &
 
-      dunst -config ~/.dunstrc &
+          blueman-applet &
 
-      # GNOME keyring daemon is started at the system level, for integration with PAM,
-      # but we need to enable the components we need here, to get ssh.
-      eval $(gnome-keyring-daemon -s -c ssh,secrets)
-      export SSH_AUTH_SOCK
+          udiskie --tray &
 
-      nm-applet &
+          volnoti -t 2
 
-      blueman-applet &
+          pasystray &
 
-      udiskie --tray &
+          # for xmonad
+          export NIX_GHC="${xmonad-with-ghc}/bin/ghc"
+        '';
+      };
 
-      volnoti -t 2
-
-      pasystray &
-
-      # for xmonad
-      export NIX_GHC="${xmonad-with-ghc}/bin/ghc"
-    '';
-        };
-
-        programs.alacritty = {
-          enable = true;
-          # see https://alacritty.org/config-alacritty.html
-          settings = {
-            font = {
-              normal = {
-                family = "monospace";
-              };
+      programs.alacritty = {
+        enable = true;
+        # see https://alacritty.org/config-alacritty.html
+        settings = {
+          font = {
+            normal = {
+              family = "monospace";
             };
-            shell = config.local.defaultShell;
           };
+          shell = config.local.defaultShell;
         };
+      };
 
-        xdg.mimeApps = {
-          defaultApplications = {
-            "image/*" = [ "sxiv.desktop" ];
-          };
+      xdg.mimeApps = {
+        defaultApplications = {
+          "image/*" = [ "sxiv.desktop" ];
         };
-      });
+      };
+    }
+  );
 }

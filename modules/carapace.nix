@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-with lib;
 let
   cfg = config.local.carapace;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.carapace = {

@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
-with lib;
 let
   cfg = config.local.fonts;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.fonts = {

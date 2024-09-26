@@ -1,7 +1,7 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.local.yazi;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.yazi = {

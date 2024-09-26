@@ -1,9 +1,8 @@
 { config, pkgs, lib, ... }:
 
-with lib;
-with pkgs;
 let
   cfg = config.local.lsp;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.lsp = {

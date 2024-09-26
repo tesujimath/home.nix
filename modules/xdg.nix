@@ -1,11 +1,16 @@
 { pkgs, ... }:
 
+let
+  inherit (pkgs)
+    xdg-utils;
+in
 {
   # this module is always on, as many things depend on it
   config = {
-    home.packages = with pkgs; [
-      xdg-utils
-    ];
+    home.packages =
+      [
+        xdg-utils
+      ];
 
     xdg = {
       enable = true;

@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
-with lib;
 let
   cfg = config.local.git;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.git = {

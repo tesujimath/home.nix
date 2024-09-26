@@ -1,19 +1,19 @@
 { config, pkgs, lib, specialArgs, ... }:
 
-with lib;
-with specialArgs; # for flakePkgs
 let
   cfg = config.local.elvish;
+  inherit (lib) mkEnableOption mkIf;
+  inherit (specialArgs) flakePkgs;
 in
 {
-  options.local.elvish = {
+  options. local. elvish = {
     enable = mkEnableOption "elvish";
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        elvish
+      packages = [
+        pkgs.elvish
         flakePkgs.bash_env_elvish
       ];
 

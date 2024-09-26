@@ -1,7 +1,7 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.local.zathura;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.local.zathura = {

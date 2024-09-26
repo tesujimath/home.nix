@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
-with lib;
 let
   cfg = config.local.bash;
+  inherit (lib) mkEnableOption mkIf mkOption types;
 in
 {
   options.local.bash = {
@@ -78,11 +78,5 @@ in
         }
       '';
     };
-
-    home.packages =
-      with pkgs;
-      [
-        nodePackages.bash-language-server
-      ];
   };
 }
