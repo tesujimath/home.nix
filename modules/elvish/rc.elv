@@ -30,7 +30,7 @@ use github.com/crinklywrappr/rivendell/vis v
 
 # bash-env
 use github.com/tesujimath/bash-env-elvish/bash-env
-fn bash-env { |&shellvars=[] @args| bash-env:bash-env &shellvars=$shellvars $@args }
+var bash-env~ = $bash-env:bash-env~
 
 # virtualenv
 use github.com/tesujimath/bash-env-elvish/virtualenv
