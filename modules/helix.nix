@@ -107,6 +107,11 @@ in
                 auto-format = true;
               }
               {
+                name = "elvish";
+                formatter = remove-trailing-whitespace-formatter;
+                auto-format = true;
+              }
+              {
                 name = "markdown";
                 formatter = remove-trailing-whitespace-formatter;
                 auto-format = true;
