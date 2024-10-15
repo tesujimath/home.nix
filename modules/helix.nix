@@ -164,6 +164,13 @@ in
                   };
                 };
               };
+
+              vscode-json-language-server = {
+                config = {
+                  provideFormatter = true;
+                  json.keepLines.enable = true;
+                };
+              };
             };
           };
       };
