@@ -9,8 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bash_env_elvish = {
-      url = "github:tesujimath/bash-env-elvish/main";
+    bash-env-json = {
+      url = "github:tesujimath/bash-env-json/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,7 +31,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, bash_env_elvish, nu_plugin_bash_env, eza, nix_search_cli, ... }:
+  outputs = { nixpkgs, home-manager, bash-env-json, nu_plugin_bash_env, eza, nix_search_cli, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -45,7 +45,7 @@
         ];
       };
       flakePkgs = {
-        bash_env_elvish = bash_env_elvish.packages.${system}.default;
+        bash-env-json = bash-env-json.packages.${system}.default;
         nu_plugin_bash_env = nu_plugin_bash_env.packages.${system}.default;
         eza = eza.packages.${system}.default;
         nix_search_cli = nix_search_cli.packages.${system}.default;

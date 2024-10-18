@@ -14,7 +14,7 @@ in
     home = {
       packages = [
         pkgs.elvish
-        flakePkgs.bash_env_elvish
+        flakePkgs.bash-env-json
       ];
 
       # epm package installation
@@ -30,6 +30,8 @@ in
           rivendell = elvish-package "github.com/crinklywrappr/rivendell";
 
           bash-env-elvish = elvish-package "github.com/tesujimath/bash-env-elvish";
+
+          elvish-tap = elvish-package "github.com/tesujimath/elvish-tap";
         };
     };
 
