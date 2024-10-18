@@ -16,7 +16,7 @@
 
     nu_plugin_bash_env = {
       # needs to be kept in step with version of Nu in nixpkgs
-      url = "github:tesujimath/nu_plugin_bash_env?tag=0.13.0";
+      url = "github:tesujimath/nu_plugin_bash_env?ref=refs/tags/0.15.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

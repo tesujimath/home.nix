@@ -38,6 +38,29 @@
         "type": "github"
       }
     },
+    "bash-env-json_2": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "nu_plugin_bash_env",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729226949,
+        "narHash": "sha256-AlEn6oleWgGjXwKJw45K5DJo31JEEY2evGwjODG4bho=",
+        "owner": "tesujimath",
+        "repo": "bash-env-json",
+        "rev": "ba2168bf7130bcbf064ec3644bbee8047612027a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tesujimath",
+        "ref": "refs/tags/0.6.1",
+        "repo": "bash-env-json",
+        "type": "github"
+      }
+    },
     "eza": {
       "inputs": {
         "advisory-db": "advisory-db",
@@ -156,6 +179,24 @@
     "flake-utils_4": {
       "inputs": {
         "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1726560853,
+        "narHash": "sha256-X6rJYSESBVr3hBoH0WbKE5KvhPU5bloyZ2L4K60/fPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_5": {
+      "inputs": {
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1710146030,
@@ -324,22 +365,24 @@
     },
     "nu_plugin_bash_env": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "bash-env-json": "bash-env-json_2",
+        "flake-utils": "flake-utils_5",
         "nixpkgs": [
           "nixpkgs"
         ],
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1726782242,
-        "narHash": "sha256-GmDuZPKdUIQVuFxNOsu6d0TQ+WV4y+FPD+bMQDh3BxU=",
+        "lastModified": 1729292212,
+        "narHash": "sha256-yGqDJpAl/2NxKS9p/ppj1T2qMYfDmcRtpyY8WrHUPvw=",
         "owner": "tesujimath",
         "repo": "nu_plugin_bash_env",
-        "rev": "7a07f34e5298d6abddf1348821a8d30aef79d3f2",
+        "rev": "82a161ba2e41a8aebda228f75b47dcea76a9aa63",
         "type": "github"
       },
       "original": {
         "owner": "tesujimath",
+        "ref": "refs/tags/0.15.1",
         "repo": "nu_plugin_bash_env",
         "type": "github"
       }
@@ -485,6 +528,21 @@
       }
     },
     "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_4": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
