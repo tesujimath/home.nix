@@ -18,8 +18,10 @@ in
         enable = true;
         configFile.text = (builtins.replaceStrings [
           "HISTORY_FILE_FORMAT"
+          "NIX_BASH_ENV_NU_MODULE"
         ] [
           config.local.nushell.history_file_format
+          "${flakePkgs.nu_plugin_bash_env}/bash-env.nu"
         ]
           (builtins.readFile ./config.nu));
         envFile.text = ''
@@ -42,16 +44,6 @@ in
         jc
         job-security
       ];
-
-      activation =
-        let
-          nu-plugin = path: lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-            run ${pkgs.nushell}/bin/nu --no-config-file --no-history --no-std-lib -c 'plugin add --plugin-config ~/.config/nushell/plugin.msgpackz ${path}'
-          '';
-        in
-        {
-          nu-plugin-bash-env = nu-plugin "${flakePkgs.nu_plugin_bash_env}/bin/nu_plugin_bash_env";
-        };
     };
   };
 }

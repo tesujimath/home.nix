@@ -893,9 +893,6 @@ $env.config = {
     ]
 }
 
-# plugin is added during Home Manager activation
-plugin use bash_env
-
 # set tab title in terminal
 def "ansi title" [title: string] {
   ansi -o $"0;($title)"
@@ -980,6 +977,9 @@ def "hx-win" [...params: string] {
 def "hx-mac" [...params: string] {
     hx-for-target x86_64-apple-darwin ...$params
 }
+
+# use bash-env as a module rather than plugin
+use NIX_BASH_ENV_NU_MODULE
 
 def --env "reload-hm-session-vars" [] {
     __HM_SESS_VARS_SOURCED="" bash-env ~/.nix-profile/etc/profile.d/hm-session-vars.sh | load-env

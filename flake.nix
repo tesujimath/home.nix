@@ -15,9 +15,9 @@
     };
 
     nu_plugin_bash_env = {
-      # needs to be kept in step with version of Nu in nixpkgs
-      url = "github:tesujimath/nu_plugin_bash_env?ref=refs/tags/0.15.1";
+      url = "github:tesujimath/nu_plugin_bash_env/main";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.bash-env-json.follows = "bash-env-json";
     };
 
     eza = {
