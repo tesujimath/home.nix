@@ -21,7 +21,7 @@ in
           "NIX_BASH_ENV_NU_MODULE"
         ] [
           config.local.nushell.history_file_format
-          "${flakePkgs.nu_plugin_bash_env}/bash-env.nu"
+          "${flakePkgs.bash-env-nushell}/bash-env.nu"
         ]
           (builtins.readFile ./config.nu));
         envFile.text = ''
@@ -40,7 +40,7 @@ in
 
     home = {
       packages = with pkgs; [
-        flakePkgs.nu_plugin_bash_env
+        flakePkgs.bash-env-nushell
         jc
         job-security
       ];
