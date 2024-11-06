@@ -105,7 +105,10 @@ in
 
         lsp = commonLanguages;
 
-        bash.profile.reuse-ssh-agent = true;
+        bash.profile = {
+          reuse-ssh-agent = true;
+          conda-root = "/stash/miniconda3";
+        };
       };
     home = {
       inherit stateVersion;

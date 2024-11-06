@@ -10,6 +10,7 @@ in
     profile = {
       reuse-ssh-agent = mkOption { default = false; type = types.bool; description = "Reuse or start ssh agent in Bash profile"; };
       ensure-krb5ccname = mkOption { default = false; type = types.bool; description = "Ensure KRB5CCNAME has a sensible value"; };
+      conda-root = mkOption { default = null; type = types.nullOr types.str; description = "Root directory for conda, if any"; };
     };
   };
 
@@ -25,6 +26,24 @@ in
           unset __HM_SESS_VARS_SOURCED
           . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
           . $HOME/.bashrc
+        }
+
+        ${if cfg.profile.conda-root != null then ''
+          # >>> conda initialize >>>
+          # !! Contents within this block are managed by 'conda init' !!
+          __conda_setup="$('${cfg.profile.conda-root}/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+          if [ $? -eq 0 ]; then
+              eval "$__conda_setup"
+          else
+              if [ -f "${cfg.profile.conda-root}/etc/profile.d/conda.sh" ]; then
+                  . "${cfg.profile.conda-root}/etc/profile.d/conda.sh"
+              else
+                  export PATH="${cfg.profile.conda-root}/bin:$PATH"
+              fi
+          fi
+          unset __conda_setup
+          # <<< conda initialize <<<
+        '' else ""
         }
       '';
 
