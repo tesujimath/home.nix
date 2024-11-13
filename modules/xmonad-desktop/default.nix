@@ -22,7 +22,7 @@ in
           blueman
           dmenu
           dunst
-          seahorse
+          # seahorse not in NixOS 24.05
           handlr
           libnotify
           libsecret
