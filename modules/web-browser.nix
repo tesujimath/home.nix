@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.local.xmonad-desktop;
+  cfg = config.local.web-browser;
   inherit (lib) mkEnableOption mkIf;
 in
 {

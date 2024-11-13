@@ -2,7 +2,7 @@
 
 let
   cfg = config.local.lsp;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption;
 in
 {
   options.local.lsp = {

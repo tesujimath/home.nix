@@ -1,6 +1,6 @@
 self: super:
 {
-  volnoti = super.volnoti.overrideAttrs (_: rec {
+  volnoti = super.volnoti.overrideAttrs (_: {
     patches = [
       # New icon for display brightness, accessed via volnoti-show -b, see
       # https://github.com/davidbrazdil/volnoti/pull/14
