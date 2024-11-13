@@ -143,7 +143,6 @@ in
         "ledger"
         "syncthing"
         "web-browser"
-        "xmonad-desktop"
       ]))
       {
         user = {

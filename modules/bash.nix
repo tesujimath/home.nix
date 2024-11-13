@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.local.bash;
@@ -63,13 +63,14 @@ in
           done
           unset ssh_auth_sock
 
-          # otherwise start a new one
-          test -n "''$SSH_AUTH_SOCK" || {
-            eval `ssh-agent`
-          }
-
         '' else ""
         }
+
+        # start an ssh-agent if there's not one already
+        test -n "''$SSH_AUTH_SOCK" || {
+          eval `ssh-agent`
+        }
+
         ${if cfg.profile.ensure-krb5ccname then ''
           # ensure KRB5CCNAME has a good value
           export KRB5CCNAME=''${KRB5CCNAME-''$HOME/.krb5.cache}

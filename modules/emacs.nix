@@ -13,10 +13,7 @@ in
     programs = {
       emacs = {
         enable = true;
-        package = with pkgs;
-          ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
-            epkgs.emacsql-sqlite # for org-roam
-          ]));
+        package = pkgs.emacs-gtk;
       };
     };
 
@@ -48,7 +45,6 @@ in
         aspellDicts.en
         aspellDicts.en-computers
         aspellDicts.en-science
-        sqlite # for org-roam
       ];
   };
 }
