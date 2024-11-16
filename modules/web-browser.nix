@@ -33,8 +33,9 @@ in
         with pkgs;
         [
           brave
+          widevine-cdm # for Brave to play Spotify
           firefox
-          google-chrome
+          # google-chrome, incompatible with widevine-cdm which I need for Brave to play Spotify
         ];
 
     xdg.desktopEntries =
