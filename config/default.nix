@@ -129,7 +129,10 @@ in
 
       lsp = commonLanguages;
 
-      bash.profile.reuse-ssh-agent = true;
+      bash.profile = {
+        reuse-ssh-agent = true;
+        conda-root = "/agr/persist/apps/Miniconda3/23.5.2";
+      };
     };
     home = {
       inherit stateVersion;
