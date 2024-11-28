@@ -29,9 +29,14 @@
       url = "github:peterldowns/nix-search-cli/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nextflow-language-server = {
+      url = "github:tesujimath/nextflow-language-server.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, bash-env-json, bash-env-nushell, eza, nix_search_cli, ... }:
+  outputs = { nixpkgs, home-manager, bash-env-json, bash-env-nushell, eza, nix_search_cli, nextflow-language-server, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -49,6 +54,7 @@
         bash-env-nushell = bash-env-nushell.packages.${system}.default;
         eza = eza.packages.${system}.default;
         nix_search_cli = nix_search_cli.packages.${system}.default;
+        nextflow-language-server = nextflow-language-server.packages.${system}.default;
       };
       lib = pkgs.lib;
 

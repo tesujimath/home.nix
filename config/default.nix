@@ -29,6 +29,7 @@ let
     "go"
     "json"
     "markdown"
+    "nextflow"
     "nix"
     "packer"
     "python"
@@ -40,7 +41,7 @@ let
     "yaml"
   ];
 
-  commonLanguages = allLanguages // disable [ "dart" "packer" ];
+  commonLanguages = allLanguages // disable [ "dart" "nextflow" "packer" ];
 in
 {
   agr = {
@@ -58,7 +59,7 @@ in
         defaultShell = "elvish";
         defaultEditor = "hx";
 
-        lsp = commonLanguages;
+        lsp = commonLanguages // enable [ "nextflow" ];
 
         bash.profile.reuse-ssh-agent = true;
 
