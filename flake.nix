@@ -45,9 +45,6 @@
           allowUnfree = true;
           allowUnfreePredicate = (pkg: true);
         };
-        overlays = [
-          (import ./overlays/volnoti.nix)
-        ];
       };
       flakePkgs = {
         bash-env-json = bash-env-json.packages.${system}.default;
@@ -55,6 +52,9 @@
         eza = eza.packages.${system}.default;
         nix_search_cli = nix_search_cli.packages.${system}.default;
         nextflow-language-server = nextflow-language-server.packages.${system}.default;
+      };
+      localPkgs = {
+        volnoti = pkgs.callPackage ./packages/volnoti { };
       };
       lib = pkgs.lib;
 
@@ -80,7 +80,7 @@
                 })
               ];
               extraSpecialArgs = {
-                inherit flakePkgs;
+                inherit flakePkgs localPkgs;
               };
             })
           configurations;

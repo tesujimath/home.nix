@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, specialArgs, ... }:
 
 let
   cfg = config.local.xmonad-desktop;
@@ -14,7 +14,11 @@ in
       xmonad-with-ghc = pkgs.haskellPackages.ghcWithPackages (pkgs: [ pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib ]);
     in
     {
-      home.packages = with pkgs;
+      home.packages =
+        let
+          inherit (specialArgs) localPkgs;
+        in
+        with pkgs;
         [
           xmonad-with-ghc
           arandr
@@ -35,7 +39,7 @@ in
           sxiv
           udiskie
           ueberzugpp # for yazi image preview in alacritty
-          volnoti
+          localPkgs.volnoti
           xclip
           xdragon
           xmobar
