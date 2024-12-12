@@ -116,7 +116,7 @@ in
               family = "monospace";
             };
           };
-          shell = config.local.defaultShell;
+          terminal.shell = config.local.defaultShell;
         };
       };
 

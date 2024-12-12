@@ -172,7 +172,7 @@ in
       };
       packages = with pkgs;
         [
-          _1password
+          _1password-cli
           audacious
           bind
           freerdp
