@@ -152,7 +152,7 @@ in
                 formatter = {
                   command = "typstyle";
                 };
-                auto-format = true;
+                # auto-format = true; - as of 9/12/24 it does a terrible job of tables
               }
               {
                 name = "yaml";
