@@ -11,29 +11,49 @@ in
   };
 
   config = mkIf cfg.enable {
-    home = {
-      packages = [
-        pkgs.elvish
-        flakePkgs.bash-env-json
-      ];
+    home =
+      let
+        elvish_0_21_0 =
+          let
+            version = "0.21.0";
 
-      # epm package installation
-      activation =
-        let
-          elvish-package = url: lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-            run ${pkgs.elvish}/bin/elvish -c "use epm; epm:install &silent-if-installed=\$true ${url}; epm:upgrade ${url}"
-          '';
-        in
-        {
-          elvish-modules = elvish-package "github.com/zzamboni/elvish-modules";
+            src = pkgs.fetchFromGitHub {
+              owner = "elves";
+              repo = "elvish";
+              rev = "v${version}";
+              hash = "sha256-+qkr0ziHWs3MVhBoqAxrwwbsQVvmGHRKrlqiujqBKvs=";
+            };
+          in
+          pkgs.elvish.override {
+            buildGoModule = args: pkgs.buildGoModule (args // {
+              inherit src version;
+              vendorHash = "sha256-UjX1P8v97Mi5cLWv3n7pmxgnw+wCr4aRTHDHHd/9+Lo=";
+            });
+          };
+      in
+      {
+        packages = [
+          elvish_0_21_0
+          flakePkgs.bash-env-json
+        ];
 
-          rivendell = elvish-package "github.com/crinklywrappr/rivendell";
+        # epm package installation
+        activation =
+          let
+            elvish-package = url: lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              run ${pkgs.elvish}/bin/elvish -c "use epm; epm:install &silent-if-installed=\$true ${url}; epm:upgrade ${url}"
+            '';
+          in
+          {
+            elvish-modules = elvish-package "github.com/zzamboni/elvish-modules";
 
-          bash-env-elvish = elvish-package "github.com/tesujimath/bash-env-elvish";
+            rivendell = elvish-package "github.com/crinklywrappr/rivendell";
 
-          elvish-tap = elvish-package "github.com/tesujimath/elvish-tap";
-        };
-    };
+            bash-env-elvish = elvish-package "github.com/tesujimath/bash-env-elvish";
+
+            elvish-tap = elvish-package "github.com/tesujimath/elvish-tap";
+          };
+      };
 
     xdg = {
       configFile = {
