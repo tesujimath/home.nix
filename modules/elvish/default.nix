@@ -52,6 +52,8 @@ in
             bash-env-elvish = elvish-package "github.com/tesujimath/bash-env-elvish";
 
             elvish-tap = elvish-package "github.com/tesujimath/elvish-tap";
+
+            direlv = elvish-package "github.com/tesujimath/direlv";
           };
       };
 

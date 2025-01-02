@@ -35,6 +35,10 @@ var bash-env~ = $bash-env:bash-env~
 # virtualenv
 use github.com/tesujimath/bash-env-elvish/virtualenv
 
+# direlv
+use github.com/tesujimath/direlv/direlv
+eval (direlv:hook | slurp)
+
 # aliases
 alias:new reload eval (cat ~/.config/elvish/rc.elv | slurp)
 
