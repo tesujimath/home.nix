@@ -13,6 +13,7 @@
         diskonaut
         dig
         du-dust
+        eza
         fd
         file
         fx
@@ -21,6 +22,7 @@
         jq
         mosh
         nix-index
+        nix-search-cli
         nixos-option
         nmap
         pstree
@@ -31,8 +33,7 @@
         wget
 
         # packages we get from flakes
-        flakePkgs.eza
-        flakePkgs.nix_search_cli
+        # none for now, yay!
       ];
   };
 }
