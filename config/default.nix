@@ -82,6 +82,9 @@ in
 
       packages = with pkgs; [
         beekeeper-studio
+        # recently Kerberos was removed from the default openssh package
+        # would be better configured via programs.ssh
+        opensshWithKerberos
       ];
     };
   };
@@ -115,6 +118,11 @@ in
       inherit stateVersion;
       username = "guestsi";
       homeDirectory = /home/guestsi;
+      packages = with pkgs; [
+        # recently Kerberos was removed from the default openssh package
+        # would be better configured via programs.ssh
+        opensshWithKerberos
+      ];
     };
 
   };
@@ -139,6 +147,11 @@ in
       inherit stateVersion;
       username = "guestsi@agresearch.co.nz";
       homeDirectory = /home/agresearch.co.nz/guestsi;
+      packages = with pkgs; [
+        # recently Kerberos was removed from the default openssh package
+        # would be better configured via programs.ssh
+        opensshWithKerberos
+      ];
     };
   };
   personal = {
