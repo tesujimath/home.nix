@@ -1,6 +1,6 @@
 Host *
     # wretched AgR firewall is over-eager to drop idle connections
-    ServerAliveInterval 60
+    ServerAliveInterval 30
     # we have wezterm locally but not remotely
     SetEnv TERM=xterm-256color
 
