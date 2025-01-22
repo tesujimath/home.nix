@@ -2,12 +2,14 @@
 
 let
   cfg = config.local.elvish;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkOption types;
   inherit (specialArgs) flakePkgs;
 in
 {
   options. local. elvish = {
     enable = mkEnableOption "elvish";
+
+    rcExtra = mkOption { type = types.str; default = ""; description = "Extra text for rc.elv"; };
   };
 
   config = mkIf cfg.enable {
@@ -59,7 +61,9 @@ in
 
     xdg = {
       configFile = {
-        "elvish/rc.elv".source = ./rc.elv;
+        "elvish/rc.elv".text = (builtins.readFile ./rc.elv)
+          + (if cfg.rcExtra == "" then "" else "\n")
+          + cfg.rcExtra;
       };
 
       dataFile = {

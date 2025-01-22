@@ -42,6 +42,8 @@ let
   ];
 
   commonLanguages = allLanguages // disable [ "dart" "nextflow" "packer" ];
+
+  gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#env' -- $env}";
 in
 {
   agr = {
@@ -62,6 +64,10 @@ in
         lsp = commonLanguages // enable [ "nextflow" ];
 
         bash.profile.reuse-ssh-agent = true;
+
+        elvish.rcExtra = ''
+          ${gquery-env-elvish-fn}
+        '';
 
         web-browser.wsl.use-native-windows = true;
       };
@@ -113,6 +119,10 @@ in
           reuse-ssh-agent = true;
           conda-root = "/stash/miniconda3";
         };
+
+        elvish.rcExtra = ''
+          ${gquery-env-elvish-fn}
+        '';
       };
     home = {
       inherit stateVersion;
@@ -142,6 +152,10 @@ in
         reuse-ssh-agent = true;
         conda-root = "/agr/persist/apps/Miniconda3/23.5.2";
       };
+
+      elvish.rcExtra = ''
+        ${gquery-env-elvish-fn}
+      '';
     };
     home = {
       inherit stateVersion;
