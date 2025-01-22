@@ -20,7 +20,6 @@
         gzip
         htop
         jq
-        mosh
         nix-index
         nix-search-cli
         nixos-option

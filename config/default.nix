@@ -44,6 +44,8 @@ let
   commonLanguages = allLanguages // disable [ "dart" "nextflow" "packer" ];
 
   gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#env' -- $env}";
+
+  moshWithOpensshWithKerberos = pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; };
 in
 {
   agr = {
@@ -91,6 +93,7 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
+        moshWithOpensshWithKerberos
       ];
     };
   };
