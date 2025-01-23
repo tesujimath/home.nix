@@ -1,9 +1,10 @@
 use direnv
+use re
 use readline-binding
 
-# get hostname into prompt
+# get bare hostname into prompt
 set edit:prompt = {
-     styled (hostname)'> ' bright-yellow
+     styled (re:replace '\..*$' '' (hostname))'> ' bright-yellow
 }
 
 # kill right prompt
