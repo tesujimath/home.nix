@@ -43,9 +43,9 @@ let
 
   commonLanguages = allLanguages // disable [ "dart" "nextflow" "packer" ];
 
-  gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#env' -- $env}";
 
   moshWithOpensshWithKerberos = pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; };
+  gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $env}";
 in
 {
   agr = {
