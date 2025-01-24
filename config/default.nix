@@ -43,9 +43,17 @@ let
 
   commonLanguages = allLanguages // disable [ "dart" "nextflow" "packer" ];
 
-
-  moshWithOpensshWithKerberos = pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; };
   gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $env}";
+
+  moshWithWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
+    # The locale setting is for glibc 2.27 compatability, as per this:
+    # https://github.com/NixOS/nixpkgs/issues/38991
+    postFixup = ''
+      for prog in mosh-client mosh-server; do
+        wrapProgram $out/bin/''$prog --set LOCALE_ARCHIVE_2_27 "${pkgs.glibcLocales}/lib/locale/locale-archive"
+      done
+    '';
+  });
 in
 {
   agr = {
@@ -93,7 +101,7 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
-        moshWithOpensshWithKerberos
+        moshWithWithKerberos
       ];
     };
   };
