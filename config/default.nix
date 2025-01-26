@@ -148,26 +148,31 @@ in
 
   };
   agr-eri = {
-    local = lib.attrsets.recursiveUpdate commonModules {
-      user = {
-        email = "simon.guest@agresearch.co.nz";
-        fullName = "Simon Guest";
+    local = lib.attrsets.recursiveUpdate
+      (commonModules // (disable [
+        # also use system git on eRI to avoid ssh cert problem as on legacy HPC
+        "git"
+      ]))
+      {
+        user = {
+          email = "simon.guest@agresearch.co.nz";
+          fullName = "Simon Guest";
+        };
+
+        defaultShell = "elvish";
+        defaultEditor = "hx";
+
+        lsp = commonLanguages;
+
+        bash.profile = {
+          reuse-ssh-agent = true;
+          conda-root = "/agr/persist/apps/Miniconda3/23.5.2";
+        };
+
+        elvish.rcExtra = ''
+          ${gquery-env-elvish-fn}
+        '';
       };
-
-      defaultShell = "elvish";
-      defaultEditor = "hx";
-
-      lsp = commonLanguages;
-
-      bash.profile = {
-        reuse-ssh-agent = true;
-        conda-root = "/agr/persist/apps/Miniconda3/23.5.2";
-      };
-
-      elvish.rcExtra = ''
-        ${gquery-env-elvish-fn}
-      '';
-    };
     home = {
       inherit stateVersion;
       username = "guestsi@agresearch.co.nz";
