@@ -143,6 +143,7 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
+        moshWithWithKerberos
       ];
     };
 
@@ -181,6 +182,7 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
+        moshWithWithKerberos
       ];
     };
   };
