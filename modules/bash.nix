@@ -9,8 +9,8 @@ in
     enable = mkEnableOption "bash";
     profile = {
       reuse-ssh-agent = mkOption { default = false; type = types.bool; description = "Reuse or start ssh agent in Bash profile"; };
-      ensure-krb5ccname = mkOption { default = false; type = types.bool; description = "Ensure KRB5CCNAME has a sensible value"; };
       conda-root = mkOption { default = null; type = types.nullOr types.str; description = "Root directory for conda, if any"; };
+      extra = mkOption { type = types.str; default = ""; description = "Extra text for bash profile"; };
     };
   };
 
@@ -70,11 +70,7 @@ in
 
         '' else ""
         }
-        ${if cfg.profile.ensure-krb5ccname then ''
-          # ensure KRB5CCNAME has a good value
-          export KRB5CCNAME=''${KRB5CCNAME-''$HOME/.krb5.cache}
-        '' else ""
-        }
+        ${if cfg.profile.extra == "" then "" else "\n\n" + cfg.profile.extra}
       '';
 
       # interactive shells only

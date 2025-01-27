@@ -168,6 +168,10 @@ in
         bash.profile = {
           reuse-ssh-agent = true;
           conda-root = "/agr/persist/apps/Miniconda3/23.5.2";
+          extra = ''
+            # work-around for ssh-add: No user found with uid:
+            export LD_PRELOAD=/usr/lib64/libnss_sss.so.2
+          '';
         };
 
         elvish.rcExtra = ''
