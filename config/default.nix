@@ -190,7 +190,7 @@ in
         moshWithKerberos
       ];
       sessionVariables = {
-        GIT_SSH = "${pkgs.opensshWithKerberos}/bin/ssh";
+        GIT_SSH = "/usr/bin/ssh";
       };
     };
   };
