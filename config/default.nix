@@ -45,7 +45,7 @@ let
 
   gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $env}";
 
-  moshWithWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
+  moshWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
     # The locale setting is for glibc 2.27 compatability, as per this:
     # https://github.com/NixOS/nixpkgs/issues/38991
     postFixup = ''
@@ -101,7 +101,7 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
-        moshWithWithKerberos
+        moshWithKerberos
       ];
     };
   };
@@ -143,7 +143,7 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
-        moshWithWithKerberos
+        moshWithKerberos
       ];
     };
 
@@ -178,6 +178,7 @@ in
           ${gquery-env-elvish-fn}
         '';
       };
+
     home = {
       inherit stateVersion;
       username = "guestsi@agresearch.co.nz";
@@ -186,8 +187,11 @@ in
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
-        moshWithWithKerberos
+        moshWithKerberos
       ];
+      sessionVariables = {
+        GIT_SSH = "${pkgs.opensshWithKerberos}/bin/ssh";
+      };
     };
   };
   personal = {
