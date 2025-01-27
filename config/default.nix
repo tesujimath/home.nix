@@ -45,6 +45,26 @@ let
 
   gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $env}";
 
+  lmod-module-elvish-fn = ''fn module {|@args|
+    if (has-env LMOD_CMD) {
+      fn is-env-changer {|cmd|
+        has-key [&load &add &try-load &try-add &del &unload &swap &sw &switch &purge &refresh &update] $cmd
+      }
+
+      # find the actual command, i.e. skipping past options
+      var cmd = (keep-if {|s| !=s $s[0] -} $args | take 1)
+
+      if (is-env-changer $cmd) {
+        $E:LMOD_CMD bash $@args | bash-env
+      } else {
+        $E:LMOD_CMD bash $@args | bash
+      }
+    } else {
+      fail "Environment variable LMOD_CMD is unset, is lmod installed?"
+    }
+  }
+  '';
+
   moshWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
     # The locale setting is for glibc 2.27 compatability, as per this:
     # https://github.com/NixOS/nixpkgs/issues/38991
@@ -179,6 +199,7 @@ in
 
         elvish.rcExtra = ''
           ${gquery-env-elvish-fn}
+          ${lmod-module-elvish-fn}
         '';
       };
 
