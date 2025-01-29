@@ -65,6 +65,8 @@ let
   }
   '';
 
+  mosh-eri-elvish-fn = "fn mosh-eri {|@args| e:mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $@args}";
+
   moshWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
     # The locale setting is for glibc 2.27 compatability, as per this:
     # https://github.com/NixOS/nixpkgs/issues/38991
@@ -97,6 +99,7 @@ in
 
         elvish.rcExtra = ''
           ${gquery-env-elvish-fn}
+          ${mosh-eri-elvish-fn}
         '';
 
         web-browser.wsl.use-native-windows = true;
