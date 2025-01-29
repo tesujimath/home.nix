@@ -70,6 +70,11 @@ fn ssh-os-core { |host @args|
   openstack server ssh --private $host -- -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core $@args
 }
 
+# ssh natively CoreOS
+fn ssh-core { |host @args|
+  ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core $host $@args
+}
+
 # Home Manager
 fn home-manager-switch {
   home-manager switch -v --flake $E:HOME_MANAGER_FLAKE_REF_ATTR
