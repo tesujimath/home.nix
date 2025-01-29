@@ -36,6 +36,10 @@ var bash-env~ = $bash-env:bash-env~
 # virtualenv
 use github.com/tesujimath/bash-env-elvish/virtualenv
 
+# Lmod Environment modules
+use github.com/tesujimath/bash-env-elvish/lmod
+var module~ = $lmod:module~
+
 # direlv
 use github.com/tesujimath/direlv/direlv
 eval (direlv:hook | slurp)
