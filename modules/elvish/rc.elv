@@ -66,8 +66,8 @@ fn ssh-add-all {
 
 # AgR eRI
 # ssh via OpenStack CoreOS
-fn ssh-os-core { |host|
-  openstack server ssh --private $host -- -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core
+fn ssh-os-core { |host @args|
+  openstack server ssh --private $host -- -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core $@args
 }
 
 # Home Manager
