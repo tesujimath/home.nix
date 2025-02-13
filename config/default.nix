@@ -229,6 +229,7 @@ in
           _1password-cli
           audacious
           bind
+          calibre
           freerdp
           gimp
           git-crypt
