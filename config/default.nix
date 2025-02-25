@@ -28,6 +28,7 @@ let
     "dockerfile"
     "go"
     "json"
+    "jsonnet"
     "markdown"
     "nextflow"
     "nix"

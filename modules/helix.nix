@@ -129,6 +129,14 @@ in
                 auto-format = true;
               }
               {
+                name = "jsonnet";
+                formatter = {
+                  command = "jsonnetfmt";
+                  args = [ "-" ];
+                };
+                auto-format = true;
+              }
+              {
                 name = "markdown";
                 formatter = remove-trailing-whitespace-formatter;
                 auto-format = true;

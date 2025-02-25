@@ -12,6 +12,7 @@ in
     dockerfile.enable = mkEnableOption "dockerfile";
     go.enable = mkEnableOption "go";
     json.enable = mkEnableOption "json";
+    jsonnet.enable = mkEnableOption "jsonnet";
     markdown.enable = mkEnableOption "markdown";
     nextflow.enable = mkEnableOption "nextflow";
     nix.enable = mkEnableOption "nix";
@@ -42,6 +43,8 @@ in
       (if cfg.go.enable then [ go gopls ] else [ ])
       ++
       (if cfg.json.enable then [ vscode-langservers-extracted ] else [ ])
+      ++
+      (if cfg.jsonnet.enable then [ jsonnet-language-server jsonnet ] else [ ])
       ++
       (if cfg.markdown.enable then [ marksman ] else [ ])
       ++
