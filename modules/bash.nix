@@ -84,9 +84,6 @@ in
         dircolors_config=$HOME/.dircolors
         test -r $dircolors_config && eval $(dircolors -b $dircolors_config)
 
-        # direnv
-        eval "$(direnv hook bash)"
-
         # fallback terminal if not found
         infocmp "$TERM" >/dev/null 2>&1 || {
             export TERM=xterm-256color
