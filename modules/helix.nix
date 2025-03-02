@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, specialArgs, ... }:
 
 let
   cfg = config.local.helix;
   inherit (lib) mkEnableOption mkIf;
+  inherit (specialArgs) flakePkgs;
 in
 {
   options.local.helix = {
@@ -14,23 +15,7 @@ in
       helix = {
         enable = true;
 
-        package = pkgs.helix.overrideAttrs (attrs: rec {
-          version = "24.07";
-          src = pkgs.fetchzip {
-            url = "https://github.com/helix-editor/helix/releases/download/${version}/helix-${version}-source.tar.xz";
-            hash = "sha256-R8foMx7YJ01ZS75275xPQ52Ns2EB3OPop10F4nicmoA=";
-            stripRoot = false;
-          };
-          # Overriding `cargoHash` has no effect; we must override the resultant
-          # `cargoDeps` and set the hash in its `outputHash` attribute.
-          cargoDeps = attrs.cargoDeps.overrideAttrs (lib.const {
-            name = "${attrs.pname}-${version}-vendor.tar.gz";
-            inherit src;
-            outputHash = "sha256-Y8zqdS8vl2koXmgFY0hZWWP1ZAO8JgwkoPTYPVpkWsA=";
-          });
-
-          doCheck = false;
-        });
+        package = flakePkgs.helix;
 
         defaultEditor = true;
         settings = {
