@@ -64,6 +64,16 @@ in
                   [ [ "Alt m" ] { ToggleFloatingPanes = [ ]; } ]
                 ];
               };
+
+              "shared_except \"locked\"" = layer
+                {
+                  unbinds = [
+                    # Elvish:
+                    "Alt l" # Directory history
+                    "Alt n" # Navigation mode
+                    "Alt f" # Filter in Navigation mode
+                  ];
+                };
             } // layer {
               unbinds = [
                 "Ctrl q" # disable sudden death from Ctrl q
