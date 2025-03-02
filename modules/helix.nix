@@ -147,14 +147,6 @@ in
                 auto-format = true;
               }
               {
-                name = "nextflow";
-                scope = "source.nextflow";
-                file-types = [ "nf" "nf.test" { glob = "nextflow.config"; } ];
-                language-servers = [ "nextflow-language-server" ];
-                # auto-format is annoying as it loses comments in certain contexts
-                # auto-format = true;
-              }
-              {
                 name = "packer";
                 scope = "source.packer";
                 file-types = [ "pkr.hcl" ];
@@ -202,23 +194,6 @@ in
                 config = {
                   provideFormatter = true;
                   json.keepLines.enable = true;
-                };
-              };
-
-              nextflow-language-server = {
-                command = "nextflow-language-server";
-                config = {
-                  nextflow = {
-                    debug = true;
-
-                    files.exclude = [
-                      ".git"
-                      ".nf-test"
-                      "work"
-                    ];
-
-                    formatting.harshilAlignment = true;
-                  };
                 };
               };
             };

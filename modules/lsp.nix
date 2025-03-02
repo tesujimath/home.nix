@@ -1,4 +1,4 @@
-{ config, pkgs, lib, specialArgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   cfg = config.local.lsp;
@@ -14,7 +14,6 @@ in
     json.enable = mkEnableOption "json";
     jsonnet.enable = mkEnableOption "jsonnet";
     markdown.enable = mkEnableOption "markdown";
-    nextflow.enable = mkEnableOption "nextflow";
     nix.enable = mkEnableOption "nix";
     packer.enable = mkEnableOption "packer";
     python.enable = mkEnableOption "python";
@@ -28,9 +27,6 @@ in
 
   config = {
     home.packages =
-      let
-        inherit (specialArgs) flakePkgs;
-      in
       with pkgs;
       (if cfg.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
       ++
@@ -47,8 +43,6 @@ in
       (if cfg.jsonnet.enable then [ jsonnet-language-server jsonnet ] else [ ])
       ++
       (if cfg.markdown.enable then [ marksman ] else [ ])
-      ++
-      (if cfg.nextflow.enable then [ flakePkgs.nextflow-language-server ] else [ ])
       ++
       (if cfg.nix.enable then [ nil nixpkgs-fmt ] else [ ])
       ++

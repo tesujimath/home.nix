@@ -19,17 +19,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.bash-env-json.follows = "bash-env-json";
     };
-
-    nextflow-language-server = {
-      url = "github:tesujimath/nextflow-language-server.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { nixpkgs, home-manager, bash-env-json, bash-env-nushell, nextflow-language-server, ... }:
+  outputs = inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
@@ -37,9 +32,8 @@
         };
       };
       flakePkgs = {
-        bash-env-json = bash-env-json.packages.${system}.default;
-        bash-env-nushell = bash-env-nushell.packages.${system}.default;
-        nextflow-language-server = nextflow-language-server.packages.${system}.default;
+        bash-env-json = inputs.bash-env-json.packages.${system}.default;
+        bash-env-nushell = inputs.bash-env-nushell.packages.${system}.default;
       };
       localPkgs = {
         volnoti = pkgs.callPackage ./packages/volnoti { };
@@ -59,7 +53,7 @@
         in
         builtins.mapAttrs
           (name: attrs:
-            home-manager.lib.homeManagerConfiguration {
+            inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
                 ./main.nix

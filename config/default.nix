@@ -30,7 +30,6 @@ let
     "json"
     "jsonnet"
     "markdown"
-    "nextflow"
     "nix"
     "packer"
     "python"
@@ -42,7 +41,7 @@ let
     "yaml"
   ];
 
-  commonLanguages = allLanguages // disable [ "dart" "nextflow" "packer" ];
+  commonLanguages = allLanguages // disable [ "dart" "packer" ];
 
   gquery-env-elvish-fn = "fn gquery-env {|env| nix run 'git+ssh://k-devops-pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $env}";
 
@@ -74,7 +73,7 @@ in
         defaultShell = "elvish";
         defaultEditor = "hx";
 
-        lsp = commonLanguages // enable [ "nextflow" ];
+        lsp = commonLanguages;
 
         bash.profile.reuse-ssh-agent = true;
 
