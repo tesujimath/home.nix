@@ -16,6 +16,7 @@
         fx
         gzip
         htop
+        ijq
         jq
         nix-index
         nix-search-cli
