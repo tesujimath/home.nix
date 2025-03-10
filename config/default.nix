@@ -193,6 +193,10 @@ in
         # don't use Nix ssh, but we need mosh for mosh-server
         moshWithKerberos
       ];
+      sessionVariables = {
+        # TODO: remove this when NeSI have added it system-wide, needed for `sacct --json`
+        SLURM_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S";
+      };
     };
   };
   personal = {
