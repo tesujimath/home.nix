@@ -177,6 +177,11 @@ in
           extra = ''
             # work-around for ssh-add: No user found with uid:
             export LD_PRELOAD=/usr/lib64/libnss_sss.so.2
+
+            # work-around for bad setting in /etc/profile.d/nesi.sh
+            # which keeps breaking my own setting (below)
+            # TODO: remove when NeSI fix this
+            export SLURM_TIME_FORMAT="%Y-%m-%dT%H:%M:%S"
           '';
         };
 
