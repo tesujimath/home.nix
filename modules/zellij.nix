@@ -2,11 +2,16 @@
 
 let
   cfg = config.local.zellij;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkOption;
 in
 {
   options.local.zellij = {
     enable = mkEnableOption "zellij";
+    mouse_mode = mkOption {
+      type = lib.types.bool;
+      description = "Enable mouse_mode";
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -16,7 +21,7 @@ in
         settings = {
           default_shell = config.local.defaultShell;
           scrollback_editor = config.local.defaultEditor;
-          mouse_mode = true;
+          mouse_mode = cfg.mouse_mode;
 
           keybinds =
             let
