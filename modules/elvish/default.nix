@@ -35,7 +35,8 @@ in
       in
       {
         packages = [
-          elvish_0_21_0
+          # elvish_0_21_0
+          pkgs.elvish
           flakePkgs.bash-env-json
         ];
 
