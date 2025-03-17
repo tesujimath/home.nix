@@ -1,6 +1,7 @@
 use direnv
 use re
 use readline-binding
+use str
 
 # get bare hostname into prompt
 set edit:prompt = {
@@ -49,8 +50,11 @@ alias:new reload eval (cat ~/.config/elvish/rc.elv | slurp)
 
 # viewers
 fn values-to-json { var in = [(all)] ; if (== 1 (count $in)) { put $in[0] } else { put $in } | to-json }
-fn jtv { nu --no-config-file --no-history --no-std-lib --plugin-config /dev/null --stdin -c 'from json' }
-fn tv { values-to-json | jtv }
+fn jtv {|@keys|
+   var nu_cmd = (if (> (count $keys) 0) { put 'from json | select -i '(str:join ' ' $keys) } else { put 'from json' })
+   nu --no-config-file --no-history --no-std-lib --plugin-config /dev/null --stdin -c $nu_cmd
+}
+fn tv {|@keys| values-to-json | jtv $@keys }
 fn fxv { values-to-json | fx }
 
 # ssh with elvish as remote shell
