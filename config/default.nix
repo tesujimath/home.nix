@@ -47,6 +47,11 @@ let
 
   mosh-eri-elvish-fn = "fn mosh-eri {|@args| e:mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $@args}";
 
+  slurm-fns = ''
+    fn squeue-u { squeue -u $E:USER -o "%.10A %.40j %.4t %.20S %.11M %.11L %.5m %.3c"}
+    fn squeue-all { squeue -o "%.10A %.25u %.40j %.4t %.20S %.11M %.11L %.5m %.3c"}
+  '';
+
   moshWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
     # The locale setting is for glibc 2.27 compatability, as per this:
     # https://github.com/NixOS/nixpkgs/issues/38991
@@ -189,6 +194,7 @@ in
 
         elvish.rcExtra = ''
           ${gquery-env-elvish-fn}
+          ${slurm-fns}
         '';
 
         zellij.mouse_mode = false;
