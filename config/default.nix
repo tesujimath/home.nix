@@ -50,6 +50,7 @@ let
   slurm-fns = ''
     fn squeue-u { squeue -u $E:USER -o "%.10A %.40j %.4t %.20S %.11M %.11L %.5m %.3c"}
     fn squeue-all { squeue -o "%.10A %.25u %.40j %.4t %.20S %.11M %.11L %.5m %.3c"}
+    fn sacct-json {|@rest| with E:SLURM_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S" { sacct --json $@rest } }
   '';
 
   moshWithKerberos = (pkgs.mosh.override { openssh = pkgs.opensshWithKerberos; }).overrideAttrs (attrs: {
@@ -184,11 +185,6 @@ in
           extra = ''
             # work-around for ssh-add: No user found with uid:
             export LD_PRELOAD=/usr/lib64/libnss_sss.so.2
-
-            # work-around for bad setting in /etc/profile.d/nesi.sh
-            # which keeps breaking my own setting (below)
-            # TODO: remove when NeSI fix this
-            export SLURM_TIME_FORMAT="%Y-%m-%dT%H:%M:%S"
           '';
         };
 
@@ -208,10 +204,7 @@ in
         # don't use Nix ssh, but we need mosh for mosh-server
         moshWithKerberos
       ];
-      sessionVariables = {
-        # TODO: remove this when NeSI have added it system-wide, needed for `sacct --json`
-        SLURM_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S";
-      };
+      sessionVariables = { };
     };
   };
   personal = {
