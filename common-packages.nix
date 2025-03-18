@@ -18,6 +18,7 @@
         htop
         ijq
         jq
+        jqp
         nix-index
         nix-search-cli
         nixos-option
