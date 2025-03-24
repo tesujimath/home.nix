@@ -13,7 +13,7 @@ set edit:rprompt = (constantly "")
 
 # carapace completion
 if ?(which carapace >/dev/null 2>&1) {
-  eval (carapace _carapace | slurp)
+  eval (carapace _carapace elvish | slurp)
 }
 
 # Packages - installed in Nix Home Manager
