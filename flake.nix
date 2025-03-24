@@ -20,11 +20,6 @@
       inputs.bash-env-json.follows = "bash-env-json";
     };
 
-    elvish = {
-      url = "github:tesujimath/elvish.nix/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     helix = {
       url = "github:helix-editor/helix/25.01.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +39,6 @@
       flakePkgs = {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
         bash-env-nushell = inputs.bash-env-nushell.packages.${system}.default;
-        elvish = inputs.elvish.packages.${system}.default;
         helix = inputs.helix.packages.${system}.default;
       };
       localPkgs = {
