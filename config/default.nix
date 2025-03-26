@@ -143,8 +143,6 @@ in
         elvish.rcExtra = ''
           ${gquery-env-elvish-fn}
         '';
-
-        zellij.mouse_mode = false;
       };
     home = {
       inherit stateVersion;
@@ -192,8 +190,6 @@ in
           ${gquery-env-elvish-fn}
           ${slurm-fns}
         '';
-
-        zellij.mouse_mode = false;
       };
 
     home = {
