@@ -13,10 +13,6 @@ in
     programs = {
       emacs = {
         enable = true;
-        package = with pkgs;
-          ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
-            epkgs.emacsql-sqlite # for org-roam
-          ]));
       };
     };
 

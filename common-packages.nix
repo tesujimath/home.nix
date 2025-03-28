@@ -7,7 +7,6 @@
       [
         amber # CLI search/replace
         bottom
-        diskonaut
         dig
         du-dust
         eza
