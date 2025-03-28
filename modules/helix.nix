@@ -114,6 +114,15 @@ in
                 auto-format = true;
               }
               {
+                name = "jinja";
+                language-servers = [ "jinja-lsp" ];
+                formatter = {
+                  command = "prettier";
+                  args = [ "--parser" "html" ];
+                };
+                auto-format = true;
+              }
+              {
                 name = "jsonnet";
                 formatter = {
                   command = "jsonnetfmt";
@@ -167,6 +176,18 @@ in
               nil = {
                 command = "nil";
               };
+
+              jinja-lsp = {
+                command = "jinja-lsp";
+                config =
+                  {
+                    templates = "./templates";
+                    backend = [ "./src" ];
+                    lang = "python";
+                  };
+                timeout = 5;
+              };
+
               rust-analyzer = {
                 config = {
                   check = {

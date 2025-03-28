@@ -27,6 +27,7 @@ let
     "dart"
     "dockerfile"
     "go"
+    "jinja"
     "json"
     "jsonnet"
     "markdown"

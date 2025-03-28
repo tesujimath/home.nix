@@ -11,6 +11,7 @@ in
     dart.enable = mkEnableOption "dart";
     dockerfile.enable = mkEnableOption "dockerfile";
     go.enable = mkEnableOption "go";
+    jinja.enable = mkEnableOption "jinja";
     json.enable = mkEnableOption "json";
     jsonnet.enable = mkEnableOption "jsonnet";
     markdown.enable = mkEnableOption "markdown";
@@ -37,6 +38,8 @@ in
       (if cfg.dockerfile.enable then [ dockerfile-language-server-nodejs ] else [ ])
       ++
       (if cfg.go.enable then [ go gopls ] else [ ])
+      ++
+      (if cfg.jinja.enable then [ jinja-lsp nodePackages.prettier ] else [ ])
       ++
       (if cfg.json.enable then [ vscode-langservers-extracted ] else [ ])
       ++
