@@ -24,13 +24,17 @@
       url = "github:helix-editor/helix/25.01.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # needed to build schemat
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs = inputs:
     let
       system = "x86_64-linux";
+      overlays = [ (import inputs.rust-overlay) ];
       pkgs = import inputs.nixpkgs {
-        inherit system;
+        inherit system overlays;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (pkg: true);

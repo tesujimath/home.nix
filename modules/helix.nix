@@ -11,6 +11,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    local.schemat.enable = true; # auto-format for scheme
+
     programs = {
       helix = {
         enable = true;
@@ -151,6 +153,14 @@ in
                 auto-format = true;
               }
               {
+                name = "scheme";
+                language-servers = [ "steel-language-server" ];
+                formatter = {
+                  command = "schemat";
+                };
+                auto-format = true;
+              }
+              {
                 name = "toml";
                 formatter = {
                   command = "taplo";
@@ -194,6 +204,11 @@ in
                     command = "clippy";
                   };
                 };
+              };
+
+              steel-language-server = {
+                command = "steel-language-server";
+                args = [ ];
               };
 
               vscode-json-language-server = {

@@ -17,6 +17,7 @@ in
     ./modules/lsp.nix
     ./modules/mitmproxy
     ./modules/nushell
+    ./modules/schemat.nix
     ./modules/syncthing.nix
     ./modules/web-browser.nix
     ./modules/wezterm

@@ -35,6 +35,7 @@ let
     "packer"
     "python"
     "rust"
+    "steel"
     "terraform"
     "toml"
     "typescript"

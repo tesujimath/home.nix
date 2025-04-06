@@ -19,6 +19,7 @@ in
     packer.enable = mkEnableOption "packer";
     python.enable = mkEnableOption "python";
     rust.enable = mkEnableOption "rust";
+    steel.enable = mkEnableOption "steel";
     terraform.enable = mkEnableOption "terraform";
     toml.enable = mkEnableOption "toml";
     typescript.enable = mkEnableOption "typescript";
@@ -54,6 +55,8 @@ in
       (if cfg.python.enable then [ pyright pylint black ] else [ ])
       ++
       (if cfg.rust.enable then [ rust-analyzer rustfmt ] else [ ])
+      ++
+      (if cfg.steel.enable then [ steel ] else [ ])
       ++
       (if cfg.terraform.enable then [ terraform-ls ] else [ ])
       ++
