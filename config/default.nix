@@ -81,7 +81,7 @@ in
         defaultShell = "elvish";
         defaultEditor = "hx";
 
-        lsp = commonLanguages;
+        languages = commonLanguages;
 
         bash.profile.reuse-ssh-agent = true;
 
@@ -135,7 +135,7 @@ in
         defaultShell = "elvish";
         defaultEditor = "hx";
 
-        lsp = commonLanguages;
+        languages = commonLanguages;
 
         bash.profile = {
           reuse-ssh-agent = true;
@@ -177,7 +177,7 @@ in
         defaultShell = "elvish";
         defaultEditor = "hx";
 
-        lsp = commonLanguages;
+        languages = commonLanguages;
 
         bash.profile = {
           reuse-ssh-agent = true;
@@ -222,7 +222,7 @@ in
         defaultShell = "elvish";
         defaultEditor = "hx";
 
-        lsp = commonLanguages;
+        languages = commonLanguages;
       };
 
     home = {

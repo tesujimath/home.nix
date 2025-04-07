@@ -14,10 +14,9 @@ in
     ./modules/git
     ./modules/helix.nix
     ./modules/ledger
-    ./modules/lsp.nix
+    ./modules/languages
     ./modules/mitmproxy
     ./modules/nushell
-    ./modules/schemat.nix
     ./modules/syncthing.nix
     ./modules/web-browser.nix
     ./modules/wezterm
