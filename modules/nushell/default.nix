@@ -42,8 +42,9 @@ in
       packages = with pkgs; [
         flakePkgs.bash-env-nushell
         jc
-        job-security
       ];
     };
+
+    services.pueue.enable = true;
   };
 }

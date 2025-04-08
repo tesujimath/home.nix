@@ -90,5 +90,7 @@ in
         '';
       };
     };
+
+    services.pueue.enable = true;
   };
 }
