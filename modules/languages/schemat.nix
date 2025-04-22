@@ -3,7 +3,7 @@ let
   src = fetchFromGitHub {
     owner = "raviqqe";
     repo = "schemat";
-    rev = "fe1f5fe93dcef49cb7217ba6b9956a5b36f33a68"; # TODO use a tag
+    rev = "v0.3.3";
     sha256 = "sha256-opxzwxZvVushvj+36M4LCmLShpLFTHYtJqpkqDj1xJ0=";
   };
 
