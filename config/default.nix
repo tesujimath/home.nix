@@ -108,7 +108,6 @@ in
       };
 
       packages = with pkgs; [
-        beekeeper-studio
         # recently Kerberos was removed from the default openssh package
         # would be better configured via programs.ssh
         opensshWithKerberos
