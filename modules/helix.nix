@@ -206,12 +206,6 @@ in
 
                 jinja-lsp = {
                   command = "jinja-lsp";
-                  config =
-                    {
-                      templates = "./templates";
-                      backend = [ "./src" ];
-                      lang = "python";
-                    };
                   timeout = 5;
                 };
 
