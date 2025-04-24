@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, specialArgs, ... }:
 
 let
   cfg = config.local.languages;
@@ -32,6 +32,9 @@ in
       schemat = pkgs.callPackage ./schemat.nix { };
 
       language-support-packages =
+        let
+          inherit (specialArgs) localPkgs;
+        in
         with pkgs;
         (if cfg.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
         ++
@@ -43,7 +46,7 @@ in
         ++
         (if cfg.go.enable then [ go gopls ] else [ ])
         ++
-        (if cfg.jinja.enable then [ jinja-lsp nodePackages.prettier ] else [ ])
+        (if cfg.jinja.enable then [ jinja-lsp localPkgs.prettier-with-plugins ] else [ ])
         ++
         (if cfg.json.enable then [ vscode-langservers-extracted ] else [ ])
         ++

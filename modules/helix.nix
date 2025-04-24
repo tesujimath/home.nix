@@ -137,7 +137,7 @@ in
                   language-servers = [ "jinja-lsp" ];
                   formatter = {
                     command = "prettier";
-                    args = [ "--parser" "html" ];
+                    args = [ "--parser" "jinja-template" ];
                   };
                   auto-format = true;
                 }
