@@ -170,6 +170,11 @@ in
                   auto-format = true;
                 }
                 {
+                  name = "r";
+                  formatter = remove-trailing-whitespace-formatter;
+                  auto-format = true;
+                }
+                {
                   name = "scheme";
                   language-servers = [ "steel-language-server" ];
                   formatter = {
