@@ -52,6 +52,7 @@ in
               normal = layer
                 {
                   unbinds = [
+                    "Ctrl q" # disable sudden death from Ctrl q
                     # Elvish:
                     # "Alt l" # Directory history
                     "Alt n" # Navigation mode
@@ -73,6 +74,7 @@ in
               "shared_except \"locked\"" = layer
                 {
                   unbinds = [
+                    "Ctrl q" # disable sudden death from Ctrl q
                     # Elvish:
                     "Alt l" # Directory history
                     "Alt n" # Navigation mode
