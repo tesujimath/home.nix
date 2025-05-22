@@ -6,3 +6,8 @@ Host agr
     Hostname inscrutable.agresearch.co.nz
     ProxyJump guestsi@ssh.agresearch.co.nz
     User guestsi
+
+Host eri
+    Hostname login-0.eri.agresearch.co.nz
+    ProxyJump guestsi@ssh.agresearch.co.nz
+    User guestsi@agresearch.co.nz
