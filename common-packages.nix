@@ -24,6 +24,7 @@
         nmap
         pstree
         ripgrep
+        sd
         speedcrunch
         unzip
         virtualenv # better than python -m venv because supports Nu
