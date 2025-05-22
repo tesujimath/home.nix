@@ -112,6 +112,11 @@ in
                   auto-format = true;
                 }
                 {
+                  name = "beancount";
+                  language-servers = [ "beancount-language-server" ];
+                  auto-format = true;
+                }
+                {
                   name = "c";
                   auto-format = true;
                 }
@@ -207,6 +212,11 @@ in
               language-server = {
                 nil = {
                   command = "nil";
+                };
+
+                beancount-language-server = {
+                  command = "beancount-language-server";
+                  args = [ "--stdio" ];
                 };
 
                 jinja-lsp = {

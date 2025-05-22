@@ -23,6 +23,7 @@ let
 
   allLanguages = enable [
     "bash"
+    "beancount"
     "c"
     "dart"
     "dockerfile"

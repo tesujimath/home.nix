@@ -7,6 +7,7 @@ in
 {
   options.local.languages = {
     bash.enable = mkEnableOption "bash";
+    beancount.enable = mkEnableOption "beancount";
     c.enable = mkEnableOption "C";
     dart.enable = mkEnableOption "dart";
     dockerfile.enable = mkEnableOption "dockerfile";
@@ -37,6 +38,8 @@ in
         in
         with pkgs;
         (if cfg.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
+        ++
+        (if cfg.beancount.enable then [ beancount-language-server ] else [ ])
         ++
         (if cfg.c.enable then [ clang-tools ] else [ ])
         ++

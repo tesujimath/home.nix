@@ -3,8 +3,8 @@ let
   src = fetchFromGitHub {
     owner = "raviqqe";
     repo = "schemat";
-    rev = "v0.3.3";
-    sha256 = "sha256-opxzwxZvVushvj+36M4LCmLShpLFTHYtJqpkqDj1xJ0=";
+    rev = "v0.4.0";
+    sha256 = "sha256-LFUXohgQQObuyXv0dVzaok922x0G6zd2vqxDvJU506U=";
   };
 
   cargoConfig = builtins.fromTOML (builtins.readFile "${src}/Cargo.toml");
