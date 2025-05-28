@@ -51,8 +51,8 @@ let
   mosh-eri-elvish-fn = "fn mosh-eri {|@args| e:mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $@args}";
 
   slurm-fns = ''
-    fn squeue-u { squeue -u $E:USER -o "%.10A %.40j %.4t %.20S %.11M %.11L %.5m %.3c"}
-    fn squeue-all { squeue -o "%.10A %.25u %.40j %.4t %.20S %.11M %.11L %.5m %.3c"}
+    fn squeue-me { squeue --me -o "%.10A %.40j %.4t %.20S %.11M %.11L %.5m %.3c %.12B"}
+    fn squeue-all { squeue -o "%.10A %.25u %.40j %.4t %.20S %.11M %.11L %.5m %.3c %.12B"}
     fn sacct-json {|@rest| with E:SLURM_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S" { sacct --json $@rest } }
   '';
 
