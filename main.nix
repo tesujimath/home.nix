@@ -13,6 +13,7 @@ in
     ./modules/fonts.nix
     ./modules/git
     ./modules/helix.nix
+    ./modules/jujutsu
     ./modules/ledger
     ./modules/languages
     ./modules/mitmproxy

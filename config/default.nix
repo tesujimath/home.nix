@@ -14,6 +14,7 @@ let
     "fonts"
     "git"
     "helix"
+    "jujutsu"
     "mitmproxy"
     "nushell"
     "yazi"
