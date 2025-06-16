@@ -59,9 +59,25 @@ in
       } else { };
 
     xdg.mimeApps = {
-      defaultApplications = {
-        "text/html" = [ "brave.desktop" "firefox.desktop" "google-chrome.desktop" ];
-      };
+      defaultApplications =
+        let handlers-for = protocols: applications: lib.attrsets.genAttrs protocols (name: applications);
+        in
+        handlers-for [
+          "application/x-extension-htm"
+          "application/x-extension-html"
+          "application/x-extension-shtml"
+          "application/x-extension-xht"
+          "application/x-extension-xhtml"
+          "application/xhtml+xml"
+          "text/html"
+          "x-scheme-handler/chrome"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ] [
+          "firefox.desktop"
+          "brave.desktop"
+          "google-chrome.desktop"
+        ];
     };
   };
 }
