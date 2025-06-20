@@ -48,6 +48,10 @@ in
 
         # make virsh use system connection as per virt-manager
         LIBVIRT_DEFAULT_URI = "qemu:///system";
+
+        # never use managed Python from uv
+        UV_NO_MANAGED_PYTHON = "1";
+        UV_PYTHON_DOWNLOADS = "never";
       };
 
       file = {
