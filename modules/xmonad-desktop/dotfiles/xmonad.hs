@@ -28,6 +28,7 @@ myManageHook = composeAll
     , className =? "Gpick"     --> doFloat
     --, className =? "Sxiv"      --> doFloat
     , className =? "mpv"       --> doFloat
+    , className =? "Surge XT"  --> doFloat
     , className =? "Zathura"   --> doFloat
     , className =? "Rumno-background" --> doFloat <+> hasBorder False
     , className =? "Screenruler.rb"   --> doFloat <+> hasBorder False
