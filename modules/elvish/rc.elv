@@ -83,6 +83,11 @@ fn ssh-core { |host @args|
   ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core $host $@args
 }
 
+# open browser for an OpenStack console
+fn os-console { |host|
+  xdg-open (openstack console url show -f json $host | from-json)[url]
+}
+
 # Home Manager
 fn home-manager-switch {
   home-manager switch -v --flake $E:HOME_MANAGER_FLAKE_REF_ATTR
