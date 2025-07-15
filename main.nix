@@ -12,6 +12,7 @@ in
     ./modules/emacs.nix
     ./modules/fonts.nix
     ./modules/git
+    ./modules/guile
     ./modules/helix.nix
     ./modules/jujutsu
     ./modules/ledger

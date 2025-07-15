@@ -13,6 +13,7 @@ let
     "emacs"
     "fonts"
     "git"
+    "guile"
     "helix"
     "jujutsu"
     "mitmproxy"
