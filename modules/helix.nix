@@ -114,7 +114,7 @@ in
                 {
                   name = "beancount";
                   language-servers = [ "beancount-language-server" ];
-                  auto-format = true;
+                  auto-format = false; # try again when passing config below for currency column is working
                 }
                 {
                   name = "c";
@@ -217,6 +217,16 @@ in
                 beancount-language-server = {
                   command = "beancount-language-server";
                   args = [ "--stdio" ];
+                  # passing config here doesn't seem to work in 1.3.7
+                  # config = {
+                  #   formatting = {
+                  # prefix_width = 30;
+                  # num_width = 10;
+                  # currency_column = 55;
+                  # account_amount_spacing = 2;
+                  # number_currency_spacing = 1;
+                  # };
+                  # };
                 };
 
                 jinja-lsp = {
