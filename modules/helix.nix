@@ -185,7 +185,7 @@ in
                   formatter = {
                     command = "schemat";
                   };
-                  auto-format = true;
+                  auto-format = false; # using Emacs Scheme mode as primary, and formatting is different.
                 }
                 {
                   name = "toml";
