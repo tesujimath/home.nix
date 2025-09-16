@@ -319,7 +319,7 @@ in
           [
             _1password-cli
             audacious
-            bind
+            # bind
             calibre
             freerdp
             gimp
