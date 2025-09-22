@@ -1,10 +1,9 @@
-{ config, lib, pkgs, specialArgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.local.helix;
   inherit (lib) mkEnableOption mkIf mkOption types;
   inherit (pkgs) makeWrapper stdenv;
-  inherit (specialArgs) flakePkgs;
 in
 {
   options.local.helix = {
@@ -16,7 +15,7 @@ in
     programs = {
       helix =
         let
-          vanilla-helix = flakePkgs.helix;
+          vanilla-helix = pkgs.helix;
           helix-with-language-support = stdenv.mkDerivation {
             pname = "helix-with-lsps";
             version = "${vanilla-helix.version}";

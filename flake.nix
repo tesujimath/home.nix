@@ -20,11 +20,6 @@
       inputs.bash-env-json.follows = "bash-env-json";
     };
 
-    helix = {
-      url = "github:helix-editor/helix/25.01.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # needed to build schemat
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
@@ -43,7 +38,6 @@
       flakePkgs = {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
         bash-env-nushell = inputs.bash-env-nushell.packages.${system}.default;
-        helix = inputs.helix.packages.${system}.default;
       };
       localPkgs = {
         volnoti = pkgs.callPackage ./packages/volnoti { };
