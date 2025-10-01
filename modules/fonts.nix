@@ -13,6 +13,7 @@ in
     home.packages = with pkgs;
       [
         cantarell-fonts
+        nerd-fonts.iosevka
         noto-fonts
         noto-fonts-color-emoji
         source-code-pro

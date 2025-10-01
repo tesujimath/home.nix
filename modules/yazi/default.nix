@@ -15,7 +15,7 @@ in
         enableBashIntegration = config.local.bash.enable;
         enableNushellIntegration = config.local.nushell.enable;
         settings = {
-          manager = {
+          mgr = {
             ratio = [ 1 2 5 ];
           };
         };
@@ -32,7 +32,7 @@ in
             ];
           };
 
-          manager = {
+          mgr = {
             prepend_keymap = [
               # https://yazi-rs.github.io/docs/tips#dropping-to-shell
               {
