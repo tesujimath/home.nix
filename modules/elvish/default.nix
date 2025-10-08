@@ -6,7 +6,7 @@ let
   inherit (specialArgs) flakePkgs;
 in
 {
-  options. local. elvish = {
+  options.local.elvish = {
     enable = mkEnableOption "elvish";
 
     rcExtra = mkOption { type = types.str; default = ""; description = "Extra text for rc.elv"; };

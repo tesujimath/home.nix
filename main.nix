@@ -10,6 +10,7 @@ in
     ./modules/carapace.nix
     ./modules/elvish
     ./modules/emacs.nix
+    ./modules/fish
     ./modules/fonts.nix
     ./modules/git
     ./modules/guile

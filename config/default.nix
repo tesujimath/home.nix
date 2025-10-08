@@ -11,6 +11,7 @@ let
     "carapace"
     "elvish"
     "emacs"
+    "fish"
     "fonts"
     "git"
     "guile"
@@ -61,6 +62,32 @@ let
         fn sacct-json {|@rest| with E:SLURM_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S" { sacct --json $@rest } }
       '';
     };
+
+  fish-functions = {
+    gquery = {
+      gquery-env = {
+        body = "nix run 'git+ssh://k-devops-elvish-functions.pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $argv}";
+      };
+    };
+
+    eri = {
+      mosh-eri = {
+        body = "mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $argv}";
+      };
+    };
+
+    slurm = {
+      squeue-me = {
+        body = "squeue --me -o '%.10A %.40j %.4t %.20S %.11M %.11L %.5m %.3c %.12B'";
+      };
+      squeue-all = {
+        body = "squeue -o '%.10A %.25u %.40j %.4t %.20S %.11M %.11L %.5m %.3c %.12B'";
+      };
+      sacct-json = {
+        body = "SLURM_TIME_FORMAT='%Y-%m-%dT%H:%M:%S' sacct --json $argv";
+      };
+    };
+  };
 
   # any profile which uses mosh with kerberos will need this:
   moshWithKerberos = (pkgs.mosh.override {
@@ -136,7 +163,7 @@ in
             inherit fullName;
           };
 
-          defaultShell = "elvish";
+          defaultShell = "fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
@@ -147,6 +174,8 @@ in
             ${elvish-functions.gquery}
             ${elvish-functions.eri}
           '';
+
+          fish.functions = fish-functions.gquery // fish-functions.eri;
 
           web-browser.wsl.use-native-windows = true;
         };
@@ -197,7 +226,7 @@ in
             inherit fullName;
           };
 
-          defaultShell = "elvish";
+          defaultShell = "fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
@@ -210,6 +239,8 @@ in
           elvish.rcExtra = ''
             ${elvish-functions.gquery}
           '';
+
+          fish.functions = fish-functions.gquery;
         };
       home = {
         inherit stateVersion;
@@ -247,7 +278,7 @@ in
             inherit fullName;
           };
 
-          defaultShell = "elvish";
+          defaultShell = "fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
@@ -265,6 +296,8 @@ in
             ${elvish-functions.gquery}
             ${elvish-functions.slurm}
           '';
+
+          fish.functions = fish-functions.gquery // fish-functions.slurm;
         };
 
       home = {
@@ -300,7 +333,7 @@ in
             inherit fullName;
           };
 
-          defaultShell = "elvish";
+          defaultShell = "fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
