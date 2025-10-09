@@ -1,8 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
 
 let
   cfg = config.local.fish;
   inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (specialArgs) flakePkgs;
 in
 {
   options. local. fish = {
@@ -12,30 +13,44 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = [
+      flakePkgs.bash-env-json
+    ];
+
     programs = {
       fish = {
         enable = true;
+
         functions = cfg.functions // {
           fish_prompt.body = "string join '' -- (set_color green) $hostname '> ' (set_color normal)";
 
-          # TODO this should be distributed separately
-          bash-env.body = ''
-            # alas this pollutes the environment
-            function __bash-env-set-vars
-              python -c 'import sys, json; d = json.load(sys.stdin); print(";".join([f"set -gx {k} \'{v.replace("\\\\", "\\\\\\\\").replace("\'", "\\\\\'")}\'" for (k,v) in d["env"].items()] + [f"set -g {k} \'{v.replace("\\\\", "\\\\\\\\").replace("\'", "\\\\\'")}\'" for (k,v) in d["shellvars"].items()]))'
-            end
-
-            if test (count $argv) -gt 0
-              eval (bash-env-json $argv | __bash-env-set-vars)
-            else
-              # capture stdin into a temporary file and pass that to bash-env-json
-              set -l tmpfile (mktemp)
-              cat >$tmpfile
-              eval (bash-env-json $tmpfile | __bash-env-set-vars)
-              rm -f $tmpfile
-            end
-          '';
+          # work-around for
+          # > command-not-found
+          # DBI connect('dbname=/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite','',...) failed: unable to open database file at /run/current-system/sw/bin/command-not-found line 13.
+          # cannot open database `/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' at /run/current-system/sw/bin/command-not-found line 13.        };
+          fish_command_not_found.body = ''echo "fish: Unknown command: $argv"'';
         };
+
+        plugins = [
+          {
+            name = "bash-env";
+            src = pkgs.fetchFromGitHub {
+              owner = "tesujimath";
+              repo = "bash-env-fish";
+              rev = "6428bab4d106788894e3e1f2c07573a04fa12052";
+              sha256 = "sha256-t9RMDEq4rEHqKFr9R7SR5wC3DkB8dFOB9mz9KAvVXJg=";
+            };
+          }
+          {
+            name = "bass";
+            src = pkgs.fetchFromGitHub {
+              owner = "edc";
+              repo = "bass";
+              rev = "79b62958ecf4e87334f24d6743e5766475bcf4d0";
+              sha256 = "sha256-3d/qL+hovNA4VMWZ0n1L+dSM1lcz7P5CQJyy+/8exTc=";
+            };
+          }
+        ];
       };
     };
   };
