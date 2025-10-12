@@ -52,8 +52,6 @@ let
   # Elvish functions shared between profiles:
   elvish-functions =
     {
-      gquery = "fn gquery-env {|env| nix run 'git+ssh://k-devops-elvish-functions.pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $env}";
-
       eri = "fn mosh-eri {|@args| e:mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $@args}";
 
       slurm = ''
@@ -64,16 +62,25 @@ let
     };
 
   fish-functions = {
-    gquery = {
-      gquery-env = {
-        body = "nix run 'git+ssh://k-devops-elvish-functions.pv01.agresearch.co.nz/tfs/Scientific/Bioinformatics/_git/gquery?ref=refs/heads/gbs_prism#export-env' -- $argv}";
-      };
+    common = {
+      # add all ssh identities
+      ssh-add-all.body = ''ssh-add ~/.ssh/(ls  ~/.ssh | grep '^id_[a-z0-9-]*$')'';
     };
 
     eri = {
-      mosh-eri = {
-        body = "mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $argv";
-      };
+      mosh-eri.body = "mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $argv";
+      #
+      # AgR eRI
+      # ssh via OpenStack CoreOS
+      ssh-os-core.body = ''openstack server ssh --private $argv[1] -- -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core $argv[2..]'';
+
+      ssh-os-rocky.body = ''openstack server ssh --private $argv[1] -- -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l cloud-user $argv[2..]'';
+
+      # ssh natively CoreOS
+      ssh-core.body = ''ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l core $argv'';
+
+      # ssh natively Rocky Linux
+      ssh-rocky.body = ''ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -l cloud-user $argv'';
     };
 
     slurm = {
@@ -171,11 +178,10 @@ in
           bash.profile.reuse-ssh-agent = true;
 
           elvish.rcExtra = ''
-            ${elvish-functions.gquery}
             ${elvish-functions.eri}
           '';
 
-          fish.functions = fish-functions.gquery // fish-functions.eri;
+          fish.functions = fish-functions.common // fish-functions.eri;
 
           web-browser.wsl.use-native-windows = true;
         };
@@ -235,12 +241,6 @@ in
             reuse-ssh-agent = true;
             conda-root = "/stash/miniconda3";
           };
-
-          elvish.rcExtra = ''
-            ${elvish-functions.gquery}
-          '';
-
-          fish.functions = fish-functions.gquery;
         };
       home = {
         inherit stateVersion;
@@ -293,11 +293,10 @@ in
           };
 
           elvish.rcExtra = ''
-            ${elvish-functions.gquery}
             ${elvish-functions.slurm}
           '';
 
-          fish.functions = fish-functions.gquery // fish-functions.slurm;
+          fish.functions = fish-functions.common // fish-functions.slurm;
         };
 
       home = {
