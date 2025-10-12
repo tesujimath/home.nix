@@ -72,7 +72,7 @@ let
 
     eri = {
       mosh-eri = {
-        body = "mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $argv}";
+        body = "mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $argv";
       };
     };
 

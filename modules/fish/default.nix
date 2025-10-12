@@ -29,6 +29,8 @@ in
           # DBI connect('dbname=/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite','',...) failed: unable to open database file at /run/current-system/sw/bin/command-not-found line 13.
           # cannot open database `/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' at /run/current-system/sw/bin/command-not-found line 13.        };
           fish_command_not_found.body = ''echo "fish: Unknown command: $argv"'';
+
+          home-manager-switch.body = ''home-manager switch -v --flake $HOME_MANAGER_FLAKE_REF_ATTR'';
         };
 
         plugins = [
