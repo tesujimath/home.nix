@@ -39,7 +39,7 @@ in
         ++
         (if cfg.c.enable then [ clang-tools ] else [ ])
         ++
-        (if cfg.dockerfile.enable then [ dockerfile-language-server ] else [ ])
+        (if cfg.dockerfile.enable then [ docker-language-server ] else [ ])
         ++
         (if cfg.fennel.enable then [ fennel-ls fnlfmt ] else [ ])
         ++
