@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./common-packages.nix
+    ./modules/babashka.nix
     ./modules/bash.nix
     ./modules/carapace.nix
     ./modules/elvish
