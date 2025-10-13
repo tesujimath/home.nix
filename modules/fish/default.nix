@@ -22,7 +22,8 @@ in
         enable = true;
 
         functions = cfg.functions // {
-          fish_prompt.body = "string join '' -- (set_color green) $hostname '> ' (set_color normal)";
+          fish_prompt.body = "string join '' -- (set_color green) (string replace -r '\\..*$' '' $hostname) '> ' (set_color normal)";
+
 
           # work-around for
           # > command-not-found
