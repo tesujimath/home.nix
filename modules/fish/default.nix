@@ -34,6 +34,11 @@ in
           home-manager-switch.body = ''home-manager switch -v --flake $HOME_MANAGER_FLAKE_REF_ATTR'';
         };
 
+        shellAbbrs = {
+          # just playing around with merging this and the Babashka one
+          ll = "ls -lh";
+        };
+
         plugins = [
           {
             name = "bash-env";

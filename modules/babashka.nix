@@ -14,5 +14,9 @@ in
       [
         babashka
       ];
+
+    programs.fish.shellAbbrs = {
+      bbnrs = "bb --nrepl-server";
+    };
   };
 }
