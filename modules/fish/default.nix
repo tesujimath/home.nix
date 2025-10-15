@@ -55,6 +55,15 @@ in
             };
           }
           {
+            name = "module";
+            src = pkgs.fetchFromGitHub {
+              owner = "tesujimath";
+              repo = "lmod-fish";
+              rev = "6ebfc8accc68e86741cc667b7ae87e2f6272d4ec";
+              sha256 = "sha256-Fnngn3qVRB/E5sUytAsa7WZnPiYZJeCbMg5Ofiv2uiI=";
+            };
+          }
+          {
             name = "bass";
             src = pkgs.fetchFromGitHub {
               owner = "edc";
