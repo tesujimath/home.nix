@@ -21,6 +21,11 @@ in
       fish = {
         enable = true;
 
+        interactiveShellInit = ''
+          # disable Fish greeting message
+          set -g fish_greeting
+        '';
+
         functions = cfg.functions // {
           fish_prompt.body = "string join '' -- (set_color green) (string replace -r '\\..*$' '' $hostname) '> ' (set_color normal)";
 
