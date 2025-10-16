@@ -50,8 +50,8 @@ in
             src = pkgs.fetchFromGitHub {
               owner = "tesujimath";
               repo = "bash-env-fish";
-              rev = "6428bab4d106788894e3e1f2c07573a04fa12052";
-              sha256 = "sha256-t9RMDEq4rEHqKFr9R7SR5wC3DkB8dFOB9mz9KAvVXJg=";
+              rev = "416af79117d42c16447f9de7b2f5f14a00d47d9c";
+              sha256 = "sha256-jwr5ydVGbk4OF5BkLmyEEkEOW7FQywNdqW9HFlcxPvM=";
             };
           }
           {
