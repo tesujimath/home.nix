@@ -116,6 +116,12 @@ in
               family = "monospace";
             };
           };
+          window = {
+            padding = {
+              x = 6;
+              y = 6;
+            };
+          };
           terminal.shell = config.local.defaultShell;
         };
       };

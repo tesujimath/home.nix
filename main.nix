@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -22,6 +22,7 @@ in
     ./modules/mitmproxy
     ./modules/nushell
     ./modules/syncthing.nix
+    ./modules/tmux.nix
     ./modules/web-browser.nix
     ./modules/wezterm
     ./modules/xdg.nix
@@ -32,6 +33,7 @@ in
   ];
 
   options.local.defaultShell = mkOption { default = "bash"; type = types.str; description = "Default shell"; };
+  options.local.defaultShellPath = mkOption { default = "${pkgs.bash}/bin/bash"; type = types.str; description = "Absolute path of default shell"; };
   options.local.defaultEditor = mkOption { default = "vi"; type = types.str; description = "Default editor"; };
   options.local.user =
     {

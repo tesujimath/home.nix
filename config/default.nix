@@ -20,6 +20,7 @@ let
     "jujutsu"
     "mitmproxy"
     "nushell"
+    "tmux"
     "yazi"
     "zathura"
     "zellij"
@@ -172,6 +173,7 @@ in
           };
 
           defaultShell = "fish";
+          defaultShellPath = "${pkgs.fish}/bin/fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
@@ -234,6 +236,7 @@ in
           };
 
           defaultShell = "fish";
+          defaultShellPath = "${pkgs.fish}/bin/fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
@@ -280,6 +283,7 @@ in
           };
 
           defaultShell = "fish";
+          defaultShellPath = "${pkgs.fish}/bin/fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
@@ -334,6 +338,7 @@ in
           };
 
           defaultShell = "fish";
+          defaultShellPath = "${pkgs.fish}/bin/fish";
           defaultEditor = "hx";
 
           languages = commonLanguages;
