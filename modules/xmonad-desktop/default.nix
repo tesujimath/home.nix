@@ -44,7 +44,6 @@ in
           xdragon
           xmobar
           xorg.xmodmap
-          xscreensaver
         ];
 
       home.file = {
@@ -60,9 +59,6 @@ in
           recursive = true;
         };
       };
-
-      services.blueman-applet.enable = true;
-      services.trayer.enable = true;
 
       xsession = {
         enable = true;
@@ -100,7 +96,9 @@ in
 
           volnoti -t 2
 
-          pasystray &
+          # it seems we no longer need to explicitly start this,
+          # I'm unsure who starts it, but if we do here we'll get two of these varmints
+          #pasystray &
 
           # for xmonad
           export NIX_GHC="${xmonad-with-ghc}/bin/ghc"
@@ -124,6 +122,14 @@ in
           };
           terminal.shell = config.local.defaultShell;
         };
+      };
+
+      services = {
+        blueman-applet.enable = true;
+
+        trayer.enable = true;
+
+        xscreensaver.enable = true;
       };
 
       xdg.mimeApps = {
