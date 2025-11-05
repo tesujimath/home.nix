@@ -34,9 +34,19 @@ in
         [
           brave
           widevine-cdm # for Brave to play Spotify
-          firefox
           # google-chrome, incompatible with widevine-cdm which I need for Brave to play Spotify
         ];
+
+    programs = {
+      firefox = {
+        enable = true;
+        preferences = {
+          # disable libadwaita theming, for COSMIC desktop
+          # https://wiki.nixos.org/wiki/COSMIC
+          "widget.gtk.libadwaita-colors.enabled" = false;
+        };
+      };
+    };
 
     xdg.desktopEntries =
       if config.local.web-browser.wsl.use-native-windows then {
