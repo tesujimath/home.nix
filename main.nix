@@ -14,6 +14,7 @@ in
     ./modules/fish
     ./modules/fonts.nix
     ./modules/git
+    ./modules/gnome-keyring.nix
     ./modules/guile
     ./modules/helix.nix
     ./modules/jujutsu

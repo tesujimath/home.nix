@@ -344,6 +344,7 @@ in
           languages = commonLanguages;
 
           emacs.package = pkgs.emacs-pgtk; # for Wayland
+          gnome-keyring.enable = true;
         };
 
       home = {
