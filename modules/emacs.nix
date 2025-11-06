@@ -2,17 +2,19 @@
 
 let
   cfg = config.local.emacs;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkOption types;
 in
 {
   options.local.emacs = {
     enable = mkEnableOption "emacs";
+    package = mkOption { type = types.package; default = pkgs.emacs; description = "Emacs package to use"; };
   };
 
   config = mkIf cfg.enable {
     programs = {
       emacs = {
         enable = true;
+        package = cfg.package;
       };
     };
 

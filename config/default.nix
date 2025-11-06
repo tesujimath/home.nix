@@ -342,6 +342,8 @@ in
           defaultEditor = "hx";
 
           languages = commonLanguages;
+
+          emacs.package = pkgs.emacs-pgtk; # for Wayland
         };
 
       home = {
