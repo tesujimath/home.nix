@@ -21,6 +21,11 @@ in
         shell = config.local.defaultShellPath;
         mouse = cfg.mouse;
         extraConfig = ''
+          # Use more ergonomic C-a instead of C-b for prefix key
+          set -g prefix C-a
+          unbind C-b
+          bind C-a send-prefix
+
           # Preferred editor
           set -s editor ${config.local.defaultEditor}
  
