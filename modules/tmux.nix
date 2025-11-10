@@ -40,8 +40,8 @@ in
           set -g status-fg colour136   # text color
 
           # Make current window stand out
-          setw -g window-status-current-format " #[bold]#[fg=colour82]#I:#W#[default] "
-          setw -g window-status-current-style "bg=colour235 fg=colour82 bold"
+          # https://github.com/tmux/tmux/wiki/Formats#comparisons
+          setw -g window-status-current-format " #[bold]#[fg=colour82]#I:#W#[default]#{?window_zoomed_flag,#[fg=colour200#,bold] [Z]#[default],} "
 
           # Inactive windows
           setw -g window-status-format " #[fg=colour244]#I:#W#[default] "
