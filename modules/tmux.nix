@@ -52,6 +52,10 @@ in
           set -g status-left " #[fg=colour33,bold]#S #[default] "
           set -g status-right " #[fg=colour244]%Y-%m-%d %H:%M #[default] "
 
+          # active pane highlighting
+          set -g pane-active-border-style "fg=colour82,bold"
+          set -g pane-border-style "fg=colour244"
+
           # Enable 256-color and true-color (24-bit) support
           set -g default-terminal "tmux-256color"
           set -ga terminal-overrides ",*:Tc"
