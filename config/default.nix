@@ -14,7 +14,6 @@ let
     "fish"
     "fonts"
     "git"
-    "guile"
     "helix"
     "jujutsu"
     "mitmproxy"

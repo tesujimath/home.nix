@@ -13,7 +13,6 @@ in
     ./modules/fish
     ./modules/fonts.nix
     ./modules/git
-    ./modules/guile
     ./modules/helix.nix
     ./modules/jujutsu
     ./modules/ledger
