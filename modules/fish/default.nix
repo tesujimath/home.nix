@@ -24,11 +24,14 @@ in
         interactiveShellInit = ''
           # disable Fish greeting message
           set -g fish_greeting
-        '';
+        '' + (if config.local.carapace.enable then ''
+
+          # carapace integration
+          carapace _carapace | source
+        '' else "");
 
         functions = cfg.functions // {
           fish_prompt.body = "string join '' -- (set_color green) (string replace -r '\\..*$' '' $hostname) '> ' (set_color normal)";
-
 
           # work-around for
           # > command-not-found
