@@ -14,12 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bash-env-nushell = {
-      url = "github:tesujimath/bash-env-nushell/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.bash-env-json.follows = "bash-env-json";
-    };
-
     # needed to build schemat
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
@@ -37,7 +31,6 @@
       };
       flakePkgs = {
         bash-env-json = inputs.bash-env-json.packages.${system}.default;
-        bash-env-nushell = inputs.bash-env-nushell.packages.${system}.default;
       };
       localPkgs = {
         volnoti = pkgs.callPackage ./packages/volnoti { };

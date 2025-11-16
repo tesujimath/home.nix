@@ -19,7 +19,6 @@ let
     "helix"
     "jujutsu"
     "mitmproxy"
-    "nushell"
     "tmux"
     "yazi"
     "zathura"

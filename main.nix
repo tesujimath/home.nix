@@ -20,7 +20,6 @@ in
     ./modules/ledger
     ./modules/languages
     ./modules/mitmproxy
-    ./modules/nushell
     ./modules/syncthing.nix
     ./modules/tmux.nix
     ./modules/web-browser.nix

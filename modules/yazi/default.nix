@@ -13,7 +13,6 @@ in
       yazi = {
         enable = true;
         enableBashIntegration = config.local.bash.enable;
-        enableNushellIntegration = config.local.nushell.enable;
         settings = {
           mgr = {
             ratio = [ 1 2 5 ];
