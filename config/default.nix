@@ -21,7 +21,6 @@ let
     "tmux"
     "yazi"
     "zathura"
-    "zellij"
   ];
 
   allLanguages = enable [
