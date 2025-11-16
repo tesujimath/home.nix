@@ -132,11 +132,6 @@ in
                   auto-format = true;
                 }
                 {
-                  name = "elvish";
-                  formatter = remove-trailing-whitespace-formatter;
-                  auto-format = true;
-                }
-                {
                   name = "jinja";
                   language-servers = [ "jinja-lsp" ];
                   formatter = {

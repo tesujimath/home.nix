@@ -10,7 +10,6 @@ let
     "bash"
     "babashka"
     "carapace"
-    "elvish"
     "emacs"
     "fish"
     "fonts"
@@ -49,18 +48,6 @@ let
   ];
 
   commonLanguages = allLanguages // disable [ "dart" "packer" ];
-
-  # Elvish functions shared between profiles:
-  elvish-functions =
-    {
-      eri = "fn mosh-eri {|@args| e:mosh --server=/home/agresearch.co.nz/guestsi/.nix-profile/bin/mosh-server $@args}";
-
-      slurm = ''
-        fn squeue-me { squeue --me -o "%.10A %.40j %.4t %.20S %.11M %.11L %.5m %.3c %.12B"}
-        fn squeue-all { squeue -o "%.10A %.25u %.40j %.4t %.20S %.11M %.11L %.5m %.3c %.12B"}
-        fn sacct-json {|@rest| with E:SLURM_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S" { sacct --json $@rest } }
-      '';
-    };
 
   fish-functions = {
     common = {
@@ -179,10 +166,6 @@ in
 
           bash.profile.reuse-ssh-agent = true;
 
-          elvish.rcExtra = ''
-            ${elvish-functions.eri}
-          '';
-
           fish.functions = fish-functions.common // fish-functions.eri;
 
           web-browser.wsl.use-native-windows = true;
@@ -295,10 +278,6 @@ in
               export LD_PRELOAD=/usr/lib64/libnss_sss.so.2
             '';
           };
-
-          elvish.rcExtra = ''
-            ${elvish-functions.slurm}
-          '';
 
           fish.functions = fish-functions.common // fish-functions.slurm;
         };
