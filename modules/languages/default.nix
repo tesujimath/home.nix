@@ -9,7 +9,6 @@ in
     bash.enable = mkEnableOption "bash";
     beancount.enable = mkEnableOption "beancount";
     c.enable = mkEnableOption "C";
-    dart.enable = mkEnableOption "dart";
     dockerfile.enable = mkEnableOption "dockerfile";
     go.enable = mkEnableOption "go";
     jinja.enable = mkEnableOption "jinja";
@@ -17,7 +16,6 @@ in
     jsonnet.enable = mkEnableOption "jsonnet";
     markdown.enable = mkEnableOption "markdown";
     nix.enable = mkEnableOption "nix";
-    packer.enable = mkEnableOption "packer";
     python.enable = mkEnableOption "python";
     rust.enable = mkEnableOption "rust";
     steel.enable = mkEnableOption "steel";
@@ -43,8 +41,6 @@ in
         ++
         (if cfg.c.enable then [ clang-tools ] else [ ])
         ++
-        (if cfg.dart.enable then [ dart ] else [ ])
-        ++
         (if cfg.dockerfile.enable then [ dockerfile-language-server-nodejs ] else [ ])
         ++
         (if cfg.go.enable then [ go gopls ] else [ ])
@@ -58,8 +54,6 @@ in
         (if cfg.markdown.enable then [ marksman ] else [ ])
         ++
         (if cfg.nix.enable then [ nil nixpkgs-fmt ] else [ ])
-        ++
-        (if cfg.packer.enable then [ packer ] else [ ])
         ++
         (if cfg.python.enable then [ pyright pylint black ] else [ ])
         ++

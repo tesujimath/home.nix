@@ -25,7 +25,6 @@ let
     "bash"
     "beancount"
     "c"
-    "dart"
     "dockerfile"
     "go"
     "jinja"
@@ -33,7 +32,6 @@ let
     "jsonnet"
     "markdown"
     "nix"
-    "packer"
     "python"
     "rust"
     "steel"
@@ -44,7 +42,7 @@ let
     "yaml"
   ];
 
-  commonLanguages = allLanguages // disable [ "dart" "packer" ];
+  commonLanguages = allLanguages // disable [ ];
 
   fish-functions = {
     common = {

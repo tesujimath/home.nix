@@ -159,16 +159,6 @@ in
                   auto-format = true;
                 }
                 {
-                  name = "packer";
-                  scope = "source.packer";
-                  file-types = [ "pkr.hcl" ];
-                  formatter = {
-                    command = "packer";
-                    args = [ "fmt" ];
-                  };
-                  auto-format = true;
-                }
-                {
                   name = "r";
                   formatter = remove-trailing-whitespace-formatter;
                   auto-format = true;
