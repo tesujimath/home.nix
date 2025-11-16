@@ -316,7 +316,7 @@ in
       };
     };
 
-  personal =
+  sjg-nixos =
     let
       username = "sjg";
       homeDirectory = /home/sjg;
@@ -350,8 +350,8 @@ in
         inherit homeDirectory;
 
         file = {
-          ".env.sh".source = ./dotfiles.personal/env.sh;
-          ".ssh/config".source = ./dotfiles.personal/ssh_config;
+          ".env.sh".source = ./dotfiles.sjg-nixos/env.sh;
+          ".ssh/config".source = ./dotfiles.sjg-nixos/ssh_config;
         };
         packages = with pkgs;
           [
