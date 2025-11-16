@@ -164,14 +164,6 @@ in
                   auto-format = true;
                 }
                 {
-                  name = "scheme";
-                  language-servers = [ "steel-language-server" ];
-                  formatter = {
-                    command = "schemat";
-                  };
-                  auto-format = false; # using Emacs Scheme mode as primary, and formatting is different.
-                }
-                {
                   name = "toml";
                   formatter = {
                     command = "taplo";
@@ -224,11 +216,6 @@ in
                       command = "clippy";
                     };
                   };
-                };
-
-                steel-language-server = {
-                  command = "steel-language-server";
-                  args = [ ];
                 };
 
                 vscode-json-language-server = {

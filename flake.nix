@@ -13,17 +13,13 @@
       url = "github:tesujimath/bash-env-json/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # needed to build schemat
-    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs = inputs:
     let
       system = "x86_64-linux";
-      overlays = [ (import inputs.rust-overlay) ];
       pkgs = import inputs.nixpkgs {
-        inherit system overlays;
+        inherit system;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (pkg: true);

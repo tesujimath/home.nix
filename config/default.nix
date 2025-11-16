@@ -34,7 +34,6 @@ let
     "nix"
     "python"
     "rust"
-    "steel"
     "terraform"
     "toml"
     "typescript"
