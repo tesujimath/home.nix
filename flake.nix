@@ -16,42 +16,39 @@
   };
 
   outputs = inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import inputs.nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (pkg: true);
-        };
-      };
-      flakePkgs = {
-        bash-env-json = inputs.bash-env-json.packages.${system}.default;
-      };
-      localPkgs = {
-        volnoti = pkgs.callPackage ./packages/volnoti { };
-        prettier-with-plugins = pkgs.callPackage ./packages/prettier-with-plugins { };
-      };
-      lib = pkgs.lib;
-
-    in
     {
       homeConfigurations =
         let
           configurations = (
             import ./config/default.nix
-              {
-                inherit lib pkgs;
-              }
           );
         in
         builtins.mapAttrs
-          (name: attrs:
+          (name: { system
+                 , attrs
+                 }:
+            let
+              pkgs = import inputs.nixpkgs {
+                inherit system;
+                config = {
+                  allowUnfree = true;
+                  allowUnfreePredicate = (pkg: true);
+                };
+              };
+              flakePkgs = {
+                bash-env-json = inputs.bash-env-json.packages.${system}.default;
+              };
+              localPkgs = {
+                volnoti = pkgs.callPackage ./packages/volnoti { };
+                prettier-with-plugins = pkgs.callPackage ./packages/prettier-with-plugins { };
+              };
+
+            in
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
                 ./main.nix
-                (lib.attrsets.recursiveUpdate attrs {
+                (pkgs.lib.attrsets.recursiveUpdate (attrs pkgs) {
                   home.sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:$HOME/home.nix#${name}";
                 })
               ];

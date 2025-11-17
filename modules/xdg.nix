@@ -1,12 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
-  inherit (pkgs)
-    xdg-utils;
+  inherit (lib) mkIf;
+  inherit (pkgs) xdg-utils;
 in
 {
-  # this module is always on, as many things depend on it
-  config = {
+  # this module is on for Linux, as many things depend on it
+  config = mkIf pkgs.stdenv.isLinux {
     home.packages =
       [
         xdg-utils

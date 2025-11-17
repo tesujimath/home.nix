@@ -25,6 +25,7 @@ in
     ./modules/xmonad-desktop
     ./modules/yazi
     ./modules/zathura.nix
+    ./modules/zsh.nix
   ];
 
   options.local.defaultShell = mkOption { default = "bash"; type = types.str; description = "Default shell"; };

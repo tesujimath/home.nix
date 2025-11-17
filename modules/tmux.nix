@@ -28,9 +28,13 @@ in
 
           # Preferred editor
           set -s editor ${config.local.defaultEditor}
- 
+
           # Don't wait after escape, send it through to the terminal application immediately
           set -s escape-time 0
+
+          # we need to set the default command to prevent tmux defaulting to a login shell,
+          # which changes more than we want
+          set -g default-command ${config.local.defaultShellPath}
 
           # Make the status bar always visible
           set -g status on
