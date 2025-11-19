@@ -382,6 +382,7 @@ in
             "helix"
             "homebrew"
             "mitmproxy"
+            "syncthing"
             "tmux"
             "yazi"
             "zsh"
