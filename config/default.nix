@@ -380,6 +380,7 @@ in
             "fish"
             "git"
             "helix"
+            "homebrew"
             "mitmproxy"
             "tmux"
             "yazi"

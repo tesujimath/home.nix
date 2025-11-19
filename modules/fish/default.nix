@@ -28,6 +28,10 @@ in
 
           # carapace integration
           carapace _carapace | source
+        '' else "") + (if config.local.homebrew.enable then ''
+
+          # homebrew integration
+          eval "$(/opt/homebrew/bin/brew shellenv)"
         '' else "");
 
         functions = cfg.functions // {

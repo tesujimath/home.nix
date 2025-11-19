@@ -14,6 +14,7 @@ in
     ./modules/fonts.nix
     ./modules/git
     ./modules/helix.nix
+    ./modules/homebrew.nix
     ./modules/ledger
     ./modules/languages
     ./modules/mitmproxy
