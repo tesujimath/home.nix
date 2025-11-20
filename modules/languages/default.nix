@@ -61,7 +61,7 @@ in
         ++
         (if cfg.terraform.enable then [ terraform-ls ] else [ ])
         ++
-        (if cfg.toml.enable then [ taplo-lsp ] else [ ])
+        (if cfg.toml.enable then [ taplo ] else [ ])
         ++
         (if cfg.typescript.enable then [ nodePackages.typescript-language-server ] else [ ])
         ++

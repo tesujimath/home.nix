@@ -12,23 +12,27 @@ in
   config = mkIf cfg.enable {
     # requires hammerspoon cask to have been installed in nix-darwin
 
-    home = {
-      packages = with pkgs; [
-        fennel
-      ];
+    home =
+      let
+        fennel = pkgs.luaPackages.fennel;
+      in
+      {
+        packages = [
+          fennel
+        ];
 
-      file = {
-        ".hammerspoon/init.lua".source = ./init.lua;
-        ".hammerspoon/init.fnl".source = ./init.fnl;
+        file = {
+          ".hammerspoon/init.lua".source = ./init.lua;
+          ".hammerspoon/init.fnl".source = ./init.fnl;
 
-        # make Fennel available to Hammerspoon
-        ".hammerspoon/fennel.lua".source = "${pkgs.fennel}/share/lua/${pkgs.lua.luaversion}/fennel.lua";
+          # make Fennel available to Hammerspoon
+          ".hammerspoon/fennel.lua".source = "${fennel}/share/lua/${pkgs.lua.luaversion}/fennel.lua";
 
-        ".hammerspoon/fnl" = {
-          source = ./fnl;
-          recursive = true;
+          ".hammerspoon/fnl" = {
+            source = ./fnl;
+            recursive = true;
+          };
         };
       };
-    };
   };
 }

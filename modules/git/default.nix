@@ -13,9 +13,11 @@ in
     programs = {
       git = {
         enable = true;
-        userName = config.local.user.fullName;
-        userEmail = config.local.user.email;
-        extraConfig = {
+        settings = {
+          user = {
+            name = config.local.user.fullName;
+            email = config.local.user.email;
+          };
           fetch = {
             prune = true;
           };

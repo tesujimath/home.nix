@@ -8,7 +8,7 @@
         amber # CLI search/replace
         bottom
         dig
-        du-dust
+        dust
         eza
         fd
         file
