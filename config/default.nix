@@ -380,7 +380,7 @@ in
             # "carapace"
             "fish"
             "git"
-            "hammerspoon"
+            "spacehammer"
             "helix"
             "homebrew"
             "mitmproxy"
