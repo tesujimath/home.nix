@@ -24,64 +24,62 @@ in
 
         extraConfig =
           let
-            commonConfig =
-              ''
-                # Use more ergonomic C-a instead of C-b for prefix key
-                set -g prefix C-a
-                unbind C-b
-                bind C-a send-prefix
+            commonConfig = ''
+              # Use more ergonomic C-a instead of C-b for prefix key
+              set -g prefix C-a
+              unbind C-b
+              bind C-a send-prefix
 
-                # Preferred editor
-                set -s editor ${config.local.defaultEditor}
+              # Preferred editor
+              set -s editor ${config.local.defaultEditor}
 
-                # Don't wait after escape, send it through to the terminal application immediately
-                set -s escape-time 0
+              # Don't wait after escape, send it through to the terminal application immediately
+              set -s escape-time 0
 
-                # we need to set the default command to prevent tmux defaulting to a login shell,
-                # which changes more than we want
-                set -g default-command ${config.local.defaultShellPath}
+              # we need to set the default command to prevent tmux defaulting to a login shell,
+              # which changes more than we want
+              set -g default-command ${config.local.defaultShellPath}
 
-                # Make the status bar always visible
-                set -g status on
+              # Make the status bar always visible
+              set -g status on
 
-                # Set the status bar background and foreground
-                set -g status-bg colour234   # dark background
-                set -g status-fg colour136   # text color
+              # Set the status bar background and foreground
+              set -g status-bg colour234   # dark background
+              set -g status-fg colour136   # text color
 
-                # Make current window stand out
-                # https://github.com/tmux/tmux/wiki/Formats#comparisons
-                setw -g window-status-current-format " #[bold]#[fg=colour82]#I:#W#[default]#{?window_zoomed_flag,#[fg=colour200#,bold] [Z]#[default],} "
+              # Make current window stand out
+              # https://github.com/tmux/tmux/wiki/Formats#comparisons
+              setw -g window-status-current-format " #[bold]#[fg=colour82]#I:#W#[default]#{?window_zoomed_flag,#[fg=colour200#,bold] [Z]#[default],} "
 
-                # Inactive windows
-                setw -g window-status-format " #[fg=colour244]#I:#W#[default] "
+              # Inactive windows
+              setw -g window-status-format " #[fg=colour244]#I:#W#[default] "
 
-                # Optional: separators
-                set -g status-left-length 20
-                set -g status-right-length 140
-                set -g status-left " #[fg=colour33,bold]#S #[default] "
-                set -g status-right " #[fg=colour244]%Y-%m-%d %H:%M #[default] "
+              # Optional: separators
+              set -g status-left-length 20
+              set -g status-right-length 140
+              set -g status-left " #[fg=colour33,bold]#S #[default] "
+              set -g status-right " #[fg=colour244]%Y-%m-%d %H:%M #[default] "
 
-                # active pane highlighting
-                set -g pane-active-border-style "fg=colour82,bold"
-                set -g pane-border-style "fg=colour244"
+              # active pane highlighting
+              set -g pane-active-border-style "fg=colour82,bold"
+              set -g pane-border-style "fg=colour244"
 
-                # Enable 256-color and true-color (24-bit) support
-                set -g default-terminal "tmux-256color"
-                set -ga terminal-overrides ",*:Tc"
+              # Enable 256-color and true-color (24-bit) support
+              set -g default-terminal "tmux-256color"
+              set -ga terminal-overrides ",*:Tc"
 
-                # Ensure modern extended underline styles are passed through
-                set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
-                set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
-
-                # ensure new window panes open in the same directory
-                bind '"' split-window -v -c "#{pane_current_path}"
-                bind % split-window -h -c "#{pane_current_path}"
-                bind c new-window -c "#{pane_current_path}"
-              '';
+              # ensure new window panes open in the same directory
+              bind '"' split-window -v -c "#{pane_current_path}"
+              bind % split-window -h -c "#{pane_current_path}"
+              bind c new-window -c "#{pane_current_path}"
+            '';
             linuxConfig = ''
               # Linux only
 
-              # <empty>
+              # Ensure modern extended underline styles are passed through
+              # - not supported by Terminal.app on MacOS, falls back to inverse video
+              set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
+              set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
             '';
             darwinConfig = ''
               # MacOS only

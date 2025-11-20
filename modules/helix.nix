@@ -73,6 +73,7 @@ in
                 end = "no_op";
               };
             };
+            theme = if stdenv.isDarwin then "default_for_macos" else "default";
           };
           languages =
             let
@@ -221,6 +222,27 @@ in
                 };
               };
             };
+          themes = {
+            default_for_macos = {
+              inherits = "default";
+              "diagnostic.error" = {
+                fg = "apricot";
+                modifiers = [ "underlined" ];
+              };
+              "diagnostic.warning" = {
+                fg = "lightning";
+                modifiers = [ "underlined" ];
+              };
+              "diagnostic.info" = {
+                fg = "delta";
+                modifiers = [ "underlined" ];
+              };
+              "diagnostic.hint" = {
+                fg = "silver";
+                modifiers = [ "underlined" ];
+              };
+            };
+          };
         };
     };
   };
