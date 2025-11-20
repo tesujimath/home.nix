@@ -10,6 +10,7 @@ in
     beancount.enable = mkEnableOption "beancount";
     c.enable = mkEnableOption "C";
     dockerfile.enable = mkEnableOption "dockerfile";
+    fennel.enable = mkEnableOption "fennel";
     go.enable = mkEnableOption "go";
     jinja.enable = mkEnableOption "jinja";
     json.enable = mkEnableOption "json";
@@ -38,7 +39,9 @@ in
         ++
         (if cfg.c.enable then [ clang-tools ] else [ ])
         ++
-        (if cfg.dockerfile.enable then [ dockerfile-language-server-nodejs ] else [ ])
+        (if cfg.dockerfile.enable then [ dockerfile-language-server ] else [ ])
+        ++
+        (if cfg.fennel.enable then [ fennel-ls fnlfmt ] else [ ])
         ++
         (if cfg.go.enable then [ go gopls ] else [ ])
         ++

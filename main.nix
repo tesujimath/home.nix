@@ -13,6 +13,7 @@ in
     ./modules/fish
     ./modules/fonts.nix
     ./modules/git
+    ./modules/hammerspoon
     ./modules/helix.nix
     ./modules/homebrew.nix
     ./modules/ledger
