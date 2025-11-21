@@ -16,6 +16,7 @@ in
     ./modules/spacehammer
     ./modules/helix.nix
     ./modules/homebrew.nix
+    ./modules/karabiner
     ./modules/ledger
     ./modules/languages
     ./modules/mitmproxy

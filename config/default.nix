@@ -383,6 +383,7 @@ in
             "spacehammer"
             "helix"
             "homebrew"
+            "karabiner"
             "mitmproxy"
             "syncthing"
             "tmux"
