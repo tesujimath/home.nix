@@ -3,13 +3,21 @@ local config = wezterm.config_builder()
 
 --config.debug_key_events = true
 
--- default shell is Nu inside WSL
-config.default_prog = { "/bin/sh", "--login", "-c", "TERM=wezterm nu"}
+config.front_end = "WebGpu"
 
-config.font = wezterm.font "Consolas"
-config.font_size = 11.0
+-- default shell is Fish
+config.default_prog = { "/bin/sh", "--login", "-c", "fish"}
+
+config.font = wezterm.font_with_fallback {
+  "SF Mono",
+  "Consolas",
+}
+config.font_size = 12.0
+
 --config.color_scheme = "Solarized Dark Higher Contrast"
-config.color_scheme = "SpaceGray Eighties Dull"
+-- config.color_scheme = "SpaceGray Eighties Dull"
+config.color_scheme = "catppuccin-mocha"
+
 local preferredSchemes = "Dark"
 config.selection_word_boundary = " \t\n{}[]()\"'`│"
 

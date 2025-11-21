@@ -73,7 +73,6 @@ in
                 end = "no_op";
               };
             };
-            theme = if stdenv.isDarwin then "default_for_macos" else "default";
           };
           languages =
             let
@@ -223,7 +222,7 @@ in
               };
             };
           themes = {
-            default_for_macos = {
+            macos_terminal = {
               inherits = "default";
               "diagnostic.error" = {
                 fg = "apricot";

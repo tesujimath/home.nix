@@ -386,6 +386,7 @@ in
             "mitmproxy"
             "syncthing"
             "tmux"
+            "wezterm"
             "yazi"
             "zsh"
 
