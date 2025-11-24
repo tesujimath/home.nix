@@ -1,5 +1,6 @@
 local wezterm = require "wezterm"
 local config = wezterm.config_builder()
+local act = wezterm.action
 
 --config.debug_key_events = true
 
@@ -82,14 +83,21 @@ local function themeDownCycler(window, _)
 end
 
 config.keys = {
+
+  -- toggle fullscreen, and remove default binding for this
+  { key = 'f', mods = 'CTRL|SUPER', action = act.ToggleFullScreen },
+  { key = 'Enter', mods = 'ALT', action = act.DisableDefaultAssignment },
+
+  -- toggle fullscreen
+  { key = '_', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
   -- Theme Cycler
   -- Look up scheme you switched to with CTRL-SHIFT-L
   { key = "t", mods = "ALT", action = wezterm.action_callback(themeUpCycler) },
   { key = "t", mods = "ALT|SHIFT", action = wezterm.action_callback(themeDownCycler) },
 
   -- don't steal Emacs undo
-  { key = '-', mods = 'SHIFT|CTRL', action = wezterm.action.DisableDefaultAssignment },
-  { key = '_', mods = 'SHIFT|CTRL', action = wezterm.action.DisableDefaultAssignment },
+  { key = '-', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
+  { key = '_', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
 }
 
 return config
