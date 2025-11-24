@@ -12,7 +12,7 @@ config.font = wezterm.font_with_fallback {
   "SF Mono",
   "Consolas",
 }
-config.font_size = 12.0
+config.font_size = 10.0
 
 --config.color_scheme = "Solarized Dark Higher Contrast"
 -- config.color_scheme = "SpaceGray Eighties Dull"
