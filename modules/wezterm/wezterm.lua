@@ -22,6 +22,32 @@ config.color_scheme = "catppuccin-mocha"
 local preferredSchemes = "Dark"
 config.selection_word_boundary = " \t\n{}[]()\"'`│"
 
+-- action to rename a tab
+-- https://wezterm.org/config/lua/keyassignment/PromptInputLine.html
+local rename_tab = wezterm.action_callback(function(window, pane)
+  local current_title = window:active_tab():get_title()
+
+  window:perform_action(
+    act.PromptInputLine {
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { AnsiColor = 'Fuchsia' } },
+        { Text = 'New tab name' },
+      },
+      --initial_value = current_title, -- only available in nightly builds
+      action = wezterm.action_callback(function(win, p, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          win:active_tab():set_title(line)
+        end
+      end),
+    },
+    pane
+  )
+end)
+
 ---cycle through builtin dark schemes in dark mode,
 ---and through light schemes in light mode
 local function themeCycler(window, offset)
@@ -84,16 +110,17 @@ end
 
 config.keys = {
 
-  -- toggle fullscreen, and remove default binding for this
+  -- toggle fullscreen with standard macOS shortcut key, and remove default binding for this
   { key = 'f', mods = 'CTRL|SUPER', action = act.ToggleFullScreen },
   { key = 'Enter', mods = 'ALT', action = act.DisableDefaultAssignment },
 
-  -- toggle fullscreen
-  { key = '_', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
+  -- rename tab, keybinding like tmux
+  { key = '<', mods = 'SHIFT|CTRL', action = rename_tab },
+
   -- Theme Cycler
   -- Look up scheme you switched to with CTRL-SHIFT-L
-  { key = "t", mods = "ALT", action = wezterm.action_callback(themeUpCycler) },
-  { key = "t", mods = "ALT|SHIFT", action = wezterm.action_callback(themeDownCycler) },
+  { key = 't', mods = 'ALT', action = wezterm.action_callback(themeUpCycler) },
+  { key = 't', mods = 'ALT|SHIFT', action = wezterm.action_callback(themeDownCycler) },
 
   -- don't steal Emacs undo
   { key = '-', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
