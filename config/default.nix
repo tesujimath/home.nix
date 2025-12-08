@@ -90,6 +90,8 @@ let
       done
     '';
   });
+
+  wezterm_stable = pkgs: pkgs.callPackage ../modules/wezterm/packages/20240203-110809-5046fc22.nix { };
 in
 {
   # starter profile for third parties,
@@ -191,6 +193,9 @@ in
             (moshWithKerberos pkgs)
           ];
         };
+
+        # wezterm version needs to match what I have installed in Windows, which is latest stable
+        programs.wezterm.package = wezterm_stable pkgs;
       };
     };
 
@@ -258,7 +263,9 @@ in
       system = "x86_64-linux";
       attrs = pkgs: {
         local = pkgs.lib.attrsets.recursiveUpdate
-          (commonModules // (disable [
+          (commonModules // (enable [
+            "wezterm"
+          ]) // (disable [
             # also use system git on eRI to avoid ssh cert problem as on legacy HPC
             "git"
           ]))
@@ -296,6 +303,9 @@ in
           ];
           sessionVariables = { };
         };
+
+        # wezterm version needs to match what I have installed in Windows, which is latest stable
+        programs.wezterm.package = wezterm_stable pkgs;
       };
     };
 
