@@ -55,7 +55,7 @@ in
         ++
         (if cfg.nix.enable then [ nil nixpkgs-fmt ] else [ ])
         ++
-        (if cfg.python.enable then [ pyright pylint black ] else [ ])
+        (if cfg.python.enable then [ pyright ruff ] else [ ])
         ++
         (if cfg.rust.enable then [ rust-analyzer rustfmt ] else [ ])
         ++

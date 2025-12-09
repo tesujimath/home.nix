@@ -94,7 +94,15 @@ in
                 {
                   name = "python";
                   language-servers = [ "pyright" ];
-                  formatter = { command = "black"; args = [ "-" "--quiet" ]; };
+                  formatter = {
+                    command = "ruff";
+                    args = [
+                      "format"
+                      "--stdin-filename"
+                      "%{buffer_name}"
+                      "-"
+                    ];
+                  };
                   auto-format = true;
                 }
                 {
