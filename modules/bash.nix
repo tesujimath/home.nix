@@ -51,7 +51,7 @@ in
         ${if cfg.profile.reuse-ssh-agent then ''
           # reuse an ssh-agent if we can
           unset SSH_AUTH_SOCK
-          for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.*`; do
+          for ssh_auth_sock in `ls -t /tmp/ssh-*/agent.* $HOME/.ssh/agent/* 2>/dev/null`; do
             SSH_AUTH_SOCK=''$ssh_auth_sock ssh-add -l >/dev/null 2>&1
             # 0 means connected and found ssh identities
             # 1 means connected but no ssh identities found
