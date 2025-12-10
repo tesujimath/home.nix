@@ -2,6 +2,7 @@
 
 let
   cfg = config.local.fish;
+  inherit (pkgs) makeWrapper stdenv;
   inherit (lib) mkEnableOption mkIf mkOption types;
   inherit (specialArgs) flakePkgs;
 in
@@ -13,9 +14,28 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
-      flakePkgs.bash-env-json
-    ];
+    home.packages =
+      let
+        # a fish with all the language servers on the path, for troubleshooting
+        vanilla-fish = pkgs.fish;
+        fish-with-lsps = stdenv.mkDerivation {
+          pname = "fish-with-lsps";
+          version = "${vanilla-fish.version}";
+
+          phases = [ "installPhase" ];
+
+          nativeBuildInputs = [ makeWrapper ];
+
+          installPhase = ''
+            mkdir -p $out/bin
+            makeWrapper "${vanilla-fish}/bin/fish" $out/bin/fish-with-lsps --suffix PATH ':' "${lib.makeBinPath config.local.helix.language-support-packages}"
+          '';
+        };
+      in
+      [
+        flakePkgs.bash-env-json
+        fish-with-lsps
+      ];
 
     programs = {
       fish = {
