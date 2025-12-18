@@ -9,6 +9,7 @@ in
     bash.enable = mkEnableOption "bash";
     beancount.enable = mkEnableOption "beancount";
     c.enable = mkEnableOption "C";
+    clojure.enable = mkEnableOption "clojure";
     dockerfile.enable = mkEnableOption "dockerfile";
     fennel.enable = mkEnableOption "fennel";
     go.enable = mkEnableOption "go";
@@ -78,5 +79,11 @@ in
       # It would be nicer to pull this in from the helix module rather than set it here,
       # but I am unsure how to get NixOS modules to do that.
       local.helix.language-support-packages = language-support-packages;
+
+      # Make zprint for Clojure available globally, for use from Emacs
+      home.packages =
+        if cfg.clojure.enable then [
+          pkgs.zprint
+        ] else [ ];
     };
 }

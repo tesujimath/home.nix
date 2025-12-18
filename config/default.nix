@@ -24,6 +24,7 @@ let
     "bash"
     "beancount"
     "c"
+    "clojure"
     "dockerfile"
     "fennel"
     "go"
