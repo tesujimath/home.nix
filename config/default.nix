@@ -389,6 +389,7 @@ in
             # "bash"
             # "babashka"
             # "carapace"
+            "emacs" # support packages only on macOS
             "fish"
             "git"
             "spacehammer"
@@ -402,7 +403,6 @@ in
             "zsh"
 
             # not these GUI apps and things we don't need on Mac:
-            # "emacs"
             # "fonts"
             # "zathura"
           ])
