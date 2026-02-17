@@ -22,6 +22,27 @@
         "type": "github"
       }
     },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "hl",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765835352,
+        "narHash": "sha256-XswHlK/Qtjasvhd1nOa1e8MgZ8GS//jBoTqWtrS1Giw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "a34fae9c08a15ad73f295041fec82323541400a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -37,6 +58,28 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "hl": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1767821814,
+        "narHash": "sha256-MNJXyx5IVdy9Izt+TelB4EXtg9hZgGn6ZYHiqffBBoA=",
+        "owner": "pamburus",
+        "repo": "hl",
+        "rev": "6f8d4296bfebb1cc8fc2903a09256e17b7506b69",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pamburus",
+        "repo": "hl",
         "type": "github"
       }
     },
@@ -79,8 +122,30 @@
     "root": {
       "inputs": {
         "bash-env-json": "bash-env-json",
+        "hl": "hl",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "hl",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767322002,
+        "narHash": "sha256-yHKXXw2OWfIFsyTjduB4EyFwR0SYYF0hK8xI9z4NIn0=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "03c6e38661c02a27ca006a284813afdc461e9f7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "systems": {

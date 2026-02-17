@@ -13,6 +13,11 @@
       url = "github:tesujimath/bash-env-json/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hl = {
+      url = "github:pamburus/hl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -37,6 +42,7 @@
               };
               flakePkgs = {
                 bash-env-json = inputs.bash-env-json.packages.${system}.default;
+                hl = inputs.hl.packages.${system}.default;
               };
               localPkgs = {
                 volnoti = pkgs.callPackage ./packages/volnoti { };

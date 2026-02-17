@@ -1,9 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
 
+let
+  inherit (specialArgs) flakePkgs;
+in
 {
   config = {
     home.packages =
-      with pkgs;
+      (with pkgs;
       [
         amber # CLI search/replace
         bottom
@@ -28,6 +31,7 @@
         unzip
         virtualenv # better than python -m venv because support for different shells
         wget
-      ];
+      ]) ++ (with flakePkgs;
+      [ hl ]);
   };
 }
