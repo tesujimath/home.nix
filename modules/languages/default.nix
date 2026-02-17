@@ -80,10 +80,11 @@ in
       # but I am unsure how to get NixOS modules to do that.
       local.helix.language-support-packages = language-support-packages;
 
-      # Make zprint for Clojure available globally, for use from Emacs
+      # Make Clojure support available globally, for use from Emacs
       home.packages =
-        if cfg.clojure.enable then [
-          pkgs.zprint
+        if cfg.clojure.enable then with pkgs; [
+          clj-kondo
+          zprint
         ] else [ ];
     };
 }
