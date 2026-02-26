@@ -107,7 +107,7 @@ in
                 }
                 {
                   name = "rust";
-                  formatter = { command = "rustfmt"; args = [ "--edition=2021" ]; };
+                  formatter = { command = "rustfmt"; args = [ "--edition=2024" ]; };
                   auto-format = true;
                 }
                 {
