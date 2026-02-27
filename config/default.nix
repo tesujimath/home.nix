@@ -387,7 +387,7 @@ in
         local = pkgs.lib.attrsets.recursiveUpdate
           (enable [
             # "bash"
-            # "babashka"
+            "babashka"
             # "carapace"
             "emacs" # support packages only on macOS
             "fish"
