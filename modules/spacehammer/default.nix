@@ -30,12 +30,10 @@ in
 
           ".hammerspoon".source =
             pkgs.fetchFromGitHub {
-              # TODO revert to mainline once path issue fixed:
-              # owner = "agzam";
-              owner = "tesujimath";
+              owner = "agzam";
               repo = "spacehammer";
-              rev = "4d404a708a42d665260affd03f7c3ca4626d54d2";
-              sha256 = "sha256-cH5E1qhKsbLSP+a4+7pR7i7Trtvn2+y4rL+aX/USLVI=";
+              rev = "0725fa69e94d397b542e303cc8c774a0d7d5d5ab";
+              sha256 = "sha256-joFelJ4K+dehF3HHP5eF2RshG29KP5iCpzPVstMey+o=";
             };
 
           ".spacehammer/config.fnl".source = ./config.fnl;
