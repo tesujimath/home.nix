@@ -64,7 +64,7 @@ in
         ++
         (if cfg.toml.enable then [ taplo ] else [ ])
         ++
-        (if cfg.typescript.enable then [ nodePackages.typescript-language-server ] else [ ])
+        (if cfg.typescript.enable then [ nodePackages.typescript-language-server biome ] else [ ])
         ++
         (if cfg.typst.enable then [
           # typst-lsp is broken just now

@@ -186,6 +186,86 @@ in
                   formatter = remove-trailing-whitespace-formatter;
                   auto-format = true;
                 }
+
+                # for biome, TODO reorder
+                {
+                  name = "javascript";
+                  language-servers = [
+                    {
+                      name = "typescript-language-server";
+                      except-features = [ "format" ];
+                    }
+                    "biome"
+                  ];
+                  formatter = {
+                    command = "biome";
+                    args = [ "format" ];
+                  };
+                  auto-format = true;
+                }
+
+                {
+                  name = "typescript";
+                  language-servers = [
+                    {
+                      name = "typescript-language-server";
+                      except-features = [ "format" ];
+                    }
+                    "biome"
+                  ];
+                  formatter = {
+                    command = "biome";
+                    args = [ "format" ];
+                  };
+                  auto-format = true;
+                }
+
+                {
+                  name = "tsx";
+                  language-servers = [
+                    {
+                      name = "typescript-language-server";
+                      except-features = [ "format" ];
+                    }
+                    "biome"
+                  ];
+                  formatter = {
+                    command = "biome";
+                    args = [ "format" ];
+                  };
+                  auto-format = true;
+                }
+
+                {
+                  name = "jsx";
+                  language-servers = [
+                    {
+                      name = "typescript-language-server";
+                      except-features = [ "format" ];
+                    }
+                    "biome"
+                  ];
+                  formatter = {
+                    command = "biome";
+                    args = [ "format" ];
+                  };
+                  auto-format = true;
+                }
+
+                {
+                  name = "json";
+                  language-servers = [
+                    {
+                      name = "vscode-json-language-server";
+                      except-features = [ "format" ];
+                    }
+                    "biome"
+                  ];
+                  formatter = {
+                    command = "biome";
+                    args = [ "format" ];
+                  };
+                }
               ];
 
               language-server = {
@@ -206,6 +286,11 @@ in
                   # number_currency_spacing = 1;
                   # };
                   # };
+                };
+
+                biome = {
+                  command = "biome";
+                  args = [ "lsp-proxy" ];
                 };
 
                 jinja-lsp = {
