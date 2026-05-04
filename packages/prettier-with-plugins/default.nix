@@ -1,7 +1,7 @@
 { buildNpmPackage
 , fetchFromGitHub
 , makeWrapper
-, nodePackages
+, prettier
 , symlinkJoin
 }:
 let
@@ -23,7 +23,7 @@ in
 symlinkJoin {
   name = "prettier-with-plugins";
   paths = [
-    nodePackages.prettier
+    prettier
   ];
   buildInputs = [ makeWrapper ];
   postBuild = ''

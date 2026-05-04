@@ -11,17 +11,26 @@ in
   };
 
   config = mkMerge [
-    (mkIf (cfg.enable && !stdenv.isDarwin)
+    (mkIf cfg.enable
       {
-        # not for macOS
-        # on MacOS we use the Homebrew cask installed in nix-darwin
         programs = {
-          emacs = {
-            # on macOS we install the application as a HomeBrew Cask, so it appears in Spotlight
-            enable = !stdenv.isDarwin;
-          };
+          emacs.enable = true;
         };
 
+        # all platforms
+        home.packages =
+          with pkgs;
+          [
+            aspell
+            aspellDicts.en
+            aspellDicts.en-computers
+            aspellDicts.en-science
+            sqlite # for org-roam
+          ];
+      })
+    (mkIf (cfg.enable && !stdenv.isDarwin)
+      {
+        # no XDG on macOS
         xdg.desktopEntries = {
           org-protocol = {
             # https://orgmode.org/worg/org-contrib/org-protocol.html
@@ -42,19 +51,6 @@ in
             "x-scheme-handler/org-protocol" = [ "org-protocol.desktop" ];
           };
         };
-      })
-    (mkIf cfg.enable
-      {
-        # all platforms
-        home.packages =
-          with pkgs;
-          [
-            aspell
-            aspellDicts.en
-            aspellDicts.en-computers
-            aspellDicts.en-science
-            sqlite # for org-roam
-          ];
       })
   ];
 }

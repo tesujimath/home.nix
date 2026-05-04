@@ -13,6 +13,7 @@ in
       yazi = {
         enable = true;
         enableBashIntegration = config.local.bash.enable;
+        shellWrapperName = "y";
         settings = {
           mgr = {
             ratio = [ 1 2 5 ];

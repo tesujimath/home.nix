@@ -384,12 +384,16 @@ in
     {
       system = "aarch64-darwin";
       attrs = pkgs: {
+        # enable copying macOS applications to the user environment (works with Spotlight)
+        targets.darwin.copyApps.enable = true;
+        targets.darwin.linkApps.enable = false;
+
         local = pkgs.lib.attrsets.recursiveUpdate
           (enable [
             # "bash"
             "babashka"
             # "carapace"
-            "emacs" # support packages only on macOS
+            "emacs"
             "fish"
             "git"
             "spacehammer"
@@ -397,7 +401,7 @@ in
             "homebrew"
             "mitmproxy"
             "syncthing"
-            "tmux"
+            "web-browser"
             "wezterm"
             "yazi"
             "zsh"

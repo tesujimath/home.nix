@@ -2,7 +2,8 @@
 
 let
   cfg = config.local.web-browser;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkMerge;
+  inherit (pkgs) stdenv;
 in
 {
   options.local.web-browser = {
@@ -27,57 +28,63 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
-    home.packages =
-      if config.local.web-browser.wsl.use-native-windows then [ ] else
-        with pkgs;
-        [
-          brave
-          widevine-cdm # for Brave to play Spotify
-          firefox
-          # google-chrome, incompatible with widevine-cdm which I need for Brave to play Spotify
-        ];
+  config = mkMerge [
+    (mkIf (cfg.enable && stdenv.isDarwin)
+      {
+        programs.firefox.enable = true;
+      })
+    (mkIf (cfg.enable && !stdenv.isDarwin) {
+      home.packages =
+        if config.local.web-browser.wsl.use-native-windows then [ ] else
+          with pkgs;
+          [
+            brave
+            widevine-cdm # for Brave to play Spotify
+            firefox
+            # google-chrome, incompatible with widevine-cdm which I need for Brave to play Spotify
+          ];
 
-    xdg.desktopEntries =
-      if config.local.web-browser.wsl.use-native-windows then {
-        firefox = {
-          name = "Firefox";
-          genericName = "Web Browser";
-          exec = config.local.web-browser.wsl.firefox.exec;
-          terminal = false;
-          categories = [ "Application" "Network" "WebBrowser" ];
-          mimeType = [ "text/html" "text/xml" ];
-        };
-        google-chrome = {
-          name = "Google Chrome";
-          genericName = "Web Browser";
-          exec = config.local.web-browser.wsl.google-chrome.exec;
-          terminal = false;
-          categories = [ "Application" "Network" "WebBrowser" ];
-          mimeType = [ "text/html" "text/xml" ];
-        };
-      } else { };
+      xdg.desktopEntries =
+        if config.local.web-browser.wsl.use-native-windows then {
+          firefox = {
+            name = "Firefox";
+            genericName = "Web Browser";
+            exec = config.local.web-browser.wsl.firefox.exec;
+            terminal = false;
+            categories = [ "Application" "Network" "WebBrowser" ];
+            mimeType = [ "text/html" "text/xml" ];
+          };
+          google-chrome = {
+            name = "Google Chrome";
+            genericName = "Web Browser";
+            exec = config.local.web-browser.wsl.google-chrome.exec;
+            terminal = false;
+            categories = [ "Application" "Network" "WebBrowser" ];
+            mimeType = [ "text/html" "text/xml" ];
+          };
+        } else { };
 
-    xdg.mimeApps = {
-      defaultApplications =
-        let handlers-for = protocols: applications: lib.attrsets.genAttrs protocols (name: applications);
-        in
-        handlers-for [
-          "application/x-extension-htm"
-          "application/x-extension-html"
-          "application/x-extension-shtml"
-          "application/x-extension-xht"
-          "application/x-extension-xhtml"
-          "application/xhtml+xml"
-          "text/html"
-          "x-scheme-handler/chrome"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
-        ] [
-          "firefox.desktop"
-          "brave.desktop"
-          "google-chrome.desktop"
-        ];
-    };
-  };
+      xdg.mimeApps = {
+        defaultApplications =
+          let handlers-for = protocols: applications: lib.attrsets.genAttrs protocols (name: applications);
+          in
+          handlers-for [
+            "application/x-extension-htm"
+            "application/x-extension-html"
+            "application/x-extension-shtml"
+            "application/x-extension-xht"
+            "application/x-extension-xhtml"
+            "application/xhtml+xml"
+            "text/html"
+            "x-scheme-handler/chrome"
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+          ] [
+            "firefox.desktop"
+            "brave.desktop"
+            "google-chrome.desktop"
+          ];
+      };
+    })
+  ];
 }

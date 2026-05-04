@@ -34,7 +34,7 @@ in
           inherit (specialArgs) localPkgs;
         in
         with pkgs;
-        (if cfg.bash.enable then [ nodePackages.bash-language-server shfmt ] else [ ])
+        (if cfg.bash.enable then [ bash-language-server shfmt ] else [ ])
         ++
         (if cfg.beancount.enable then [ beancount-language-server ] else [ ])
         ++
@@ -64,7 +64,7 @@ in
         ++
         (if cfg.toml.enable then [ taplo ] else [ ])
         ++
-        (if cfg.typescript.enable then [ nodePackages.typescript-language-server biome ] else [ ])
+        (if cfg.typescript.enable then [ typescript-language-server biome ] else [ ])
         ++
         (if cfg.typst.enable then [
           # typst-lsp is broken just now
