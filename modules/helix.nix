@@ -2,13 +2,12 @@
 
 let
   cfg = config.local.helix;
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkEnableOption mkIf;
   inherit (pkgs) makeWrapper stdenv;
 in
 {
   options.local.helix = {
     enable = mkEnableOption "helix";
-    language-support-packages = mkOption { type = types.listOf types.package; description = "Programming language support packages"; };
   };
 
   config = mkIf cfg.enable {
@@ -26,7 +25,7 @@ in
 
             installPhase = ''
               mkdir -p $out/bin
-              makeWrapper "${vanilla-helix}/bin/hx" $out/bin/hx --suffix PATH ':' "${lib.makeBinPath cfg.language-support-packages}"
+              makeWrapper "${vanilla-helix}/bin/hx" $out/bin/hx --suffix PATH ':' "${lib.makeBinPath config.local.language-support-packages}"
             '';
           };
         in

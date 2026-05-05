@@ -28,7 +28,7 @@ in
 
           installPhase = ''
             mkdir -p $out/bin
-            makeWrapper "${vanilla-fish}/bin/fish" $out/bin/fish-with-lsps --suffix PATH ':' "${lib.makeBinPath config.local.helix.language-support-packages}"
+            makeWrapper "${vanilla-fish}/bin/fish" $out/bin/fish-with-lsps --suffix PATH ':' "${lib.makeBinPath config.local.language-support-packages}"
           '';
         };
       in

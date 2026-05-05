@@ -2,7 +2,7 @@
 
 let
   cfg = config.local.emacs;
-  inherit (lib) mkEnableOption mkIf mkMerge;
+  inherit (lib) concatMapStringsSep mkEnableOption mkIf mkMerge;
   inherit (pkgs) stdenv;
 in
 {
@@ -27,6 +27,10 @@ in
             aspellDicts.en-science
             sqlite # for org-roam
           ];
+        home.file.".config/emacs/exec-path-nix.el".text = ''
+          (dolist (path '(${concatMapStringsSep " " (p: ''"${lib.getBin p}/bin"'') config.local.language-support-packages}))
+            (add-to-list 'exec-path path t))
+        '';
       })
     (mkIf (cfg.enable && !stdenv.isDarwin)
       {

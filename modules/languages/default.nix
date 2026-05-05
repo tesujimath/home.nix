@@ -2,29 +2,37 @@
 
 let
   cfg = config.local.languages;
-  inherit (lib) mkEnableOption;
+  inherit (lib) mkEnableOption mkOption;
 in
 {
-  options.local.languages = {
-    bash.enable = mkEnableOption "bash";
-    beancount.enable = mkEnableOption "beancount";
-    c.enable = mkEnableOption "C";
-    clojure.enable = mkEnableOption "clojure";
-    dockerfile.enable = mkEnableOption "dockerfile";
-    fennel.enable = mkEnableOption "fennel";
-    go.enable = mkEnableOption "go";
-    jinja.enable = mkEnableOption "jinja";
-    json.enable = mkEnableOption "json";
-    jsonnet.enable = mkEnableOption "jsonnet";
-    markdown.enable = mkEnableOption "markdown";
-    nix.enable = mkEnableOption "nix";
-    python.enable = mkEnableOption "python";
-    rust.enable = mkEnableOption "rust";
-    terraform.enable = mkEnableOption "terraform";
-    toml.enable = mkEnableOption "toml";
-    typescript.enable = mkEnableOption "typescript";
-    typst.enable = mkEnableOption "typst";
-    yaml.enable = mkEnableOption "yaml";
+  options.local = {
+    languages = {
+      bash.enable = mkEnableOption "bash";
+      beancount.enable = mkEnableOption "beancount";
+      c.enable = mkEnableOption "C";
+      clojure.enable = mkEnableOption "clojure";
+      dockerfile.enable = mkEnableOption "dockerfile";
+      fennel.enable = mkEnableOption "fennel";
+      go.enable = mkEnableOption "go";
+      jinja.enable = mkEnableOption "jinja";
+      json.enable = mkEnableOption "json";
+      jsonnet.enable = mkEnableOption "jsonnet";
+      markdown.enable = mkEnableOption "markdown";
+      nix.enable = mkEnableOption "nix";
+      python.enable = mkEnableOption "python";
+      rust.enable = mkEnableOption "rust";
+      terraform.enable = mkEnableOption "terraform";
+      toml.enable = mkEnableOption "toml";
+      typescript.enable = mkEnableOption "typescript";
+      typst.enable = mkEnableOption "typst";
+      yaml.enable = mkEnableOption "yaml";
+    };
+
+    language-support-packages = mkOption {
+      type = lib.types.listOf lib.types.package;
+      description = "Programming language support packages";
+      default = [ ];
+    };
   };
 
   config =
@@ -39,6 +47,9 @@ in
         (if cfg.beancount.enable then [ beancount-language-server ] else [ ])
         ++
         (if cfg.c.enable then [ clang-tools ] else [ ])
+        ++
+        # clj-kondo is bundled in clojure-lsp, so strictly we don't need both
+        (if cfg.clojure.enable then [ clj-kondo clojure-lsp zprint ] else [ ])
         ++
         (if cfg.dockerfile.enable then [ dockerfile-language-server ] else [ ])
         ++
@@ -76,15 +87,6 @@ in
       ;
     in
     {
-      # It would be nicer to pull this in from the helix module rather than set it here,
-      # but I am unsure how to get NixOS modules to do that.
-      local.helix.language-support-packages = language-support-packages;
-
-      # Make Clojure support available globally, for use from Emacs
-      home.packages =
-        if cfg.clojure.enable then with pkgs; [
-          clj-kondo
-          zprint
-        ] else [ ];
+      local.language-support-packages = language-support-packages;
     };
 }
