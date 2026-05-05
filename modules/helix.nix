@@ -40,6 +40,12 @@ in
           keys = {
             normal = {
               "X" = [ "extend_line_up" "extend_to_line_bounds" ];
+
+              # macOS-style navigation:
+              "C-a" = "goto_line_start";
+              "C-e" = "goto_line_end";
+              home = "goto_file_start";
+              end = "goto_file_end";
             };
             insert = {
               up = "no_op";
