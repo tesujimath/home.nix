@@ -3,6 +3,7 @@
 let
   cfg = config.local.languages;
   inherit (lib) mkEnableOption mkOption;
+  inherit (pkgs) symlinkJoin;
 in
 {
   options.local = {
@@ -28,9 +29,9 @@ in
       yaml.enable = mkEnableOption "yaml";
     };
 
-    language-support-packages = mkOption {
-      type = lib.types.listOf lib.types.package;
-      description = "Programming language support packages";
+    language-support-package = mkOption {
+      type = lib.types.package;
+      description = "Combined programming language support package";
       default = [ ];
     };
   };
@@ -85,8 +86,13 @@ in
         ++
         (if cfg.yaml.enable then [ yaml-language-server ] else [ ])
       ;
+
+      language-support-package = symlinkJoin {
+        name = "language-support";
+        paths = language-support-packages;
+      };
     in
     {
-      local.language-support-packages = language-support-packages;
+      home.packages = [ language-support-package ];
     };
 }
