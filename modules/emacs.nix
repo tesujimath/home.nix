@@ -14,18 +14,24 @@ in
     (mkIf cfg.enable
       {
         programs = {
-          emacs.enable = true;
+          emacs =
+            let
+              inherit (pkgs) emacsPackagesFor emacs;
+              emacsWithPackages = (emacsPackagesFor emacs).withPackages (epkgs: [
+                epkgs.jinx
+              ]);
+            in
+            {
+              enable = true;
+              package = emacsWithPackages;
+            };
         };
 
         # all platforms
         home.packages =
           with pkgs;
           [
-            aspell
-            aspellDicts.en
-            aspellDicts.en-computers
-            aspellDicts.en-science
-            sqlite # for org-roam
+            enchant # modern spell check abstraction layer, uses macOS dictionary
           ];
       })
     (mkIf (cfg.enable && !stdenv.isDarwin)
