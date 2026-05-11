@@ -2,7 +2,7 @@
 
 let
   cfg = config.local.languages;
-  inherit (lib) mkEnableOption mkOption;
+  inherit (lib) mkEnableOption mkOption mkIf;
   inherit (pkgs) symlinkJoin;
 in
 {
@@ -94,5 +94,10 @@ in
     in
     {
       home.packages = [ language-support-package ];
+
+      home.file = mkIf cfg.clojure.enable
+        {
+          ".config/clojure-lsp/config.edn".source = ./clojure/lsp-config.edn;
+        };
     };
 }
