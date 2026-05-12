@@ -37,27 +37,32 @@ in
               "[" = "]";
             };
           };
-          keys = {
-            normal = {
-              "X" = [ "extend_line_up" "extend_to_line_bounds" ];
+          keys =
+            let
+              normal_and_select = {
+                "X" = [ "extend_line_up" "extend_to_line_bounds" ];
 
-              # macOS-style navigation:
-              "C-a" = "goto_line_start";
-              "C-e" = "goto_line_end";
-              home = "goto_file_start";
-              end = "goto_file_end";
+                # macOS-style navigation:
+                "C-a" = "goto_line_start";
+                "C-e" = "goto_line_end";
+                home = "goto_file_start";
+                end = "goto_file_end";
+              };
+            in
+            {
+              normal = normal_and_select;
+              select = normal_and_select;
+              insert = {
+                up = "no_op";
+                down = "no_op";
+                left = "no_op";
+                right = "no_op";
+                pageup = "no_op";
+                pagedown = "no_op";
+                home = "no_op";
+                end = "no_op";
+              };
             };
-            insert = {
-              up = "no_op";
-              down = "no_op";
-              left = "no_op";
-              right = "no_op";
-              pageup = "no_op";
-              pagedown = "no_op";
-              home = "no_op";
-              end = "no_op";
-            };
-          };
         };
         languages =
           let
