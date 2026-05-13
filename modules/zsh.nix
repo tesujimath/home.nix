@@ -12,6 +12,13 @@ in
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = true;
+
+      envExtra =
+        if config.local.homebrew.enable then ''
+
+          # homebrew integration
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+        '' else "";
     };
   };
 }
