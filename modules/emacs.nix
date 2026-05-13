@@ -13,13 +13,16 @@ in
   config = mkMerge [
     (mkIf cfg.enable
       {
+        # all platforms
         programs = {
           emacs =
             let
               inherit (pkgs) emacsPackagesFor emacs;
+
               emacsWithPackages = (emacsPackagesFor emacs).withPackages (epkgs: [
                 epkgs.jinx
               ]);
+
             in
             {
               enable = true;
@@ -27,12 +30,9 @@ in
             };
         };
 
-        # all platforms
-        home.packages =
-          with pkgs;
-          [
-            enchant # modern spell check abstraction layer, uses macOS dictionary
-          ];
+        home.packages = with pkgs; [
+          enchant # modern spell check abstraction layer, on macOS uses system dictionary
+        ];
       })
     (mkIf (cfg.enable && !stdenv.isDarwin)
       {
