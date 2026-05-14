@@ -395,6 +395,7 @@ in
             # "carapace"
             "emacs"
             "fish"
+            "fonts"
             "git"
             "spacehammer"
             "helix"
@@ -407,7 +408,6 @@ in
             "zsh"
 
             # not these GUI apps and things we don't need on Mac:
-            # "fonts"
             # "zathura"
           ])
           {

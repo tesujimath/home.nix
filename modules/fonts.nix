@@ -14,6 +14,7 @@ in
       [
         cantarell-fonts
         nerd-fonts.iosevka
+        nerd-fonts.symbols-only
         noto-fonts
         noto-fonts-color-emoji
         source-code-pro
