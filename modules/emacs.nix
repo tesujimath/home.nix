@@ -19,8 +19,9 @@ in
             let
               inherit (pkgs) emacsPackagesFor emacs;
 
-              emacsWithPackages = (emacsPackagesFor emacs).withPackages (epkgs: [
-                epkgs.jinx
+              emacsWithPackages = (emacsPackagesFor emacs).withPackages (epkgs: with epkgs; [
+                jinx
+                vterm
               ]);
 
             in
