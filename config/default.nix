@@ -427,6 +427,10 @@ in
           inherit stateVersion;
           inherit username;
           inherit homeDirectory;
+
+          sessionVariables = {
+            CLAUDE_CODE_OAUTH_TOKEN = "$(security find-generic-password -a tesujimath -s claude-code-oauth-token -w 2>/dev/null)";
+          };
         };
       };
     };
