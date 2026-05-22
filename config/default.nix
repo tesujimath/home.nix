@@ -418,7 +418,7 @@ in
 
             defaultShell = "fish";
             defaultShellPath = "${pkgs.fish}/bin/fish";
-            defaultEditor = "hx";
+            defaultEditor = "emacsclient";
 
             languages = commonLanguages;
           };

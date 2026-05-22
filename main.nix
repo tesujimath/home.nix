@@ -48,6 +48,7 @@ in
 
       sessionVariables = {
         EMAIL = config.local.user.email;
+        EDITOR = config.local.defaultEditor;
 
         # make virsh use system connection as per virt-manager
         LIBVIRT_DEFAULT_URI = "qemu:///system";
