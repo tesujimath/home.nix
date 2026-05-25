@@ -6,12 +6,15 @@ let
   inherit (pkgs) symlinkJoin;
 in
 {
+  imports = [
+    ./clojure
+  ];
+
   options.local = {
     languages = {
       bash.enable = mkEnableOption "bash";
       beancount.enable = mkEnableOption "beancount";
       c.enable = mkEnableOption "C";
-      clojure.enable = mkEnableOption "clojure";
       dockerfile.enable = mkEnableOption "dockerfile";
       fennel.enable = mkEnableOption "fennel";
       go.enable = mkEnableOption "go";
@@ -27,72 +30,72 @@ in
       typescript.enable = mkEnableOption "typescript";
       typst.enable = mkEnableOption "typst";
       yaml.enable = mkEnableOption "yaml";
-    };
 
-    language-support-package = mkOption {
-      type = lib.types.package;
-      description = "Combined programming language support package";
-      default = [ ];
+      packages = mkOption {
+        type = lib.types.listOf lib.types.package;
+        description = "Programming language support packages for combining";
+        default = [ ];
+      };
     };
   };
 
-  config =
+  config.local.languages.packages =
     let
-      language-support-packages =
-        let
-          inherit (specialArgs) localPkgs;
-        in
-        with pkgs;
-        (if cfg.bash.enable then [ bash-language-server shfmt ] else [ ])
-        ++
-        (if cfg.beancount.enable then [ beancount-language-server ] else [ ])
-        ++
-        (if cfg.c.enable then [ clang-tools ] else [ ])
-        ++
-        # clj-kondo is bundled in clojure-lsp, so strictly we don't need both
-        (if cfg.clojure.enable then [ clj-kondo clojure-lsp zprint ] else [ ])
-        ++
-        (if cfg.dockerfile.enable then [ dockerfile-language-server ] else [ ])
-        ++
-        (if cfg.fennel.enable then [ fennel-ls fnlfmt ] else [ ])
-        ++
-        (if cfg.go.enable then [ go gopls ] else [ ])
-        ++
-        (if cfg.jinja.enable then [ jinja-lsp localPkgs.prettier-with-plugins ] else [ ])
-        ++
-        (if cfg.json.enable then [ vscode-langservers-extracted ] else [ ])
-        ++
-        (if cfg.jsonnet.enable then [ jsonnet-language-server jsonnet ] else [ ])
-        ++
-        (if cfg.markdown.enable then [ marksman ] else [ ])
-        ++
-        (if cfg.nix.enable then [ nil nixpkgs-fmt ] else [ ])
-        ++
-        (if cfg.python.enable then [ pyright ruff ] else [ ])
-        ++
-        (if cfg.rust.enable then [ rust-analyzer rustfmt ] else [ ])
-        ++
-        (if cfg.terraform.enable then [ terraform-ls ] else [ ])
-        ++
-        (if cfg.toml.enable then [ taplo ] else [ ])
-        ++
-        (if cfg.typescript.enable then [ typescript-language-server biome ] else [ ])
-        ++
-        (if cfg.typst.enable then [
-          # typst-lsp is broken just now
-          # typst-lsp
-          typstyle
-        ] else [ ])
-        ++
-        (if cfg.yaml.enable then [ yaml-language-server ] else [ ])
-      ;
-
-      language-support-package = symlinkJoin {
-        name = "language-support";
-        paths = language-support-packages;
-      };
+      inherit (specialArgs) localPkgs;
     in
-    {
-      home.packages = [ language-support-package ];
-    };
+    with pkgs;
+    (if cfg.bash.enable then [ bash-language-server shfmt ] else [ ])
+    ++
+    (if cfg.beancount.enable then [ beancount-language-server ] else [ ])
+    ++
+    (if cfg.c.enable then [ clang-tools ] else [ ])
+    ++
+    (if cfg.dockerfile.enable then [ dockerfile-language-server ] else [ ])
+    ++
+    (if cfg.fennel.enable then [ fennel-ls fnlfmt ] else [ ])
+    ++
+    (if cfg.go.enable then [ go gopls ] else [ ])
+    ++
+    (if cfg.jinja.enable then [ jinja-lsp localPkgs.prettier-with-plugins ] else [ ])
+    ++
+    (if cfg.json.enable then [ vscode-langservers-extracted ] else [ ])
+    ++
+    (if cfg.jsonnet.enable then [ jsonnet-language-server jsonnet ] else [ ])
+    ++
+    (if cfg.markdown.enable then [ marksman ] else [ ])
+    ++
+    (if cfg.nix.enable then [ nil nixpkgs-fmt ] else [ ])
+    ++
+    (if cfg.python.enable then [ pyright ruff ] else [ ])
+    ++
+    (if cfg.rust.enable then [ rust-analyzer rustfmt ] else [ ])
+    ++
+    (if cfg.terraform.enable then [ terraform-ls ] else [ ])
+    ++
+    (if cfg.toml.enable then [ taplo ] else [ ])
+    ++
+    (if cfg.typescript.enable then [ typescript-language-server biome ] else [ ])
+    ++
+    (if cfg.typst.enable then [
+      # typst-lsp is broken just now
+      # typst-lsp
+      typstyle
+    ] else [ ])
+    ++
+    (if cfg.yaml.enable then [ yaml-language-server ] else [ ])
+  ;
+
+
+  config.home.packages =
+    let
+      language-support = symlinkJoin
+        {
+          name = "language-support";
+          paths = config.local.languages.packages;
+        };
+    in
+    [
+      language-support
+    ];
+
 }
