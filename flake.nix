@@ -63,5 +63,8 @@
               };
             })
           configurations;
+
+      # for nix repl
+      inherit inputs;
     };
 }

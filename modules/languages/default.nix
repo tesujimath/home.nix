@@ -2,8 +2,57 @@
 
 let
   cfg = config.local.languages;
-  inherit (lib) mkEnableOption mkOption;
+  inherit (lib) mkOption;
   inherit (pkgs) symlinkJoin;
+
+  language-packages =
+    let
+      inherit (specialArgs) localPkgs;
+    in
+    with pkgs; {
+      # languages whose support simply needs some packages are listed here;
+      # more complex ones, such as clojure, are imported as modules
+
+      bash = [ bash-language-server shfmt ];
+
+      beancount = [ beancount-language-server ];
+
+      c = [ clang-tools ];
+
+      dockerfile = [ dockerfile-language-server ];
+
+      fennel = [ fennel-ls fnlfmt ];
+
+      go = [ go gopls ];
+
+      jinja = [ jinja-lsp localPkgs.prettier-with-plugins ];
+
+      json = [ vscode-langservers-extracted ];
+
+      jsonnet = [ jsonnet-language-server jsonnet ];
+
+      markdown = [ marksman ];
+
+      nix = [ nil nixpkgs-fmt ];
+
+      python = [ pyright ruff ];
+
+      rust = [ rust-analyzer rustfmt ];
+
+      terraform = [ terraform-ls ];
+
+      toml = [ taplo ];
+
+      typescript = [ typescript-language-server biome ];
+
+      typst = [
+        # typst-lsp is broken just now
+        # typst-lsp
+        typstyle
+      ];
+
+      yaml = [ yaml-language-server ];
+    };
 in
 {
   imports = [
@@ -11,80 +60,20 @@ in
   ];
 
   options.local = {
-    languages = {
-      bash.enable = mkEnableOption "bash";
-      beancount.enable = mkEnableOption "beancount";
-      c.enable = mkEnableOption "C";
-      dockerfile.enable = mkEnableOption "dockerfile";
-      fennel.enable = mkEnableOption "fennel";
-      go.enable = mkEnableOption "go";
-      jinja.enable = mkEnableOption "jinja";
-      json.enable = mkEnableOption "json";
-      jsonnet.enable = mkEnableOption "jsonnet";
-      markdown.enable = mkEnableOption "markdown";
-      nix.enable = mkEnableOption "nix";
-      python.enable = mkEnableOption "python";
-      rust.enable = mkEnableOption "rust";
-      terraform.enable = mkEnableOption "terraform";
-      toml.enable = mkEnableOption "toml";
-      typescript.enable = mkEnableOption "typescript";
-      typst.enable = mkEnableOption "typst";
-      yaml.enable = mkEnableOption "yaml";
-
-      packages = mkOption {
-        type = lib.types.listOf lib.types.package;
-        description = "Programming language support packages for combining";
-        default = [ ];
+    languages =
+      # an attrset with <language>.enable for each language
+      (builtins.mapAttrs (name: _packages: { enable = lib.mkEnableOption name; }) language-packages) // {
+        packages = mkOption {
+          type = lib.types.listOf lib.types.package;
+          description = "Programming language support packages for combining";
+          default = [ ];
+        };
       };
-    };
   };
 
-  config.local.languages.packages =
-    let
-      inherit (specialArgs) localPkgs;
-    in
-    with pkgs;
-    (if cfg.bash.enable then [ bash-language-server shfmt ] else [ ])
-    ++
-    (if cfg.beancount.enable then [ beancount-language-server ] else [ ])
-    ++
-    (if cfg.c.enable then [ clang-tools ] else [ ])
-    ++
-    (if cfg.dockerfile.enable then [ dockerfile-language-server ] else [ ])
-    ++
-    (if cfg.fennel.enable then [ fennel-ls fnlfmt ] else [ ])
-    ++
-    (if cfg.go.enable then [ go gopls ] else [ ])
-    ++
-    (if cfg.jinja.enable then [ jinja-lsp localPkgs.prettier-with-plugins ] else [ ])
-    ++
-    (if cfg.json.enable then [ vscode-langservers-extracted ] else [ ])
-    ++
-    (if cfg.jsonnet.enable then [ jsonnet-language-server jsonnet ] else [ ])
-    ++
-    (if cfg.markdown.enable then [ marksman ] else [ ])
-    ++
-    (if cfg.nix.enable then [ nil nixpkgs-fmt ] else [ ])
-    ++
-    (if cfg.python.enable then [ pyright ruff ] else [ ])
-    ++
-    (if cfg.rust.enable then [ rust-analyzer rustfmt ] else [ ])
-    ++
-    (if cfg.terraform.enable then [ terraform-ls ] else [ ])
-    ++
-    (if cfg.toml.enable then [ taplo ] else [ ])
-    ++
-    (if cfg.typescript.enable then [ typescript-language-server biome ] else [ ])
-    ++
-    (if cfg.typst.enable then [
-      # typst-lsp is broken just now
-      # typst-lsp
-      typstyle
-    ] else [ ])
-    ++
-    (if cfg.yaml.enable then [ yaml-language-server ] else [ ])
-  ;
-
+  config.local.languages.packages = lib.concatLists (lib.mapAttrsToList
+    (name: packages: if cfg.${name}.enable then packages else [ ])
+    language-packages);
 
   config.home.packages =
     let
@@ -97,5 +86,4 @@ in
     [
       language-support
     ];
-
 }
