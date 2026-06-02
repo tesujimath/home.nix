@@ -431,6 +431,19 @@ in
           sessionVariables = {
             CLAUDE_CODE_OAUTH_TOKEN = "$(security find-generic-password -a tesujimath -s claude-code-oauth-token -w 2>/dev/null)";
           };
+
+          packages = with pkgs;
+            [
+              # _1password-cli
+              # calibre
+              # git-crypt
+              # git-imerge
+              # ijq
+              # jo
+              # speedcrunch
+              # unison
+              zoom-us
+            ];
         };
       };
     };
