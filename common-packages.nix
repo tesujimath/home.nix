@@ -10,6 +10,7 @@ in
       [
         amber # CLI search/replace
         bottom
+        devenv
         dig
         dust
         eza

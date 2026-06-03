@@ -440,6 +440,8 @@ in
               # git-imerge
               # ijq
               # jo
+              jetbrains.datagrip
+              jetbrains.rider
               # speedcrunch
               # unison
               zoom-us
