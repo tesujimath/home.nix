@@ -13,12 +13,19 @@ in
     programs.zsh = {
       enable = true;
 
-      envExtra =
-        if config.local.homebrew.enable then ''
+      envExtra = ''
+        ${if config.local.homebrew.enable then ''
 
           # homebrew integration
           eval "$(/opt/homebrew/bin/brew shellenv)"
-        '' else "";
+        '' else ""}
+      '';
+
+      profileExtra = ''
+
+        # OrbStack integration
+        source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+      '';
     };
   };
 }
