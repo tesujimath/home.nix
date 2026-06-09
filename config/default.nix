@@ -443,6 +443,7 @@ in
               jetbrains.datagrip
               jetbrains.rider
               # speedcrunch
+              teams
               # unison
               zoom-us
             ];
