@@ -94,7 +94,7 @@
 ;; If you would like to customize this we recommend copying this file to
 ;; ~/.spacehammer/config.fnl. That will be used in place of the default
 ;; and will not be overwritten by upstream changes when spacehammer is updated.
-(local music-app "Spotify")
+(local music-app "Music")
 
 (local return
        {:key :space
@@ -251,13 +251,16 @@
         {:key :w
          :title "WezTerm"
          :action (activator "WezTerm")}
+        {:key :m
+         :title "Proton Mail"
+         :action (activator "Proton Mail")}
         {:key :k
          :title "Kindle"
          :action (activator "Kindle")}
         {:key :p
          :title "Preview"
          :action (activator "Preview")}
-        {:key :m
+        {:key :u
          :title music-app
          :action (activator music-app)}])
 
