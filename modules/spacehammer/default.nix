@@ -10,24 +10,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    # requires hammerspoon cask to have been installed in nix-darwin
 
     home =
       let
+        # requires Hammerspoon cask to have been installed in nix-darwin using same Lua version
         lua = pkgs.lua5_4;
-        fennel = pkgs.lua54Packages.fennel;
+        fennel = lua.pkgs.fennel;
       in
       {
-        packages = [
-          fennel
-        ];
-
         file = {
-          # make Fennel available to Hammerspoon
-          # this is a bit of a hack, we symlink it in as if it had been installed as a Lua Rock,
-          # but that's one place Hammerspoon looks for requires
-          ".luarocks/share/lua/${lua.luaversion}/fennel.lua".source = "${fennel}/share/lua/${lua.luaversion}/fennel.lua";
-
           ".hammerspoon".source =
             pkgs.fetchFromGitHub {
               owner = "agzam";
@@ -37,6 +28,8 @@ in
             };
 
           ".spacehammer/config.fnl".source = ./config.fnl;
+
+          ".local/share/hammerspoon/site/fennel.lua".source = "${fennel}/share/lua/${lua.luaversion}/fennel.lua";
         };
       };
   };
