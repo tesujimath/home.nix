@@ -16,6 +16,32 @@ in
         # requires Hammerspoon cask to have been installed in nix-darwin using same Lua version
         lua = pkgs.lua5_4;
         fennel = lua.pkgs.fennel;
+
+        jeejah = pkgs.callPackage ./jeejah.nix
+          {
+            inherit lua fennel;
+            inherit (lua.pkgs) buildLuaPackage luacheck luaOlder luasocket;
+          };
+
+        luaWithPackages = lua.withPackages (ps: with ps; [
+          fennel
+          luasocket
+          readline
+          jeejah
+        ]);
+
+        # Make required packages available to Hammerspoon via local site packages.
+        # This is a bit of a hack.  We're using Hammerspoon's own lua, but bringing our
+        # own packages.  If only Hammerspoon were packaged in Nix. 😩
+        hammerspoonSitePackages = pkgs.stdenv.mkDerivation {
+          name = "hammerspoon-site-packages";
+          phases = [ "installPhase" ];
+          installPhase = ''
+            mkdir -p $out/lib
+            ln -s ${luaWithPackages}/share/lua/${lua.luaversion}/* $out
+            ln -s ${luaWithPackages}/lib/lua/${lua.luaversion}/* $out/lib
+          '';
+        };
       in
       {
         file = {
@@ -29,7 +55,7 @@ in
 
           ".spacehammer/config.fnl".source = ./config.fnl;
 
-          ".local/share/hammerspoon/site/fennel.lua".source = "${fennel}/share/lua/${lua.luaversion}/fennel.lua";
+          ".local/share/hammerspoon/site".source = "${hammerspoonSitePackages}";
         };
       };
   };
