@@ -304,10 +304,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (local menu-items
-       [{:key    :space
-         :title  "Alfred"
-         :action (activator "Alfred 4")}
-        {:key   :w
+       [{:key   :w
          :title "Window"
          :enter "windows:enter-window-menu"
          :exit "windows:exit-window-menu"
