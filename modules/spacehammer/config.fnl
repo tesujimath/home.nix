@@ -236,24 +236,27 @@
 
 (local app-bindings
        [return
-        {:key :e
+        {:key :c
+         :title "Claude"
+         :action (activator "Claude")}
+         {:key :e
          :title "Emacs"
          :action (activator "Emacs")}
-        {:key :g
-         :title "Chrome"
-         :action (activator "Google Chrome")}
+        {:key :s
+         :title "Safari"
+         :action (activator "Safari")}
         {:key :f
          :title "Firefox"
          :action (activator "Firefox")}
-        {:key :i
-         :title "iTerm"
-         :action (activator "iterm")}
-        {:key :s
-         :title "Slack"
-         :action (activator "Slack")}
-        {:key :b
-         :title "Brave"
-         :action (activator "brave browser")}
+        {:key :w
+         :title "WezTerm"
+         :action (activator "WezTerm")}
+        {:key :k
+         :title "Kindle"
+         :action (activator "Kindle")}
+        {:key :p
+         :title "Preview"
+         :action (activator "Preview")}
         {:key :m
          :title music-app
          :action (activator music-app)}])
