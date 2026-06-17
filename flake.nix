@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nox = {
+      url = "github:madsbv/nix-options-search";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     bash-env-json = {
       url = "github:tesujimath/bash-env-json/main";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +46,7 @@
                 };
               };
               flakePkgs = {
+                nox = inputs.nox.packages.${system}.default;
                 bash-env-json = inputs.bash-env-json.packages.${system}.default;
                 hl = inputs.hl.packages.${system}.default;
               };

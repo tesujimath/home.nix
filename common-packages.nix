@@ -33,6 +33,6 @@ in
         virtualenv # better than python -m venv because support for different shells
         wget
       ]) ++ (with flakePkgs;
-      [ hl ]);
+      [ hl nox ]);
   };
 }
