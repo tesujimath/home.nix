@@ -480,6 +480,24 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Switch Hammerspoon console to use Fennel
+;;
+;; credit to https://www.linktohack.com/posts/a-fennel-repl-for-hammer-spoon/
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(let [coro (coroutine.create fennel.repl.repl)]
+    (coroutine.resume coro {:readChunk (fn []
+                                         (let [input (coroutine.yield)]
+                                           (.. input "\n")))
+                            :onValues (fn [xs]
+                                        (print (table.concat xs "\t")))
+                            :onError (fn [_ msg]
+                                       (print msg))})
+    (set hs._consoleInputPreparser (fn [s]
+                                     (coroutine.resume coro s)
+                                     "")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exports
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
