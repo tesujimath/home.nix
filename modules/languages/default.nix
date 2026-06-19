@@ -23,6 +23,8 @@ let
 
       fennel = [ fennel-ls fnlfmt ];
 
+      fsharp = [ fsautocomplete fantomas dotnet-sdk_10 ]; # SDK for interactive and REPL
+
       go = [ go gopls ];
 
       jinja = [ jinja-lsp localPkgs.prettier-with-plugins ];

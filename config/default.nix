@@ -27,6 +27,7 @@ let
     "clojure"
     "dockerfile"
     "fennel"
+    "fsharp"
     "go"
     "jinja"
     "json"
