@@ -45,7 +45,7 @@ let
 
       toml = [ taplo ];
 
-      typescript = [ typescript-language-server biome ];
+      typescript = [ typescript-language-server biome nodejs ];
 
       typst = [
         # typst-lsp is broken just now
