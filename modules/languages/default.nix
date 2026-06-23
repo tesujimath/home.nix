@@ -73,9 +73,9 @@ in
       };
   };
 
-  config.local.languages.packages = lib.concatLists (lib.mapAttrsToList
+  config.local.languages.packages = (lib.concatLists (lib.mapAttrsToList
     (name: packages: if cfg.${name}.enable then packages else [ ])
-    language-packages);
+    language-packages)) ++ (if config.local.emacs.enable then [ pkgs.emacs-lsp-booster ] else [ ]);
 
   config.home.packages =
     let
