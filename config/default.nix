@@ -394,6 +394,7 @@ in
             # "bash"
             "babashka"
             # "carapace"
+            "claude-code"
             "emacs"
             "fish"
             "fonts"

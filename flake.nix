@@ -38,13 +38,24 @@
                  , attrs
                  }:
             let
-              pkgs = import inputs.nixpkgs {
-                inherit system;
-                config = {
-                  allowUnfree = true;
-                  allowUnfreePredicate = (pkg: true);
+              pkgs = import inputs.nixpkgs
+                {
+                  inherit system;
+                  config = {
+                    allowUnfreePredicate =
+                      let
+                        allowedUnfree = [
+                          "claude-code"
+                          "datagrip"
+                          "rider"
+                          "teams"
+                          "zoom"
+                        ];
+                      in
+                      pkg: builtins.elem (pkgs.lib.getName pkg) allowedUnfree;
+
+                  };
                 };
-              };
               flakePkgs = {
                 nox = inputs.nox.packages.${system}.default;
                 bash-env-json = inputs.bash-env-json.packages.${system}.default;
