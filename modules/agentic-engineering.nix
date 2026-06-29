@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.claude-code;
+  cfg = config.local.agentic-engineering;
   inherit (lib) mkEnableOption mkIf;
-  inherit (pkgs) claude-code fetchFromGitHub;
+  inherit (pkgs) claude-code opencode qwen-code fetchFromGitHub;
 in
 {
-  options.local.claude-code = {
-    enable = mkEnableOption "claude-code";
+  options.local.agentic-engineering = {
+    enable = mkEnableOption "agentic-engineering";
   };
 
   config = mkIf cfg.enable {
@@ -75,6 +75,8 @@ in
       {
         packages = [
           claude-code
+          opencode
+          qwen-code
         ];
 
         file = skillFiles;

@@ -391,10 +391,10 @@ in
 
         local = pkgs.lib.attrsets.recursiveUpdate
           (enable [
+            "agentic-engineering"
             # "bash"
             "babashka"
             # "carapace"
-            "claude-code"
             "emacs"
             "fish"
             "fonts"
