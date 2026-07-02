@@ -2,8 +2,20 @@
 
 let
   cfg = config.local.languages;
-  inherit (lib) mkOption;
+  inherit (lib) mkIf mkOption;
   inherit (pkgs) symlinkJoin;
+
+  # needed for tsbiome preset
+  rassumfrassum_034 = pkgs.rassumfrassum.overrideAttrs (attrs: rec {
+    version = "0.3.4";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "joaotavora";
+      repo = "rassumfrassum";
+      tag = "v${version}";
+      hash = "sha256-q8Pv+E+UejK3z5xCw44Gji2xJ01uIo18qS5LHpLc5HE=";
+    };
+  });
 
   language-packages =
     let
@@ -45,7 +57,7 @@ let
 
       toml = [ taplo ];
 
-      typescript = [ typescript-language-server biome rassumfrassum nodejs ];
+      typescript = [ typescript-language-server biome rassumfrassum_034 deno ];
 
       typst = [
         # typst-lsp is broken just now
@@ -77,15 +89,30 @@ in
     (name: packages: if cfg.${name}.enable then packages else [ ])
     language-packages)) ++ (if config.local.emacs.enable then [ pkgs.emacs-lsp-booster ] else [ ]);
 
-  config.home.packages =
-    let
-      language-support = symlinkJoin
-        {
-          name = "language-support";
-          paths = config.local.languages.packages;
-        };
-    in
-    [
-      language-support
-    ];
+  config.home = {
+    packages =
+      let
+        language-support = symlinkJoin
+          {
+            name = "language-support";
+            paths = config.local.languages.packages;
+          };
+      in
+      [
+        language-support
+      ];
+
+    # TODO: reinstate when switcing to https://github.com/Effect-TS/tsgo
+    # or https://effect.website/docs/getting-started/devtools/#effect-lsp
+    # file = {
+    #   ".config/rassumfrassum/tsbiome.py".text = ''
+    #     def servers():
+    #         """TypeScript preset using typescript-language-server and biome."""
+    #         return [
+    #             ['typescript-language-server', '--stdio'],
+    #             ['biome', 'lsp-proxy'],
+    #         ]
+    #   '';
+    # };
+  };
 }
