@@ -87,7 +87,7 @@ in
 
   config.local.languages.packages = (lib.concatLists (lib.mapAttrsToList
     (name: packages: if cfg.${name}.enable then packages else [ ])
-    language-packages)) ++ (if config.local.emacs.enable then [ pkgs.emacs-lsp-booster ] else [ ]);
+    language-packages));
 
   config.home = {
     packages =
