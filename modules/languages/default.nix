@@ -17,6 +17,8 @@ let
     };
   });
 
+  prettier-with-plugins = pkgs.callPackage ./prettier-with-plugins.nix { };
+
   language-packages =
     let
       inherit (specialArgs) localPkgs;
@@ -39,7 +41,7 @@ let
 
       go = [ go gopls ];
 
-      jinja = [ jinja-lsp localPkgs.prettier-with-plugins ];
+      jinja = [ jinja-lsp prettier-with-plugins ];
 
       json = [ vscode-langservers-extracted ];
 
@@ -57,7 +59,12 @@ let
 
       toml = [ taplo ];
 
-      typescript = [ typescript-language-server biome rassumfrassum_034 deno ];
+      typescript = [ typescript-language-server biome rassumfrassum_034 deno ] ++ (if config.local.zed-editor.enable then [
+        eslint
+        tailwindcss-language-server
+        typescript
+        vtsls
+      ] else [ ]);
 
       typst = [
         # typst-lsp is broken just now

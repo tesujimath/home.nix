@@ -63,7 +63,6 @@
               };
               localPkgs = {
                 volnoti = pkgs.callPackage ./packages/volnoti { };
-                prettier-with-plugins = pkgs.callPackage ./packages/prettier-with-plugins { };
               };
 
             in
