@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # TODO fold this back into nixpkgs once PR is merged:
+    nixpkgs-deno_292.url = "github:NixOS/nixpkgs/pull/539847/head";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +49,8 @@
                       let
                         allowedUnfree = [
                           "claude-code"
+                          "cursor"
+                          "cursor-cli"
                           "datagrip"
                           "rider"
                           "teams"
@@ -60,6 +65,7 @@
                 nox = inputs.nox.packages.${system}.default;
                 bash-env-json = inputs.bash-env-json.packages.${system}.default;
                 hl = inputs.hl.packages.${system}.default;
+                deno_292 = inputs.nixpkgs-deno_292.legacyPackages.${system}.deno;
               };
               localPkgs = {
                 volnoti = pkgs.callPackage ./packages/volnoti { };

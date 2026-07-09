@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, specialArgs, ... }:
 
 let
   cfg = config.local.languages.typescript;
   inherit (lib) mkEnableOption mkIf;
+  inherit (specialArgs) flakePkgs;
 in
 {
   options.local.languages.typescript.enable = mkEnableOption "typescript";
@@ -20,6 +21,7 @@ in
           hash = "sha256-q8Pv+E+UejK3z5xCw44Gji2xJ01uIo18qS5LHpLc5HE=";
         };
       });
+
     in
     mkIf cfg.enable
       {
@@ -27,8 +29,7 @@ in
           with pkgs;
           [
             biome
-            deno
-            # TODO remove this once deno LSP working in Emacs
+            flakePkgs.deno_292
             typescript-language-server
             rassumfrassum_034
           ] ++ (if config.local.zed-editor.enable then [
