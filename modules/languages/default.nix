@@ -5,18 +5,6 @@ let
   inherit (lib) mkIf mkOption;
   inherit (pkgs) symlinkJoin;
 
-  # needed for tsbiome preset
-  rassumfrassum_034 = pkgs.rassumfrassum.overrideAttrs (attrs: rec {
-    version = "0.3.4";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "joaotavora";
-      repo = "rassumfrassum";
-      tag = "v${version}";
-      hash = "sha256-q8Pv+E+UejK3z5xCw44Gji2xJ01uIo18qS5LHpLc5HE=";
-    };
-  });
-
   prettier-with-plugins = pkgs.callPackage ./prettier-with-plugins.nix { };
 
   language-packages =
@@ -59,13 +47,6 @@ let
 
       toml = [ taplo ];
 
-      typescript = [ typescript-language-server biome rassumfrassum_034 deno ] ++ (if config.local.zed-editor.enable then [
-        eslint
-        tailwindcss-language-server
-        typescript
-        vtsls
-      ] else [ ]);
-
       typst = [
         # typst-lsp is broken just now
         # typst-lsp
@@ -78,6 +59,7 @@ in
 {
   imports = [
     ./clojure
+    ./typescript
   ];
 
   options.local = {
@@ -108,18 +90,5 @@ in
       [
         language-support
       ];
-
-    # TODO: reinstate when switcing to https://github.com/Effect-TS/tsgo
-    # or https://effect.website/docs/getting-started/devtools/#effect-lsp
-    # file = {
-    #   ".config/rassumfrassum/tsbiome.py".text = ''
-    #     def servers():
-    #         """TypeScript preset using typescript-language-server and biome."""
-    #         return [
-    #             ['typescript-language-server', '--stdio'],
-    #             ['biome', 'lsp-proxy'],
-    #         ]
-    #   '';
-    # };
   };
 }
