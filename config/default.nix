@@ -25,6 +25,7 @@ let
     "beancount"
     "c"
     "clojure"
+    "csharp"
     "dockerfile"
     "fennel"
     "fsharp"

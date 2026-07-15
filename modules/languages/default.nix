@@ -21,6 +21,8 @@ let
 
       c = [ clang-tools ];
 
+      csharp = [ roslyn-ls ];
+
       dockerfile = [ dockerfile-language-server ];
 
       fennel = [ fennel-ls fnlfmt ];
