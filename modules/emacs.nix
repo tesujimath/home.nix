@@ -20,8 +20,9 @@ in
               inherit (pkgs) emacsPackagesFor emacs;
 
               emacsWithPackages = (emacsPackagesFor emacs).withPackages (epkgs: with epkgs; [
-                jinx
-                vterm
+                jinx # spellcheck support
+                pdf-tools # for PDF preview in dirvish
+                vterm # terminal emulator
               ]);
 
             in
@@ -33,6 +34,14 @@ in
 
         home.packages = with pkgs; [
           enchant # modern spell check abstraction layer, on macOS uses system dictionary
+
+          # previewers for dirvish:
+          _7zz # various archive formats
+          epub-thumbnailer # e-books
+          ffmpegthumbnailer # video
+          mediainfo # audio/video metadata
+          poppler-utils # pdftoppm for PDF preview
+          vips # images
         ];
       })
     (mkIf (cfg.enable && !stdenv.isDarwin)
