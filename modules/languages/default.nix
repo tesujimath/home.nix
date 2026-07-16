@@ -21,7 +21,7 @@ let
 
       c = [ clang-tools ];
 
-      csharp = [ roslyn-ls ];
+      csharp = [ csharpier roslyn-ls ];
 
       dockerfile = [ dockerfile-language-server ];
 

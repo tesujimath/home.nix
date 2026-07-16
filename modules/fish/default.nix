@@ -32,6 +32,10 @@ in
 
           # homebrew integration
           eval "$(/opt/homebrew/bin/brew shellenv)"
+        '' else "") + (if (config.local.languages.csharp.enable || config.local.languages.fsharp.enable) then ''
+
+          # dotnet completions
+          dotnet completions script fish | source
         '' else "");
 
         functions = cfg.functions // {
