@@ -25,6 +25,7 @@ in
           autorandr
           blueman
           dmenu
+          dragon-drop
           dunst
           # seahorse not in NixOS 24.05
           handlr
@@ -41,7 +42,6 @@ in
           ueberzugpp # for yazi image preview in alacritty
           localPkgs.volnoti
           xclip
-          xdragon
           xmobar
           xorg.xmodmap
         ];
