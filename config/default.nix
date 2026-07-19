@@ -324,7 +324,6 @@ in
       attrs = pkgs: {
         local = pkgs.lib.attrsets.recursiveUpdate
           (commonModules // (enable [
-            "ledger"
             "syncthing"
             "web-browser"
             "xmonad-desktop"
