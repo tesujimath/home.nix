@@ -20,7 +20,6 @@ in
     ./modules/languages
     ./modules/mitmproxy
     ./modules/syncthing.nix
-    ./modules/tmux.nix
     ./modules/web-browser.nix
     ./modules/wezterm
     ./modules/xdg.nix

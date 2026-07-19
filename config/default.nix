@@ -15,7 +15,6 @@ let
     "git"
     "helix"
     "mitmproxy"
-    "tmux"
     "yazi"
     "zathura"
   ];
