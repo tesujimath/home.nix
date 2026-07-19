@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.spacehammer;
+  cfg = config.tesujimath.spacehammer;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options. local. spacehammer = {
+  options.tesujimath.spacehammer = {
     enable = mkEnableOption "spacehammer";
   };
 

@@ -1,11 +1,11 @@
 { config, lib, ... }:
 
 let
-  cfg = config.local.git;
+  cfg = config.tesujimath.git;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.git = {
+  options.tesujimath.git = {
     enable = mkEnableOption "git";
   };
 
@@ -16,8 +16,8 @@ in
         signing.format = null;
         settings = {
           user = {
-            name = config.local.user.fullName;
-            email = config.local.user.email;
+            name = config.tesujimath.user.fullName;
+            email = config.tesujimath.user.email;
           };
           fetch = {
             prune = true;

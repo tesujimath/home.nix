@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.emacs;
+  cfg = config.tesujimath.emacs;
   inherit (lib) mkEnableOption mkIf mkMerge;
   inherit (pkgs) stdenv;
 in
 {
-  options.local.emacs = {
+  options.tesujimath.emacs = {
     enable = mkEnableOption "emacs";
   };
 

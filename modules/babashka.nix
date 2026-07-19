@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.babashka;
+  cfg = config.tesujimath.babashka;
   inherit (lib) mkEnableOption mkIf;
   inherit (pkgs) babashka babashka-unwrapped writeScriptBin;
 
@@ -11,7 +11,7 @@ let
   '';
 in
 {
-  options.local.babashka = {
+  options.tesujimath.babashka = {
     enable = mkEnableOption "babashka";
   };
 

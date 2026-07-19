@@ -1,7 +1,7 @@
 { config, pkgs, lib, specialArgs, ... }:
 
 let
-  cfg = config.local.languages;
+  cfg = config.tesujimath.languages;
   inherit (lib) mkIf mkOption;
   inherit (pkgs) symlinkJoin;
 
@@ -64,7 +64,7 @@ in
     ./typescript
   ];
 
-  options.local = {
+  options.tesujimath = {
     languages =
       # an attrset with <language>.enable for each language
       (builtins.mapAttrs (name: _packages: { enable = lib.mkEnableOption name; }) language-packages) // {
@@ -76,7 +76,7 @@ in
       };
   };
 
-  config.local.languages.packages = (lib.concatLists (lib.mapAttrsToList
+  config.tesujimath.languages.packages = (lib.concatLists (lib.mapAttrsToList
     (name: packages: if cfg.${name}.enable then packages else [ ])
     language-packages));
 
@@ -86,7 +86,7 @@ in
         language-support = symlinkJoin
           {
             name = "language-support";
-            paths = config.local.languages.packages;
+            paths = config.tesujimath.languages.packages;
           };
       in
       [

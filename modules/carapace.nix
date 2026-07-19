@@ -1,11 +1,11 @@
 { config, lib, ... }:
 
 let
-  cfg = config.local.carapace;
+  cfg = config.tesujimath.carapace;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.carapace = {
+  options.tesujimath.carapace = {
     enable = mkEnableOption "carapace";
   };
 

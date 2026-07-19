@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.local.languages.clojure;
+  cfg = config.tesujimath.languages.clojure;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local = {
+  options.tesujimath = {
     languages = {
       clojure.enable = mkEnableOption "clojure";
     };
@@ -13,7 +13,7 @@ in
 
   config = mkIf cfg.enable
     {
-      local.languages.packages =
+      tesujimath.languages.packages =
         with pkgs;
         [
           clj-kondo # clj-kondo is bundled in clojure-lsp, so strictly we don't need both

@@ -1,12 +1,12 @@
 { config, pkgs, lib, specialArgs, ... }:
 
 let
-  cfg = config.local.languages.typescript;
+  cfg = config.tesujimath.languages.typescript;
   inherit (lib) mkEnableOption mkIf;
   inherit (specialArgs) flakePkgs;
 in
 {
-  options.local.languages.typescript.enable = mkEnableOption "typescript";
+  options.tesujimath.languages.typescript.enable = mkEnableOption "typescript";
 
   config =
     let
@@ -25,14 +25,14 @@ in
     in
     mkIf cfg.enable
       {
-        local.languages.packages =
+        tesujimath.languages.packages =
           with pkgs;
           [
             biome
             flakePkgs.deno_292
             typescript-language-server
             rassumfrassum_034
-          ] ++ (if config.local.zed-editor.enable then [
+          ] ++ (if config.tesujimath.zed-editor.enable then [
             eslint
             tailwindcss-language-server
             typescript

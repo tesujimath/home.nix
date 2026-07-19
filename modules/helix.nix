@@ -1,11 +1,11 @@
 { config, lib, ... }:
 
 let
-  cfg = config.local.helix;
+  cfg = config.tesujimath.helix;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.helix = {
+  options.tesujimath.helix = {
     enable = mkEnableOption "helix";
   };
 

@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.zed-editor;
+  cfg = config.tesujimath.zed-editor;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.zed-editor = {
+  options.tesujimath.zed-editor = {
     enable = mkEnableOption "zed-editor";
   };
 

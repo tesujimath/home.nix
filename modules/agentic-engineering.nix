@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.agentic-engineering;
+  cfg = config.tesujimath.agentic-engineering;
   inherit (lib) mkEnableOption mkIf;
   inherit (pkgs) fetchFromGitHub;
 in
 {
-  options.local.agentic-engineering = {
+  options.tesujimath.agentic-engineering = {
     enable = mkEnableOption "agentic-engineering";
   };
 

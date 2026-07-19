@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.fonts;
+  cfg = config.tesujimath.fonts;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.fonts = {
+  options.tesujimath.fonts = {
     enable = mkEnableOption "fonts";
   };
 

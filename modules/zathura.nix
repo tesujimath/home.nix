@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.local.zathura;
+  cfg = config.tesujimath.zathura;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.zathura = {
+  options.tesujimath.zathura = {
     enable = mkEnableOption "zathura";
   };
 

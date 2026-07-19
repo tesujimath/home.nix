@@ -1,12 +1,12 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.local.web-browser;
+  cfg = config.tesujimath.web-browser;
   inherit (lib) mkEnableOption mkIf mkMerge;
   inherit (pkgs) stdenv;
 in
 {
-  options.local.web-browser = {
+  options.tesujimath.web-browser = {
     enable = mkEnableOption "Web browser";
 
     wsl = {
@@ -35,7 +35,7 @@ in
       })
     (mkIf (cfg.enable && !stdenv.isDarwin) {
       home.packages =
-        if config.local.web-browser.wsl.use-native-windows then [ ] else
+        if config.tesujimath.web-browser.wsl.use-native-windows then [ ] else
           with pkgs;
           [
             brave
@@ -45,11 +45,11 @@ in
           ];
 
       xdg.desktopEntries =
-        if config.local.web-browser.wsl.use-native-windows then {
+        if config.tesujimath.web-browser.wsl.use-native-windows then {
           firefox = {
             name = "Firefox";
             genericName = "Web Browser";
-            exec = config.local.web-browser.wsl.firefox.exec;
+            exec = config.tesujimath.web-browser.wsl.firefox.exec;
             terminal = false;
             categories = [ "Application" "Network" "WebBrowser" ];
             mimeType = [ "text/html" "text/xml" ];
@@ -57,7 +57,7 @@ in
           google-chrome = {
             name = "Google Chrome";
             genericName = "Web Browser";
-            exec = config.local.web-browser.wsl.google-chrome.exec;
+            exec = config.tesujimath.web-browser.wsl.google-chrome.exec;
             terminal = false;
             categories = [ "Application" "Network" "WebBrowser" ];
             mimeType = [ "text/html" "text/xml" ];

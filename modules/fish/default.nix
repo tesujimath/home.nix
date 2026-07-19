@@ -1,12 +1,12 @@
 { config, lib, pkgs, specialArgs, ... }:
 
 let
-  cfg = config.local.fish;
+  cfg = config.tesujimath.fish;
   inherit (lib) mkEnableOption mkIf mkOption types;
   inherit (specialArgs) flakePkgs;
 in
 {
-  options. local. fish = {
+  options.tesujimath.fish = {
     enable = mkEnableOption "fish";
 
     functions = mkOption { type = types.attrsOf (types.attrsOf types.str); default = { }; description = "Fish functions as per Home Manager"; };
@@ -24,15 +24,15 @@ in
         interactiveShellInit = ''
           # disable Fish greeting message
           set -g fish_greeting
-        '' + (if config.local.carapace.enable then ''
+        '' + (if config.tesujimath.carapace.enable then ''
 
           # carapace integration
           carapace _carapace | source
-        '' else "") + (if config.local.homebrew.enable then ''
+        '' else "") + (if config.tesujimath.homebrew.enable then ''
 
           # homebrew integration
           eval "$(/opt/homebrew/bin/brew shellenv)"
-        '' else "") + (if (config.local.languages.csharp.enable || config.local.languages.fsharp.enable) then ''
+        '' else "") + (if (config.tesujimath.languages.csharp.enable || config.tesujimath.languages.fsharp.enable) then ''
 
           # dotnet completions
           dotnet completions script fish | source

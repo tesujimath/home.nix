@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.local.syncthing;
+  cfg = config.tesujimath.syncthing;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.syncthing = {
+  options.tesujimath.syncthing = {
     enable = mkEnableOption "syncthing";
   };
 

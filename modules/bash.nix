@@ -1,11 +1,11 @@
 { config, lib, ... }:
 
 let
-  cfg = config.local.bash;
+  cfg = config.tesujimath.bash;
   inherit (lib) mkEnableOption mkIf mkOption types;
 in
 {
-  options.local.bash = {
+  options.tesujimath.bash = {
     enable = mkEnableOption "bash";
     profile = {
       reuse-ssh-agent = mkOption { default = false; type = types.bool; description = "Reuse or start ssh agent in Bash profile"; };

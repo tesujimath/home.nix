@@ -4,7 +4,7 @@ let
   inherit (lib) mkEnableOption;
 in
 {
-  options.local.homebrew = {
+  options.tesujimath.homebrew = {
     enable = mkEnableOption "homebrew";
   };
 }

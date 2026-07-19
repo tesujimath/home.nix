@@ -1,11 +1,11 @@
 { config, lib, ... }:
 
 let
-  cfg = config.local.wezterm;
+  cfg = config.tesujimath.wezterm;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.wezterm = {
+  options.tesujimath.wezterm = {
     enable = mkEnableOption "wezterm";
   };
 

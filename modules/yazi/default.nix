@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.local.yazi;
+  cfg = config.tesujimath.yazi;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.yazi = {
+  options.tesujimath.yazi = {
     enable = mkEnableOption "yazi";
   };
 
@@ -12,7 +12,7 @@ in
     programs = {
       yazi = {
         enable = true;
-        enableBashIntegration = config.local.bash.enable;
+        enableBashIntegration = config.tesujimath.bash.enable;
         shellWrapperName = "y";
         settings = {
           mgr = {
@@ -37,7 +37,7 @@ in
               # https://yazi-rs.github.io/docs/tips#dropping-to-shell
               {
                 on = [ "<C-s>" ];
-                run = "shell ${config.local.defaultShell} --block --confirm";
+                run = "shell ${config.tesujimath.defaultShell} --block --confirm";
                 desc = "Open default shell here";
               }
             ];

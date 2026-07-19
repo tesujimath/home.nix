@@ -108,7 +108,7 @@ in
     {
       system = "x86_64-linux";
       attrs = pkgs: {
-        local = pkgs.lib.attrsets.recursiveUpdate
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (commonModules // (disable [
             # list of module names (strings) of what you don't want from common modules
           ]) // (enable [
@@ -150,7 +150,7 @@ in
     {
       system = "x86_64-linux";
       attrs = pkgs: {
-        local = pkgs.lib.attrsets.recursiveUpdate
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (commonModules // (enable [
             "web-browser"
             "wezterm"
@@ -211,7 +211,7 @@ in
     {
       system = "x86_64-linux";
       attrs = pkgs: {
-        local = pkgs.lib.attrsets.recursiveUpdate
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (commonModules // (disable [
             # use system git on legacy HPC to avoid ssh cert problem:
             # inscrutable$ git fetch --all
@@ -264,7 +264,7 @@ in
     {
       system = "x86_64-linux";
       attrs = pkgs: {
-        local = pkgs.lib.attrsets.recursiveUpdate
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (commonModules // (enable [
             "wezterm"
           ]) // (disable [
@@ -321,7 +321,7 @@ in
     {
       system = "x86_64-linux";
       attrs = pkgs: {
-        local = pkgs.lib.attrsets.recursiveUpdate
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (commonModules // (enable [
             "syncthing"
             "web-browser"
@@ -388,7 +388,7 @@ in
         targets.darwin.copyApps.enable = true;
         targets.darwin.linkApps.enable = false;
 
-        local = pkgs.lib.attrsets.recursiveUpdate
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (enable [
             "agentic-engineering"
             # "bash"

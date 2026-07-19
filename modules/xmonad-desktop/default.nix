@@ -1,11 +1,11 @@
 { config, pkgs, lib, specialArgs, ... }:
 
 let
-  cfg = config.local.xmonad-desktop;
+  cfg = config.tesujimath.xmonad-desktop;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.xmonad-desktop = {
+  options.tesujimath.xmonad-desktop = {
     enable = mkEnableOption "xmonad-desktop";
   };
 
@@ -120,7 +120,7 @@ in
               y = 6;
             };
           };
-          terminal.shell = config.local.defaultShell;
+          terminal.shell = config.tesujimath.defaultShell;
         };
       };
 

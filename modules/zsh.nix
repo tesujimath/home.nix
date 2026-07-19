@@ -1,11 +1,11 @@
 { config, lib, ... }:
 
 let
-  cfg = config.local.zsh;
+  cfg = config.tesujimath.zsh;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.zsh = {
+  options.tesujimath.zsh = {
     enable = mkEnableOption "zsh";
   };
 
@@ -14,7 +14,7 @@ in
       enable = true;
 
       envExtra = ''
-        ${if config.local.homebrew.enable then ''
+        ${if config.tesujimath.homebrew.enable then ''
 
           # homebrew integration
           eval "$(/opt/homebrew/bin/brew shellenv)"

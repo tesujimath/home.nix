@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.local.mitmproxy;
+  cfg = config.tesujimath.mitmproxy;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.local.mitmproxy = {
+  options.tesujimath.mitmproxy = {
     enable = mkEnableOption "mitmproxy";
   };
 

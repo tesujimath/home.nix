@@ -30,10 +30,10 @@ in
     ./modules/zsh.nix
   ];
 
-  options.local.defaultShell = mkOption { default = "bash"; type = types.str; description = "Default shell"; };
-  options.local.defaultShellPath = mkOption { default = "${pkgs.bash}/bin/bash"; type = types.str; description = "Absolute path of default shell"; };
-  options.local.defaultEditor = mkOption { default = "vi"; type = types.str; description = "Default editor"; };
-  options.local.user =
+  options.tesujimath.defaultShell = mkOption { default = "bash"; type = types.str; description = "Default shell"; };
+  options.tesujimath.defaultShellPath = mkOption { default = "${pkgs.bash}/bin/bash"; type = types.str; description = "Absolute path of default shell"; };
+  options.tesujimath.defaultEditor = mkOption { default = "vi"; type = types.str; description = "Default editor"; };
+  options.tesujimath.user =
     {
       email = mkOption { type = types.str; description = "Email address"; };
       fullName = mkOption { type = types.str; description = "Full name"; };
@@ -47,8 +47,8 @@ in
       ];
 
       sessionVariables = {
-        EMAIL = config.local.user.email;
-        EDITOR = config.local.defaultEditor;
+        EMAIL = config.tesujimath.user.email;
+        EDITOR = config.tesujimath.defaultEditor;
 
         # make virsh use system connection as per virt-manager
         LIBVIRT_DEFAULT_URI = "qemu:///system";
