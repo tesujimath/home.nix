@@ -1,4 +1,4 @@
-{ config, pkgs, lib, specialArgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   cfg = config.tesujimath.xmonad-desktop;
@@ -12,12 +12,10 @@ in
   config = mkIf cfg.enable (
     let
       xmonad-with-ghc = pkgs.haskellPackages.ghcWithPackages (pkgs: [ pkgs.xmonad pkgs.xmonad-extras pkgs.xmonad-contrib ]);
+      volnoti = pkgs.callPackage ./volnoti { };
     in
     {
       home.packages =
-        let
-          inherit (specialArgs) localPkgs;
-        in
         with pkgs;
         [
           xmonad-with-ghc
@@ -40,7 +38,7 @@ in
           sxiv
           udiskie
           ueberzugpp # for yazi image preview in alacritty
-          localPkgs.volnoti
+          volnoti
           xclip
           xmobar
           xorg.xmodmap

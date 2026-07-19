@@ -1,16 +1,13 @@
-{ config, pkgs, lib, specialArgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   cfg = config.tesujimath.languages;
-  inherit (lib) mkIf mkOption;
+  inherit (lib) mkOption;
   inherit (pkgs) symlinkJoin;
 
   prettier-with-plugins = pkgs.callPackage ./prettier-with-plugins.nix { };
 
   language-packages =
-    let
-      inherit (specialArgs) localPkgs;
-    in
     with pkgs; {
       # languages whose support simply needs some packages are listed here;
       # more complex ones, such as clojure, are imported as modules

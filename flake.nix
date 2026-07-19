@@ -67,9 +67,6 @@
                 hl = inputs.hl.packages.${system}.default;
                 deno_292 = inputs.nixpkgs-deno_292.legacyPackages.${system}.deno;
               };
-              localPkgs = {
-                volnoti = pkgs.callPackage ./packages/volnoti { };
-              };
 
             in
             inputs.home-manager.lib.homeManagerConfiguration {
@@ -81,7 +78,7 @@
                 })
               ];
               extraSpecialArgs = {
-                inherit flakePkgs localPkgs;
+                inherit flakePkgs;
               };
             })
           configurations;
