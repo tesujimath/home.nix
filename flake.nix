@@ -48,12 +48,15 @@
                     allowUnfreePredicate =
                       let
                         allowedUnfree = [
+                          "1password-cli"
                           "claude-code"
                           "cursor"
                           "cursor-cli"
                           "datagrip"
                           "rider"
                           "teams"
+                          "vscode"
+                          "widevine-cdm" # for playing Spotify in open source browsers
                           "zoom"
                         ];
                       in

@@ -41,7 +41,7 @@ in
           volnoti
           xclip
           xmobar
-          xorg.xmodmap
+          xmodmap
         ];
 
       home.file = {
