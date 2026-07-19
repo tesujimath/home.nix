@@ -3,7 +3,7 @@
 let
   cfg = config.local.agentic-engineering;
   inherit (lib) mkEnableOption mkIf;
-  inherit (pkgs) claude-code opencode qwen-code fetchFromGitHub;
+  inherit (pkgs) fetchFromGitHub;
 in
 {
   options.local.agentic-engineering = {
@@ -11,6 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    programs = {
+      cursor.enable = true;
+    };
+
     home =
       let
         skills = {
@@ -73,8 +77,10 @@ in
           skills;
       in
       {
-        packages = [
+        packages = with pkgs; [
           claude-code
+          claude-agent-acp
+          cursor-cli
           opencode
           qwen-code
         ];
