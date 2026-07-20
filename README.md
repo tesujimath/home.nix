@@ -2,6 +2,7 @@
 
 This Nix Home Manager configuration is designed to be easy to adapt for others' use.
 
+The heavy lifting is done in the [home.modules.nix repo](https://github.com/tesujimath/home.modules.nix), included here as a flake input.
 
 ## Getting Started
 

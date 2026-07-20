@@ -393,7 +393,7 @@ in
             "agentic-engineering"
             # "bash"
             "babashka"
-            # "carapace"
+            "carapace"
             "emacs"
             "fish"
             "fonts"
