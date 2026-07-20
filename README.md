@@ -17,7 +17,7 @@ $ cd ~/home.nix
 $ nix run 'nixpkgs/nixpkgs-unstable#home-manager' -- switch -v --flake '.#minimal'
 ```
 
-Subsequently, if you have the `bash` module enabled, the shell function `home-manager-switch` may be
+Subsequently, if you have the `bash` or `zsh` or `fish` modules enabled, the shell function `home-manager-switch` may be
 run with no arguments to reapply any changes you make to the profile.
 
 (Nix requires that any new files be added to the git index before it can read them.)

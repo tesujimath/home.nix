@@ -2,23 +2,20 @@
   description = "Nix flake for Nix Home Manager config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # TODO fold this back into nixpkgs once PR is merged:
-    nixpkgs-deno_292.url = "github:NixOS/nixpkgs/pull/539847/head";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nox = {
-      url = "github:madsbv/nix-options-search";
+    tesujimath-modules = {
+      url = "github:tesujimath/home.modules.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bash-env-json = {
-      url = "github:tesujimath/bash-env-json/main";
+    nox = {
+      url = "github:madsbv/nix-options-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -66,16 +63,15 @@
                 };
               flakePkgs = {
                 nox = inputs.nox.packages.${system}.default;
-                bash-env-json = inputs.bash-env-json.packages.${system}.default;
                 hl = inputs.hl.packages.${system}.default;
-                deno_292 = inputs.nixpkgs-deno_292.legacyPackages.${system}.deno;
               };
 
             in
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [
-                ./main.nix
+                ./base.nix
+                inputs.tesujimath-modules.homeManagerModules.default
                 (pkgs.lib.attrsets.recursiveUpdate (attrs pkgs) {
                   home.sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:$HOME/home.nix#${name}";
                 })

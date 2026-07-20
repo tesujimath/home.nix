@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-# shellcheck disable=SC1091
-test -r "$HOME/.env.sh" && . "$HOME/.env.sh"
-exec "$@"
