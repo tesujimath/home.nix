@@ -46,7 +46,7 @@ let
   commonLanguages = allLanguages // disable [ ];
 
   fish-functions = {
-    common = {
+    linux = {
       # add all ssh identities
       ssh-add-all.body = ''ssh-add ~/.ssh/(ls  ~/.ssh | grep '^id_[a-z0-9-]*$')'';
     };
@@ -169,8 +169,6 @@ in
 
             bash.profile.reuse-ssh-agent = true;
 
-            fish.functions = fish-functions.common // fish-functions.eri;
-
             web-browser.wsl.use-native-windows = true;
           };
 
@@ -195,6 +193,8 @@ in
             (moshWithKerberos pkgs)
           ];
         };
+
+        programs.fish.functions = fish-functions.linux // fish-functions.eri;
 
         # wezterm version needs to match what I have installed in Windows, which is latest stable
         programs.wezterm.package = wezterm_stable pkgs;
@@ -291,8 +291,6 @@ in
                 export LD_PRELOAD=/usr/lib64/libnss_sss.so.2
               '';
             };
-
-            fish.functions = fish-functions.common // fish-functions.slurm;
           };
 
         home = {
@@ -305,6 +303,8 @@ in
           ];
           sessionVariables = { };
         };
+
+        programs.fish.functions = fish-functions.linux // fish-functions.slurm;
 
         # wezterm version needs to match what I have installed in Windows, which is latest stable
         programs.wezterm.package = wezterm_stable pkgs;
@@ -391,7 +391,7 @@ in
         tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (enable [
             "agentic-engineering"
-            # "bash"
+            "bash"
             "babashka"
             "carapace"
             "emacs"

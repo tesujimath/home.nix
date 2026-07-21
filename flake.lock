@@ -257,20 +257,36 @@
         "type": "github"
       }
     },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "tesujimath-modules": {
       "inputs": {
         "bash-env-json": "bash-env-json",
         "home-manager": "home-manager_2",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1784523214,
-        "narHash": "sha256-I2HLvS2uBFnze9iPXMHD6LwLDzvlgk0D/wS1qq62Otk=",
+        "lastModified": 1784601843,
+        "narHash": "sha256-NDBVPNjqh7m1d5nVTtw71+E1vTlNA5SlIFvhE2ki3X8=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "af2dcea154308d6b2ecc83e017cb3d3fffa00485",
+        "rev": "97f90f76ace474a4f98b990b6ffa2863b727ca57",
         "type": "github"
       },
       "original": {
