@@ -27,6 +27,7 @@ let
     "csharp"
     "dockerfile"
     "fennel"
+    "fish"
     "fsharp"
     "go"
     "jinja"
