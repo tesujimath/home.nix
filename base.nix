@@ -30,12 +30,11 @@ in
           eza
           fd
           file
-          fx
           gzip
           htop
           ijq
+          jnv
           jq
-          jqp
           nix-index
           nix-search-cli
           nixos-option
