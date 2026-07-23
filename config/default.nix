@@ -404,6 +404,7 @@ in
             "homebrew"
             "mitmproxy"
             "syncthing"
+            "tmux"
             "web-browser"
             "wezterm"
             "yazi"
