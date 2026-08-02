@@ -454,4 +454,64 @@ in
         };
       };
     };
+
+  sjg-datacom-mac =
+    let
+      username = "simon.guest";
+      homeDirectory = /Users/simon.guest;
+      email = "simon.guest@datacom.com";
+      fullName = "Simon Guest";
+    in
+    {
+      system = "aarch64-darwin";
+      attrs = pkgs: {
+        # enable copying macOS applications to the user environment (works with Spotlight)
+        targets.darwin.copyApps.enable = true;
+        targets.darwin.linkApps.enable = false;
+
+        tesujimath = pkgs.lib.attrsets.recursiveUpdate
+          (enable [
+            "agentic-engineering"
+            "bash"
+            "babashka"
+            "carapace"
+            "emacs"
+            "fish"
+            "fonts"
+            "git"
+            "spacehammer"
+            "helix"
+            "homebrew"
+            "mitmproxy"
+            "tmux"
+            "web-browser"
+            "wezterm"
+            "yazi"
+            "zed-editor"
+            "zsh"
+          ])
+          {
+            user = {
+              inherit email;
+              inherit fullName;
+            };
+
+            defaultShell = "fish";
+            defaultShellPath = "${pkgs.fish}/bin/fish";
+            defaultEditor = "emacsclient";
+
+            languages = commonLanguages;
+          };
+
+        home = {
+          inherit stateVersion;
+          inherit username;
+          inherit homeDirectory;
+
+          packages = with pkgs;
+            [
+            ];
+        };
+      };
+    };
 }
