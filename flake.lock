@@ -9,11 +9,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760557132,
-        "narHash": "sha256-W/miuETHYNrhnLIgEZJs2a5e86GZO21hrAxnszC7vfo=",
+        "lastModified": 1785545097,
+        "narHash": "sha256-zT8Iy1HlzrasOGLvSJL+fUp959t9G4X5esXfAmRIgg0=",
         "owner": "tesujimath",
         "repo": "bash-env-json",
-        "rev": "0176542c1711cdd59049aba05b48c8eb3174d180",
+        "rev": "a1e76d1cd2480f717e5d601a00fbcf2ef0c35b45",
         "type": "github"
       },
       "original": {
@@ -282,11 +282,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1785283084,
-        "narHash": "sha256-PpChIy5xmKIc3ru7epup2m0XumERik9lLQlXltRwNKU=",
+        "lastModified": 1785710148,
+        "narHash": "sha256-K/7pSy7qxT1Fmmy/OlBi4ud60KGnbIh6R75LZTcdpbg=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "53f5011a529dce7ee41211af0276909d511fc0d5",
+        "rev": "a25a1d506e45c1c4ff8493131ef3e1a0de889461",
         "type": "github"
       },
       "original": {
