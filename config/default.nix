@@ -484,7 +484,6 @@ in
             "homebrew"
             "mitmproxy"
             "tmux"
-            "web-browser"
             "wezterm"
             "yazi"
             "zed-editor"
