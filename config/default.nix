@@ -510,6 +510,10 @@ in
           packages = with pkgs;
             [
             ];
+
+          sessionVariables = {
+            LOCAL_SLM_APIKEY = "$(security find-internet-password -a local-slm -D apikey -s llm-gateway -w 2>/dev/null)";
+          };
         };
       };
     };
