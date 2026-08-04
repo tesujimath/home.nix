@@ -510,6 +510,10 @@ in
           packages = with pkgs;
             [
             ];
+
+          sessionVariables = {
+            DATACOM_LLM_GATEWAY_LOCAL_SLM_APIKEY = "$(security find-internet-password -a local-slm -D apikey -s datacom-llm-gateway -w 2>/dev/null)";
+          };
         };
       };
     };
