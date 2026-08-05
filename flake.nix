@@ -14,6 +14,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tesujimath-modules-datacom = {
+      # private repo for Datacom specifics
+      url = "git+ssh://git@github.com/tesujimath/home.modules.datacom.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nox = {
       url = "github:madsbv/nix-options-search";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,7 +77,9 @@
               inherit pkgs;
               modules = [
                 ./base.nix
+                ./modules/local-llms.nix
                 inputs.tesujimath-modules.homeManagerModules.default
+                inputs.tesujimath-modules-datacom.homeManagerModules.default
                 (pkgs.lib.attrsets.recursiveUpdate (attrs pkgs) {
                   home.sessionVariables.HOME_MANAGER_FLAKE_REF_ATTR = "path:$HOME/home.nix#${name}";
                 })

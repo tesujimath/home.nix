@@ -515,6 +515,14 @@ in
             DATACOM_LLM_GATEWAY_LOCAL_SLM_APIKEY = "$(security find-internet-password -a local-slm -D apikey -s datacom-llm-gateway -w 2>/dev/null)";
           };
         };
+
+        programs.fish.functions = {
+          home-manager-switch-with-local-tesujimath-and-datacom-modules.body = ''
+            home-manager-switch \
+              --override-input tesujimath-modules (string replace -r '/home\.nix.*' /home.modules.nix $HOME_MANAGER_FLAKE_REF_ATTR) \
+              --override-input tesujimath-modules-datacom (string replace -r '/home\.nix.*' /home.modules.datacom.nix $HOME_MANAGER_FLAKE_REF_ATTR)
+          '';
+        };
       };
     };
 }
