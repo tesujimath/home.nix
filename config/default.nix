@@ -500,6 +500,8 @@ in
             defaultEditor = "emacsclient";
 
             languages = commonLanguages;
+
+            notion.cli.enable = true;
           };
 
         home = {
