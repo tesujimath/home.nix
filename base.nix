@@ -30,9 +30,11 @@ in
           eza
           fd
           file
+          gh
           gzip
           htop
           ijq
+          jaq
           jnv
           jq
           nix-index
