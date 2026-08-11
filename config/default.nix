@@ -479,10 +479,10 @@ in
             "fish"
             "fonts"
             "git"
-            "spacehammer"
             "helix"
             "homebrew"
             "mitmproxy"
+            "spacehammer"
             "tmux"
             "wezterm"
             "yazi"
@@ -511,6 +511,7 @@ in
 
           packages = with pkgs;
             [
+              azure-cli
             ];
 
           sessionVariables = {
