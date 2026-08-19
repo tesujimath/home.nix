@@ -484,6 +484,7 @@ in
             "mitmproxy"
             "spacehammer"
             "tmux"
+            "vmware-fusion-support"
             "wezterm"
             "yazi"
             "zed-editor"
