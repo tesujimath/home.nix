@@ -22,6 +22,7 @@ let
   allLanguages = enable [
     "bash"
     "beancount"
+    "bicep"
     "c"
     "clojure"
     "csharp"
@@ -500,7 +501,7 @@ in
             defaultShellPath = "${pkgs.fish}/bin/fish";
             defaultEditor = "emacsclient";
 
-            languages = commonLanguages;
+            languages = commonLanguages // enable [ "bicep" ];
 
             notion.cli.enable = true;
           };
