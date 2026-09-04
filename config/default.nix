@@ -425,6 +425,12 @@ in
             defaultEditor = "emacsclient";
 
             languages = commonLanguages;
+
+            agentic-engineering = {
+              skills.enable = true;
+              # goose.enable = true;
+              # oh-my-pi.enable = true;
+            };
           };
 
         home = {
@@ -502,6 +508,12 @@ in
             languages = commonLanguages // enable [ "bicep" ];
 
             notion.cli.enable = true;
+
+            agentic-engineering = {
+              skills.enable = true;
+              goose.enable = true;
+              oh-my-pi.enable = true;
+            };
           };
 
         home = {
