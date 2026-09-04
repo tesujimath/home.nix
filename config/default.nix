@@ -409,7 +409,6 @@ in
             "web-browser"
             "wezterm"
             "yazi"
-            "zed-editor"
             "zsh"
 
             # not these GUI apps and things we don't need on Mac:
@@ -488,7 +487,6 @@ in
             "vmware-fusion-support"
             "wezterm"
             "yazi"
-            "zed-editor"
             "zsh"
           ])
           {
