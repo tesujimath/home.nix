@@ -512,6 +512,7 @@ in
           packages = with pkgs;
             [
               azure-cli
+              handy
             ];
 
           sessionVariables = {
