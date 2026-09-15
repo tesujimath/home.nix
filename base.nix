@@ -30,7 +30,6 @@ in
           eza
           fd
           file
-          gh
           gzip
           htop
           ijq
