@@ -529,6 +529,9 @@ in
             ];
 
           sessionVariables = {
+            # override whatever Kandji Passport may have set with a @datacom.com suffix
+            USER = username;
+
             LOCAL_SLM_APIKEY = "$(security find-internet-password -a local-slm -D apikey -s llm-gateway -w 2>/dev/null)";
           };
         };
