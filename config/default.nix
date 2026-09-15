@@ -512,7 +512,8 @@ in
             agentic-engineering = {
               skills.enable = true;
               goose.enable = true;
-              oh-my-pi.enable = true;
+              # this builds really slowly:
+              # oh-my-pi.enable = true;
             };
           };
 
