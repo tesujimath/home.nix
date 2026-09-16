@@ -515,6 +515,8 @@ in
               # this builds really slowly:
               # oh-my-pi.enable = true;
             };
+
+            azure-cli.enable = true;
           };
 
         home = {
@@ -524,7 +526,6 @@ in
 
           packages = with pkgs;
             [
-              azure-cli
               handy
             ];
 
