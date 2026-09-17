@@ -392,7 +392,7 @@ in
 
         tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (enable [
-            "agentic-engineering"
+            "agents"
             "bash"
             "babashka"
             "carapace"
@@ -426,7 +426,7 @@ in
 
             languages = commonLanguages;
 
-            agentic-engineering = {
+            agents = {
               skills.enable = true;
               # goose.enable = true;
               # oh-my-pi.enable = true;
@@ -477,7 +477,7 @@ in
 
         tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (enable [
-            "agentic-engineering"
+            "agents"
             "bash"
             "babashka"
             "carapace"
@@ -509,7 +509,7 @@ in
 
             notion.cli.enable = true;
 
-            agentic-engineering = {
+            agents = {
               skills.enable = true;
               goose.enable = true;
               # this builds really slowly:

@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  cfg = config.tesujimath.agentic-engineering;
+  cfg = config.tesujimath.agents;
   inherit (lib) mkIf;
 in
 {
