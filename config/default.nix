@@ -510,7 +510,21 @@ in
             notion.cli.enable = true;
 
             agents = {
-              skills.enable = true;
+              skills = {
+                enable = true;
+
+                sources = {
+                  smartly-skills = {
+                    src = builtins.fetchGit {
+                      url = "git@github.com:Smartly-NZ/Skills.git";
+                      rev = "c67320efc6e16ca06f9cbf690aa4c0215f1cee7c";
+                    };
+                    skills = {
+                      direnv = "direnv";
+                    };
+                  };
+                };
+              };
               goose.enable = true;
               # this builds really slowly:
               # oh-my-pi.enable = true;
