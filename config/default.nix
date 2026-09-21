@@ -392,7 +392,6 @@ in
 
         tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (enable [
-            "agents"
             "bash"
             "babashka"
             "carapace"
@@ -428,6 +427,7 @@ in
 
             agents = {
               skills.enable = true;
+              claude.enable = true;
               # goose.enable = true;
               # oh-my-pi.enable = true;
             };
@@ -477,7 +477,6 @@ in
 
         tesujimath = pkgs.lib.attrsets.recursiveUpdate
           (enable [
-            "agents"
             "bash"
             "babashka"
             "carapace"
@@ -525,9 +524,11 @@ in
                   };
                 };
               };
-              goose.enable = true;
-              # this builds really slowly:
-              # oh-my-pi.enable = true;
+              agent-shell-support.enable = true;
+              claude.enable = true;
+              cursor.enable = true;
+              # goose.enable = true; # I'm not a fan of its reliance on MCP
+              # oh-my-pi.enable = true; # builds really slowly:
             };
 
             azure-cli.enable = true;
