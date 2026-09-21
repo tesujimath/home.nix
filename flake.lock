@@ -589,11 +589,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1789702998,
-        "narHash": "sha256-pBsq2K8HQWHlO+wIC7mfEXCJStL2NH3cbVya1htpsRs=",
+        "lastModified": 1790024861,
+        "narHash": "sha256-W65RXBTdK1sSQ8ZTk3S720KrXEQsZt9Rm2vcNQcnPyk=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "d71ed59629c47322b6ec659f406f12b986112280",
+        "rev": "a85817ed2e2b3d412bed9206f5b5341b8e340c93",
         "type": "github"
       },
       "original": {
@@ -612,11 +612,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1785964057,
-        "narHash": "sha256-igUE7G/xU9R16l7fvzeSUnd+8stW43s36KjfJ52Zz5E=",
+        "lastModified": 1790024749,
+        "narHash": "sha256-Q2hSHjZJCJgdevbxPk564mjK2w1R7njhuRsGsPp1a7M=",
         "ref": "refs/heads/main",
-        "rev": "102c65c3c16fa91a8a75c0072d77e5bbaf0f7686",
-        "revCount": 1,
+        "rev": "d0443ef56ac4d99414e12fc186fe299a924bd7b9",
+        "revCount": 2,
         "type": "git",
         "url": "ssh://git@github.com/tesujimath/home.modules.datacom.nix"
       },

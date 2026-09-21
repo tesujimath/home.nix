@@ -5,7 +5,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf cfg.enable {
+  config = {
     xdg.configFile =
       let
         goose-providers = mkIf cfg.goose.enable {
