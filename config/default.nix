@@ -527,6 +527,7 @@ in
               agent-shell-support.enable = true;
               claude.enable = true;
               cursor.enable = true;
+              pi.enable = true;
               # goose.enable = true; # I'm not a fan of its reliance on MCP
               # oh-my-pi.enable = true; # builds really slowly:
             };
