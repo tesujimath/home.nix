@@ -589,11 +589,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1790204748,
-        "narHash": "sha256-DqskIe+JBXlVxca5p7nDzZClpAGpNprJ0pW6ENo3YuE=",
+        "lastModified": 1790206218,
+        "narHash": "sha256-0Xbajq144Lq1FOMFO/4Fv62RD0lXnK5tH20sDtDlWIg=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "53c4bcc959f2a2d1dfb69c6eefce46ddc3e70c30",
+        "rev": "ed8757b520dd324d31a0dce752f709338e998de4",
         "type": "github"
       },
       "original": {
