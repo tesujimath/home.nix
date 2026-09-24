@@ -612,11 +612,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1790024749,
-        "narHash": "sha256-Q2hSHjZJCJgdevbxPk564mjK2w1R7njhuRsGsPp1a7M=",
+        "lastModified": 1790228312,
+        "narHash": "sha256-6U224MXkoCQJphNrZ5UwtzkvBw95Dg8assFZXLAZD8k=",
         "ref": "refs/heads/main",
-        "rev": "d0443ef56ac4d99414e12fc186fe299a924bd7b9",
-        "revCount": 2,
+        "rev": "50240aa44e8d7e5229e629eb49e0a14f6d4524f6",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git@github.com/tesujimath/home.modules.datacom.nix"
       },
