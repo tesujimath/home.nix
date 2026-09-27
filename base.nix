@@ -31,6 +31,7 @@ in
           fd
           file
           gzip
+          hl-log-viewer
           htop
           ijq
           jaq
@@ -47,7 +48,7 @@ in
           virtualenv # better than python -m venv because support for different shells
           wget
         ]) ++ (with flakePkgs;
-        [ hl nox ]);
+        [ nox ]);
     };
   };
 }

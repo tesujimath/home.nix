@@ -24,11 +24,6 @@
       url = "github:madsbv/nix-options-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hl = {
-      url = "github:pamburus/hl";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs:
@@ -69,7 +64,6 @@
                 };
               flakePkgs = {
                 nox = inputs.nox.packages.${system}.default;
-                hl = inputs.hl.packages.${system}.default;
               };
 
             in
