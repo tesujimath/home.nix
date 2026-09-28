@@ -24,6 +24,11 @@
       url = "github:madsbv/nix-options-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -72,6 +77,7 @@
               modules = [
                 ./base.nix
                 ./modules/local-llms.nix
+                inputs.nix-index-database.homeModules.nix-index
                 inputs.tesujimath-modules.homeManagerModules.default
                 inputs.tesujimath-modules-datacom.homeManagerModules.default
                 (pkgs.lib.attrsets.recursiveUpdate (attrs pkgs) {
