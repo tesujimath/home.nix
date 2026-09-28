@@ -515,11 +515,12 @@ in
                 sources = {
                   smartly-skills = {
                     src = builtins.fetchGit {
-                      url = "git@github.com:Smartly-NZ/Skills.git";
-                      rev = "c67320efc6e16ca06f9cbf690aa4c0215f1cee7c";
+                      url = "datacom@datacom.ghe.com:Datacom-Smartly/Skills.git";
+                      rev = "02355fd8288ccb2e9cdd3f341d78aebecd6a4e48";
                     };
                     skills = {
                       direnv = "direnv";
+                      write-good-comments = "write-good-comments";
                     };
                   };
                 };
