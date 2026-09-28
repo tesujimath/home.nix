@@ -37,7 +37,6 @@ in
           jaq
           jnv
           jq
-          nix-index
           nix-search-cli
           nixos-option
           nmap
@@ -50,5 +49,7 @@ in
         ]) ++ (with flakePkgs;
         [ nox ]);
     };
+
+    programs.nix-index-database.comma.enable = true;
   };
 }
