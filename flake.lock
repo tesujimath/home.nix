@@ -511,11 +511,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1790626020,
-        "narHash": "sha256-r6Z0vf5M2z2doTgwQVis6+pMq8ND8EdlkVr+ewxASWI=",
+        "lastModified": 1791413903,
+        "narHash": "sha256-wA38VWj/wYGAUOYEkukebZKOQ6qR+fjQFsiqw5vNzeQ=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "8e0455b1cd7872d3ade28dca5496aac1a4b58c69",
+        "rev": "73869e2d7cb4cca98db6c3e1d6080f3d9536240f",
         "type": "github"
       },
       "original": {
