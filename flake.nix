@@ -47,6 +47,7 @@
               pkgs = import inputs.nixpkgs
                 {
                   inherit system;
+                  overlays = [ inputs.tesujimath-modules.overlays.default ];
                   config = {
                     allowUnfreePredicate =
                       let
