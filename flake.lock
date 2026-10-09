@@ -95,6 +95,28 @@
         "type": "github"
       }
     },
+    "crit": {
+      "inputs": {
+        "nixpkgs": [
+          "tesujimath-modules",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791375995,
+        "narHash": "sha256-HGigdrTMa+Cs/4wcEJAUT/PRYXHT3LG1Ue1VomJaAX4=",
+        "owner": "tomasz-tomczyk",
+        "repo": "crit",
+        "rev": "9694e99b6291ee910a541ae3451c62bf622cbc5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasz-tomczyk",
+        "ref": "main",
+        "repo": "crit",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -503,6 +525,7 @@
     "tesujimath-modules": {
       "inputs": {
         "bash-env-json": "bash-env-json",
+        "crit": "crit",
         "home-manager": "home-manager_2",
         "nixpkgs": [
           "nixpkgs"
@@ -511,11 +534,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1791413903,
-        "narHash": "sha256-wA38VWj/wYGAUOYEkukebZKOQ6qR+fjQFsiqw5vNzeQ=",
+        "lastModified": 1791505770,
+        "narHash": "sha256-5Af1RmCeq0RqaDdV/CHNQ/GrLPHUmgNIR/CiS8bv/zI=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "73869e2d7cb4cca98db6c3e1d6080f3d9536240f",
+        "rev": "481064e26888d4a001db22b1abfc0d608bdd3013",
         "type": "github"
       },
       "original": {
