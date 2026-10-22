@@ -551,7 +551,7 @@ in
             # override whatever Kandji Passport may have set with a @datacom.com suffix
             USER = username;
 
-            DATACOM_LLM_GATEWAY_LOCAL_QWEN_APIKEY = "$(security find-internet-password -a local-qwen -D apikey -s datacom-llm-gateway -w 2>/dev/null)";
+            DATACOM_MODELHUB_LOCAL_QWEN_APIKEY = "$(security find-internet-password -a local-qwen -D apikey -s datacom-modelhub -w 2>/dev/null)";
           };
         };
 
