@@ -535,6 +535,8 @@ in
             };
 
             azure-cli.enable = true;
+
+            sql.enable = true;
           };
 
         home = {
