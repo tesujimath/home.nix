@@ -536,6 +536,8 @@ in
 
             azure-cli.enable = true;
 
+            docker.enable = true;
+
             sql.enable = true;
           };
 
@@ -564,8 +566,6 @@ in
               --override-input tesujimath-modules-datacom (string replace -r '/home\.nix.*' /home.modules.datacom.nix $HOME_MANAGER_FLAKE_REF_ATTR)
           '';
         };
-
-        services.podman.enable = true;
       };
     };
 }
