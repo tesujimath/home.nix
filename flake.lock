@@ -117,6 +117,28 @@
         "type": "github"
       }
     },
+    "dirge": {
+      "inputs": {
+        "nixpkgs": [
+          "tesujimath-modules",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793316637,
+        "narHash": "sha256-vIUPW+jgwvfP479TsE7DCPrpTYJ/Wdajkw7lgnFBhKs=",
+        "owner": "dirge-code",
+        "repo": "dirge",
+        "rev": "ee0fb78bf16468a31d1b4ea498b814bcd31ff9bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dirge-code",
+        "ref": "main",
+        "repo": "dirge",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -526,6 +548,7 @@
       "inputs": {
         "bash-env-json": "bash-env-json",
         "crit": "crit",
+        "dirge": "dirge",
         "home-manager": "home-manager_2",
         "nixpkgs": [
           "nixpkgs"
@@ -534,11 +557,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1793235658,
-        "narHash": "sha256-w6m9VaNliCt6Dr//E57G4+RLZh4qoZUyrHuT2Nc/YrE=",
+        "lastModified": 1793659996,
+        "narHash": "sha256-MGBxXITmi4+w0qbF0noT4KbK31WS0YeA7BGJZ+cFTnY=",
         "owner": "tesujimath",
         "repo": "home.modules.nix",
-        "rev": "2f9d1282df692d22a80fc002dd2a4d35189e2f0b",
+        "rev": "698c61086e3ca9e92997c0366fb86ca6e1c63fbd",
         "type": "github"
       },
       "original": {
@@ -557,11 +580,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1793235623,
-        "narHash": "sha256-jonO7RZtpn+/XQoxl2DxmBN6tuY/TAq1aUn0Ag4J+As=",
+        "lastModified": 1793660028,
+        "narHash": "sha256-/99NmxU6n1m/3uX7GUmSJTO+IYOmXlkJ3XlOiw1XPEU=",
         "ref": "refs/heads/main",
-        "rev": "de157b9a42e12c0a09cd0346b3d4ab9d92194008",
-        "revCount": 6,
+        "rev": "a83bada981065cdfaca5c39f746b4586e4f0c497",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/tesujimath/home.modules.datacom.nix"
       },
