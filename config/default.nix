@@ -539,6 +539,8 @@ in
 
             docker.enable = true;
 
+            smartly-local.enable = true;
+
             sql.enable = true;
           };
 

@@ -51,5 +51,22 @@ in
     };
 
     programs.nix-index-database.comma.enable = true;
+
+    # this exists to capture the defaults that Nix wanted to use
+    programs.ssh = {
+      enableDefaultConfig = false;
+      #   settings."*" = {
+      #     AddKeysToAgent = "no";
+      #     Compression = "no";
+      #     ControlMaster = "no";
+      #     ControlPath = "~/.ssh/master-%r@%n:%p";
+      #     ControlPersist = "no";
+      #     ForwardAgent = "no";
+      #     HashKnownHosts = "no";
+      #     ServerAliveCountMax = 3;
+      #     ServerAliveInterval = 0;
+      #     UserKnownHostsFile = "~/.ssh/known_hosts";
+      #   };
+    };
   };
 }
