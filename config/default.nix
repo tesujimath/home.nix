@@ -484,6 +484,7 @@ in
             "fish"
             "fonts"
             "git"
+            "github"
             "helix"
             "homebrew"
             "mitmproxy"
