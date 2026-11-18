@@ -488,6 +488,7 @@ in
             "helix"
             "homebrew"
             "mitmproxy"
+            "openvpn"
             "spacehammer"
             "tmux"
             "vmware-fusion-support"
