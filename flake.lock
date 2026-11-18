@@ -580,11 +580,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1794976066,
-        "narHash": "sha256-9+SAzEafJhRvWzeWNdrwD64VVb0Vy0UU0pwPLVwLg1c=",
+        "lastModified": 1795043380,
+        "narHash": "sha256-VOKpgVRylwe0Ht+Wb3JjI4K+tbdj9eFJ9T30k5l5BWA=",
         "ref": "refs/heads/main",
-        "rev": "a4ab8837d070e6e494af19db33cfbe99ecf508c9",
-        "revCount": 10,
+        "rev": "f765a7c7b216e4af58057837c9555b79a3cfa179",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@github.com/tesujimath/home.modules.datacom.nix"
       },
